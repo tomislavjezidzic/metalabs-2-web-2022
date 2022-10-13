@@ -4,7 +4,6 @@
 $template_name = 'home';
 get_header();
 
-
 get_partial( 'layout/loader' );
 get_partial( 'layout/navigation' );
 
