@@ -1,0 +1,55 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0496eb579b68a7fb7bdb5dc112f969b1",
+    "packages": [
+        {
+            "name": "bornfight/wp-helpers-bf",
+            "version": "v2.7.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bornfight/wp-helpers-bf.git",
+                "reference": "fdf1572798b6cb7c9ca78e02d66c946bf7d905e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bornfight/wp-helpers-bf/zipball/fdf1572798b6cb7c9ca78e02d66c946bf7d905e9",
+                "reference": "fdf1572798b6cb7c9ca78e02d66c946bf7d905e9",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "bornfight\\wpHelpers\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "WP team",
+                    "email": "wpadmin@bornfight.com"
+                }
+            ],
+            "description": "Standard package for WP development used at Bornfight",
+            "support": {
+                "source": "https://github.com/bornfight/wp-helpers-bf/tree/v2.7.16",
+                "issues": "https://github.com/bornfight/wp-helpers-bf/issues"
+            },
+            "time": "2022-03-31T09:01:13+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

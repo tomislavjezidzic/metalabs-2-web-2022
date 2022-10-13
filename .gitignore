@@ -1,0 +1,12 @@
+wp
+.idea
+debug.log
+ai1wm-backups
+plugins/
+uploads/
+languages
+.DS_Store
+elm-error-logs/
+backups-dup-lite/
+languages/
+wphb-logs/
