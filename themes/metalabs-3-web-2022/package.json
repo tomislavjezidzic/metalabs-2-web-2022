@@ -13,9 +13,7 @@
     "build:vendor": "NODE_ENV='production' gulp buildVendor",
     "dev": "NODE_ENV='development' gulp",
     "esdoc": "./node_modules/.bin/esdoc",
-    "format": "prettier --write 'static/**/*.{scss,js}'",
     "lint:scss": "stylelint 'static/**/*.scss'",
-    "prepare": "cd .. && cd .. && husky install",
     "webp": "gulp webPImages"
   },
   "browserslist": [
