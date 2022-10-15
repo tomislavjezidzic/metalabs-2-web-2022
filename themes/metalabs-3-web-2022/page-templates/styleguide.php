@@ -80,6 +80,24 @@ get_partial( 'layout/navigation' );
         <div class="u-gradient-transparent-270" style="width: 200px; height: 200px;">
             u-gradient-transparent-270
         </div>
+
+        <div class="u-gradient-transparent-270 u-gradient-transparent-270--animated" style="width: 200px; height: 200px;">
+            u-gradient-transparent-270--animated
+        </div>
+
+        <div class="u-gradient-blur-filled-270" style="width: 200px; height: 200px;">
+            u-gradient-blur-filled-270
+        </div>
+
+        <div class="u-black-blur-overlay" style="width: 200px; height: 200px;">
+            u-black-blur-overlay
+        </div>
+
+        <p>
+            u-gradient-blur-transparent-270
+        </p>
+        <div class="u-gradient-blur-transparent-270" style="width: 200px; height: 200px;">
+        </div>
     </div>
     <!-- //PAGE CONTENT -->
 	<?php

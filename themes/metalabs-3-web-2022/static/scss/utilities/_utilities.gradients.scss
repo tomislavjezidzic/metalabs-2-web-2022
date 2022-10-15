@@ -1,14 +1,86 @@
 .u-gradient-transparent-270 {
-    background: linear-gradient(350.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
+    background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
     backdrop-filter: blur(10.5px);
+
+    &--animated {
+        background-size: 100% 150%;
+        background-position-y: 0;
+        background-repeat: no-repeat;
+        animation-name: transparent-270;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+    }
 }
 
 .u-gradient-transparent-90 {
-    background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 44.53%, rgba(238, 128, 1, 0) 60.16%, #feb301 100%);
+    background: linear-gradient(170.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 44.53%, rgba(238, 128, 1, 0) 60.16%, #feb301 100%);
     backdrop-filter: blur(10.5px);
 }
 
 .u-gradient-filled-270 {
-    background: linear-gradient(350.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
+    background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
     backdrop-filter: blur(10.5px);
+
+    &--animated {
+        background-size: 100% 150%;
+        background-position-y: 0;
+        background-repeat: no-repeat;
+        animation-name: transparent-270;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+    }
+}
+
+.u-gradient-blur-filled-270 {
+    background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 38.99%, rgba(238, 128, 1, 0) 68.58%, #feb301 100%),
+        rgba(214, 186, 242, 0.1);
+    backdrop-filter: blur(10.5px);
+
+    &--animated {
+        background-size: 100% 150%;
+        background-position-y: 0;
+        background-repeat: no-repeat;
+        animation-name: transparent-270;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+    }
+}
+
+.u-black-blur-overlay {
+    background: rgba(0, 0, 0, 0.8);
+    mix-blend-mode: normal;
+    backdrop-filter: blur(2px);
+}
+
+.u-gradient-blur-transparent-270 {
+    background: linear-gradient(260.45deg, #2400ff 0%, rgba(120, 24, 1, 0) 38.94%, rgba(238, 128, 1, 0) 73.6%, #feb301 99.87%);
+    filter: blur(4px);
+    backdrop-filter: blur(17px);
+
+    &--animated {
+        background-size: 100% 150%;
+        background-position-y: 0;
+        background-repeat: no-repeat;
+        animation-name: transparent-270;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+    }
+}
+
+@keyframes transparent-270 {
+    0% {
+        background-position-y: 0;
+    }
+
+    100% {
+        background-position-y: 50%;
+    }
 }
