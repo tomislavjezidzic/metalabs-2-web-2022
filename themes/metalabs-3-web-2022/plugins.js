@@ -1,3 +1,1 @@
-export const plugins = [
-    "gsap",
-];
+export const plugins = ["gsap", "is_js"];

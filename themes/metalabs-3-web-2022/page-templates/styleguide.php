@@ -6,6 +6,7 @@ get_header();
 
 get_partial( 'layout/loader' );
 get_partial( 'layout/navigation' );
+get_partial( 'layout/cursor' );
 
 ?>
 
@@ -21,6 +22,21 @@ get_partial( 'layout/navigation' );
 
     <!-- PAGE CONTENT -->
     <div class="o-page__inner o-page__inner--<?= $template_name ?>">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="">
+            this is link
+        </a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
         <p class="u-a4 u-a4--roobert">
             A4
 

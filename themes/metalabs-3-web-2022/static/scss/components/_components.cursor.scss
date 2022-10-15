@@ -1,0 +1,44 @@
+.c-cursor {
+    @include fluidValue("width", null, 80px);
+    @include fluidValue("height", null, 60px);
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+
+    @include mq(md) {
+        display: none;
+    }
+
+    &__icon-idle {
+        position: relative;
+        width: 100%;
+        height: auto;
+
+        .is-active & {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    &__icon-active {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: auto;
+        opacity: 0;
+        visibility: hidden;
+
+        .is-active & {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .u-icon {
+        width: 100%;
+    }
+}

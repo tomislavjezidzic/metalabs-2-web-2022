@@ -14,7 +14,7 @@ import GridHelper from "./helpers/GridHelper";
  * Components
  */
 import NavigationController from "./components/NavigationController";
-import TemplateComponent from "./components/TemplateComponent";
+import Cursor from "./components/Cursor";
 
 /**
  * Check if document is ready cross-browser
@@ -76,16 +76,16 @@ ready(() => {
      */
 
     /**
-     * Template component
-     * @type {TemplateComponent}
-     */
-    const templateComponent = new TemplateComponent();
-    templateComponent.init();
-
-    /**
      * Navigation
      * @type {NavigationController}
      */
     const navigation = new NavigationController();
     navigation.init();
+
+    /**
+     * Cursor
+     * @type {Cursor}
+     */
+    const cursor = new Cursor();
+    cursor.init();
 });

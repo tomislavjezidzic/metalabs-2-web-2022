@@ -6,6 +6,7 @@ get_header();
 
 get_partial( 'layout/loader' );
 get_partial( 'layout/navigation' );
+get_partial( 'layout/cursor' );
 
 ?>
 
