@@ -15,6 +15,7 @@ import GridHelper from "./helpers/GridHelper";
  */
 import NavigationController from "./components/NavigationController";
 import Cursor from "./components/Cursor";
+import ThreeDSlider from "./components/3dSlider";
 
 /**
  * Check if document is ready cross-browser
@@ -57,19 +58,8 @@ ready(() => {
         grid.init();
     }
 
-    /**
-     * CREDITS INIT
-     */
-    const credits = [
-        "background-color: #000000",
-        "color: white",
-        "display: block",
-        "line-height: 24px",
-        "text-align: center",
-        "border: 1px solid #ffffff",
-        "font-weight: bold",
-    ].join(";");
-    console.info("dev by: %c Bornfight ", credits);
+    const doc = document.documentElement;
+    doc.style.setProperty("--win-height", `${window.innerHeight}px`);
 
     /**
      * COMPONENTS INIT
@@ -88,4 +78,11 @@ ready(() => {
      */
     const cursor = new Cursor();
     cursor.init();
+
+    /**
+     * ThreeDSlider
+     * @type {ThreeDSlider}
+     */
+    const threeDSlider = new ThreeDSlider();
+    threeDSlider.init();
 });

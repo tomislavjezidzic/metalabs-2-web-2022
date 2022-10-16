@@ -32,6 +32,10 @@ export default class Cursor {
         document.querySelectorAll("a").forEach((link) => {
             this.singleLink(link);
         });
+
+        document.querySelectorAll(".has-hover").forEach((link) => {
+            this.singleLink(link);
+        });
     }
 
     singleLink(link) {
