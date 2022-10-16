@@ -158,7 +158,7 @@ var Cursor = /*#__PURE__*/function () {
       if (!this.wrapper || _is_js.default.touchDevice()) return;
       var offsetY = this.wrapper.offsetHeight * 0.5;
       var offsetX = this.wrapper.offsetWidth * 0.05;
-      window.addEventListener("mousemove", function (ev) {
+      window.addEventListener("pointermove", function (ev) {
         if (!_this.moved) {
           _this.moved = true;
           _this.wrapper.classList.add("is-moved");
@@ -167,6 +167,10 @@ var Cursor = /*#__PURE__*/function () {
           x: ev.clientX - offsetX,
           y: ev.clientY - offsetY
         });
+      });
+      window.addEventListener("mouseout", function (ev) {
+        _this.moved = false;
+        _this.wrapper.classList.remove("is-moved");
       });
       document.querySelectorAll("a").forEach(function (link) {
         _this.singleLink(link);

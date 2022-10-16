@@ -17,7 +17,7 @@ export default class Cursor {
         const offsetY = this.wrapper.offsetHeight * 0.5;
         const offsetX = this.wrapper.offsetWidth * 0.05;
 
-        window.addEventListener("mousemove", (ev) => {
+        window.addEventListener("pointermove", (ev) => {
             if (!this.moved) {
                 this.moved = true;
                 this.wrapper.classList.add("is-moved");
@@ -27,6 +27,11 @@ export default class Cursor {
                 x: ev.clientX - offsetX,
                 y: ev.clientY - offsetY,
             });
+        });
+
+        window.addEventListener("mouseout", (ev) => {
+            this.moved = false;
+            this.wrapper.classList.remove("is-moved");
         });
 
         document.querySelectorAll("a").forEach((link) => {
