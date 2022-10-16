@@ -49,7 +49,6 @@ if (defined('LOCAL') && LOCAL === true) {
     <meta name="theme-color" content=<?= $theme_color ?>>
 
 	<?php wp_head(); ?>
-
 </head>
 
 <body <?php body_class(); ?>>

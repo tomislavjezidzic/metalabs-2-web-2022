@@ -13,6 +13,11 @@
 
 ?>
 Footer
+
+<script>
+    window.dracoPath = "<?= bu( "draco" ); ?>/";
+</script>
+
 <?php wp_footer(); ?>
 
 </body>

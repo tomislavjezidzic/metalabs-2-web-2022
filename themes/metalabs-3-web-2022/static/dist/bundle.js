@@ -148,13 +148,14 @@ var _gsap = _interopRequireDefault(require("gsap"));
 var THREE = _interopRequireWildcard(require("three"));
 var _DRACOLoader = require("three/examples/jsm/loaders/DRACOLoader");
 var _GLTFLoader = require("three/examples/jsm/loaders/GLTFLoader");
+var _ScrollTrigger = _interopRequireDefault(require("gsap/ScrollTrigger"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-// import DracoDecoder from "three/examples/js/libs/draco/";
+_gsap.default.registerPlugin(_ScrollTrigger.default);
 var ThreeDSliderModels = /*#__PURE__*/function () {
   function ThreeDSliderModels(wrapper) {
     _classCallCheck(this, ThreeDSliderModels);
@@ -163,6 +164,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       slide: ".js-3d-slider-slide"
     };
     this.models = wrapper.querySelector(this.DOM.models);
+    this.inViewport = false;
 
     // config
     this.config = {
@@ -180,13 +182,29 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
 
       // loader
       var dracoLoader = new _DRACOLoader.DRACOLoader();
-      dracoLoader.setDecoderPath("https://threejs.org/examples/js/libs/draco/");
-      // dracoLoader.setDecoderPath(DracoDecoder);
+      dracoLoader.setDecoderPath(window.dracoPath);
       dracoLoader.setDecoderConfig({
         type: "js"
       });
       this.loader.setDRACOLoader(dracoLoader);
       THREE.Cache.enabled = true;
+      _ScrollTrigger.default.create({
+        trigger: this.models,
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: function onEnter() {
+          _this.inViewport = true;
+        },
+        onLeave: function onLeave() {
+          _this.inViewport = false;
+        },
+        onEnterBack: function onEnterBack() {
+          _this.inViewport = true;
+        },
+        onLeaveBack: function onLeaveBack() {
+          _this.inViewport = false;
+        }
+      });
       this.width = window.innerWidth;
       this.height = window.innerHeight;
       this.initCamera();
@@ -316,7 +334,9 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
     key: "animate",
     value: function animate() {
       var _this4 = this;
-      this.renderer.render(this.scene, this.camera);
+      if (this.inViewport) {
+        this.renderer.render(this.scene, this.camera);
+      }
       if (this.renderer != null) {
         requestAnimationFrame(function () {
           return _this4.animate();
@@ -333,7 +353,6 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
         return model.uuid === prevIndex;
       });
       var direction = prevIndex > index ? 1 : -1;
-      console.log(this.modelsWrapper);
       _gsap.default.timeline().add("start").to(this.modelsWrapper.position, {
         x: -index * this.config.modelOffset,
         duration: 2,
@@ -357,7 +376,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
 }();
 exports.default = ThreeDSliderModels;
 
-},{"gsap":"gsap","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],3:[function(require,module,exports){
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

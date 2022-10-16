@@ -2,7 +2,9 @@ import gsap from "gsap";
 import * as THREE from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-// import DracoDecoder from "three/examples/js/libs/draco/";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default class ThreeDSliderModels {
     constructor(wrapper) {
@@ -12,6 +14,8 @@ export default class ThreeDSliderModels {
         };
 
         this.models = wrapper.querySelector(this.DOM.models);
+
+        this.inViewport = false;
 
         // config
         this.config = {
@@ -30,14 +34,31 @@ export default class ThreeDSliderModels {
 
         // loader
         const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath("https://threejs.org/examples/js/libs/draco/");
-        // dracoLoader.setDecoderPath(DracoDecoder);
+        dracoLoader.setDecoderPath(window.dracoPath);
         dracoLoader.setDecoderConfig({
             type: "js",
         });
         this.loader.setDRACOLoader(dracoLoader);
 
         THREE.Cache.enabled = true;
+
+        ScrollTrigger.create({
+            trigger: this.models,
+            start: "top bottom",
+            end: "bottom top",
+            onEnter: () => {
+                this.inViewport = true;
+            },
+            onLeave: () => {
+                this.inViewport = false;
+            },
+            onEnterBack: () => {
+                this.inViewport = true;
+            },
+            onLeaveBack: () => {
+                this.inViewport = false;
+            },
+        });
 
         this.width = window.innerWidth;
         this.height = window.innerHeight;
@@ -165,7 +186,9 @@ export default class ThreeDSliderModels {
      * requestAnimationFrame
      */
     animate() {
-        this.renderer.render(this.scene, this.camera);
+        if (this.inViewport) {
+            this.renderer.render(this.scene, this.camera);
+        }
         if (this.renderer != null) {
             requestAnimationFrame(() => this.animate());
         }
@@ -176,8 +199,6 @@ export default class ThreeDSliderModels {
         const prevModel = this.modelsArray.find((model) => model.uuid === prevIndex);
 
         const direction = prevIndex > index ? 1 : -1;
-
-        console.log(this.modelsWrapper);
 
         gsap.timeline()
             .add("start")
