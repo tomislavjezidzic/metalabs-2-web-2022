@@ -1,0 +1,1309 @@
+/**
+ * Tools
+ */
+/**
+ * Tools
+ */
+/**
+ * Get breakpoint from breakpoints settings map
+ */
+/**
+ * Media query mixin
+ * @param {} $to - Value from $settings-breakpoints
+ * available breakpoints can be found in _settings.breakpoints.scss
+ * usage for max width:
+ * @include mq(md){};
+ * usage for min width:
+ * @include mq(null, md)
+ */
+/**
+ * Fluid font sizes
+ * usage:
+ */
+/**
+ * Get font values from settings
+ */
+/**
+ * Fluid property values
+ * usage:
+ * @include fluidValue("margin-top", "s-56");
+ * @include fluidValue("max-width", null, 600px);
+ * @include fluidValue("padding-top", "s-56", 56px);
+ */
+/**
+ * Get spacing values from settings
+ */
+/**
+ * Fetch nested keys
+ * @param {Map} $map - Map
+ * @param {Arglist} $keys - Keys to fetch
+ * Fetch nested keys
+ * @return {*}
+ */
+/**
+ * Hover support mixin
+ * Detect if device supports hover interaction
+ * 1. If device is not supporting hover, add properties as active state styles
+ * 2. If device is supporting hover, add properties as hover state styles
+ * usage:
+ * @include hover{}
+ */
+/**
+ * Focus accessibility support mixin
+ * Enable box shadow for focusable (tabbable) elements
+ * 1. Target only elements that are not disabled and need a visible indicator to show focus
+ * usage:
+ * @include focus{}
+ */
+/**
+ * Get transition easing from $settings-transitions-easing
+ */
+/**
+ * Transition function
+ * @param {string} $transitionName - Name of the transition from $settings-transitions
+ * @param {string} $transitionEasing - get transition easing from $settings-transitions-easing
+ * usage:
+ * transition: getTransition;
+ * transition: getTransition(slide, ease-in-quad);
+ */
+/**
+ * Custom transition function
+ * used when you need to specify custom transition for only one or multiple properties but not all
+ * if you will not change the property use getTransition instead
+ * default easing is from getTransitionEasing
+ * @param {string} $transitions - any number of transitions
+ * usage:
+ * transition: getCustomTransition(opacity);
+ * transition: getCustomTransition(transform 0.3s);
+ * transition: getCustomTransition(transform 0.5s ease, background-color 0.2s);
+ * transition: getCustomTransition(
+ *                  top 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+ *                  transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0.3s
+ *               );
+ */
+/**
+ * Unfold transition function
+ * Helper for getCustomTransition();
+ * Takes any number of arguments passed to getCustomTransition() and makes unfolds them to single properties
+ * 1. Transition property defaults
+ * 2. Grab transition properties if they exist
+ */
+/**
+ * Font face mixin
+ * @param {string} $font-name - Name of the font
+ * @param {string} $font-filename - Name of the file without extension
+ * @param {number} $version - Font version
+ * @param {number} $font-weight - Font weight value
+ * @param {string} $font-name - Font style property (if the font is italic)
+ * usage:
+ * @include font-face("Hanken-Grotesk", "HankenGrotesk-Regular");
+ * usage for weight or style other than default
+ * @include font-face(
+ *  "Hanken-Grotesk",
+ *  "HankenGrotesk-SemiBold",
+ *  $font-weight: 600,
+ *  $font-style: italic
+ * );
+ */
+/**
+ * Convert font-size from px to rem
+ * 1. Default font size on html element is 100%, equivalent to 16px;
+ * @param {number} $size - the value in pixel you want to convert
+ * usage:
+ * padding-top: rem(20px);
+ */
+/**
+ * Convert font-size from px to em
+ * 1. Default font size on html element is 100%, equivalent to 16px;
+ * @param {number} $size - the value in pixel you want to convert
+ * usage:
+ * padding-top: em(20px);
+ */
+/**
+ * Context
+ */
+/**
+ * Viewport width function
+ * 1. 1 vw is equal to 1% of the viewport width
+ * @param {number} $size - the value in pixel you want to convert
+ * usage:
+ * padding-top: get-vw(100px);
+ */
+/**
+ * Viewport height function
+ * 1. 1 vw is equal to 1% of the viewport width
+ * @param {number} $size - the value in pixel you want to convert
+ * usage:
+ * padding-top: get-vh(100px);
+ */
+/**
+ * Strip units function
+ * @param {number} $number - the value you want to strip unuts from
+ * usage:
+ * strip-units(100px);
+ * returns: 100
+ */
+/**
+ * Get z-index from $settings-zindex
+ * usage:
+ * z-index: getZindex(navigation);
+ * z-index: getZindex(navigation, 1);
+ */
+/**
+ * Mixin that hides scrollbar on scrollable elements (for example overflow lists)
+ * usage:
+ *  div {
+ *      overflow: scroll;
+ *      @include hide-scrollbar;
+ *  }
+ */
+/**
+ * Percentage function
+ * Abbreviation function for using percentage without math.div
+ * https://sass-lang.com/documentation/breaking-changes/slash-div
+ * usage:
+ * padding-left: percentage(1, 24);
+ */
+/**
+ * Third party tools
+ */
+/**
+ * Settings
+ */
+/**
+ * Settings
+ */
+/**
+ * Breakpoints
+ */
+/**
+ * Breakpoints - map
+ */
+/**
+ * Colors
+ */
+/**
+ * Colors - focus accessibility
+ */
+/**
+ * Colors - re-assigning
+ */
+/**
+ * Colors - components
+ */
+/**
+ * Spacing map
+ */
+/**
+ * Transition easing map
+ */
+/**
+ * Transitions map
+ */
+/**
+ * Roboto
+ */
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.woff2?1") format("woff2"), url("../fonts/Roboto-Regular.woff?1") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Bold.woff2?1") format("woff2"), url("../fonts/Roboto-Bold.woff?1") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/**
+ * Font variables
+ */
+/**
+ * Font size map
+ */
+/**
+ * Z-index map
+ */
+/**
+ * Third party settings
+ */ /**
+* Generics
+*/
+/**
+ * Generics
+ */
+/**
+ * Third party generics
+ */
+/**
+ * b-reset.scss - modern CSS reset used by Bornfight frontend team.
+ * Consists of best CSS reset practices combined into one file.
+ */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ * 3. Tells the browser to account for any border and padding in the values you specify for an element's width and height
+ */
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; /* 3 */
+  width: 100%;
+}
+
+/**
+ * All elements inherit box model
+ */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+/**
+ * Reset elements in all browsers
+ */
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/**
+ * Set core body defaults
+ * 1. sets the behavior for a scrolling box when scrolling is triggered by the navigation or CSSOM scrolling APIs.
+ * 2. The browser emphasizes rendering speed over legibility and geometric precision when drawing text.
+ * 3. Disables the browser's inflation algorithm on some smart phones and tablets.
+ * 4. Font smoothing
+ */
+body {
+  scroll-behavior: smooth; /* 1 */
+  text-rendering: optimizeSpeed; /* 2 */
+  -webkit-text-size-adjust: none; /* 3 */
+  -webkit-font-smoothing: antialiased; /* 4 */
+  -moz-osx-font-smoothing: grayscale; /* 4 */
+  width: 100%;
+}
+
+/**
+ * Remove list style from lists
+ */
+ul {
+  list-style: none;
+}
+
+/**
+ * Make media easier to work with
+ */
+img,
+iframe,
+video,
+object,
+embed,
+picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+}
+
+/**
+ * Remove outline from tabindex -1
+ */
+[tabindex="-1"] {
+  outline: none !important;
+}
+
+/**
+ * Add the correct height in Firefox.
+ */
+hr {
+  height: 0;
+}
+
+/**
+ * Add the correct text decoration in Chrome, Edge, and Safari.
+ */
+abbr[title] {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/**
+ * Add the correct font weight in Edge and Safari.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * 1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+ * 2. Correct the odd 'em' font sizing in all browsers.
+ */
+code,
+kbd,
+samp,
+pre {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Remove the inheritance of text transform in Edge and Firefox.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  text-transform: none; /* 1 */
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Add the correct vertical alignment in Chrome and Firefox.
+ */
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Safari.
+ */
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type=search] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to 'inherit' in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/**
+ * Add the correct display in Chrome and Safari.
+ */
+summary {
+  display: list-item;
+}
+
+/**
+ * Remove all animations and transitions for people that prefer not to see them
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    -webkit-transition-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/**
+ * Browser specific form elements reset
+ */
+/**
+ * Search input browser additions reset
+ * 1. Clears the 'X' from Chrome
+ * 2. Clears the 'X' from Internet Explorer
+ */
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-results-button,
+input[type=search]::-webkit-search-results-decoration {
+  /* 1 */
+  -webkit-appearance: none;
+  display: none;
+}
+
+input[type=search]::-ms-clear,
+input[type=search]::-ms-reveal {
+  /* 2 */
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/**
+ * Remove arrows/spinners from number input
+ * 1. Chrome, Safari, Edge, Opera
+ * 2. Firefox
+ */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* 1 */
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  /* 2 */
+  -moz-appearance: textfield;
+}
+
+/**
+ * Remove Safari autocomplete additions
+ * 1. Contacts fill button
+ * 2. Password fill button
+ * 3. Number input spinner
+ */
+input[autocomplete=off]::-webkit-contacts-auto-fill-button,
+input[autocomplete=off]::-webkit-credentials-auto-fill-button {
+  /* 1, 2, 3 */
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+  margin: 0;
+}
+
+/**
+ * Remove select triangle on IE
+ */
+select::-ms-expand {
+  display: none;
+}
+
+/**
+ * Remove dotted outline from range input on Firefox
+ */
+input[type=range]::-moz-focus-outer {
+  border: 0;
+}
+
+/**
+ * Elements
+ */
+/**
+ * Elements
+ */
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+body {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+a {
+  cursor: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:active, a:focus {
+  /* 1 */
+}
+
+a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000;
+          box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000;
+}
+
+@media (min-width: 1440px) {
+  a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
+    -webkit-box-shadow: 0 0 0 0.1388888889vw #ffffff, 0 0 0 0.2777777778vw #000000;
+            box-shadow: 0 0 0 0.1388888889vw #ffffff, 0 0 0 0.2777777778vw #000000;
+  }
+}
+/**
+ * Objects
+ */
+/**
+ * Objects
+ */
+/**
+ * Components
+ */
+/**
+ * Components
+ */
+.c-cursor {
+  width: 80px;
+  height: 60px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+@media (min-width: 1920px) {
+  .c-cursor {
+    width: 4.1666666667vw;
+  }
+}
+@media (min-width: 1920px) {
+  .c-cursor {
+    height: 3.125vw;
+  }
+}
+.c-cursor.is-moved {
+  opacity: 1;
+}
+
+@media (max-width: 800px) {
+  .c-cursor {
+    display: none;
+  }
+}
+.c-cursor:before {
+  width: 160px;
+  height: 160px;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-75%, -45%) scale(1);
+          transform: translate(-75%, -45%) scale(1);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(254, 179, 1, 0.7) 0%, rgba(0, 0, 0, 0.2) 100%);
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: -webkit-transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@media (min-width: 1920px) {
+  .c-cursor:before {
+    width: 8.3333333333vw;
+  }
+}
+@media (min-width: 1920px) {
+  .c-cursor:before {
+    height: 8.3333333333vw;
+  }
+}
+.c-cursor.is-active:before {
+  -webkit-transform: translate(-75%, -45%) scale(1.55);
+          transform: translate(-75%, -45%) scale(1.55);
+}
+
+.c-cursor__icon-idle {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+.is-active .c-cursor__icon-idle {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.c-cursor__icon-active {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.is-active .c-cursor__icon-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.c-cursor .u-icon {
+  width: 100%;
+}
+
+.c-3d-slider {
+  position: relative;
+}
+
+.c-3d-slider__models {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.c-3d-slider__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(53.06% 84.79% at 53.06% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 51.97%, #000000 100%);
+  -webkit-mask: radial-gradient(circle, rgba(0, 0, 0, 0) 54.1666666667%, rgba(0, 0, 0, 0.9) 54.5833333333%);
+  -webkit-backdrop-filter: blur(7px);
+          backdrop-filter: blur(7px);
+}
+
+/**
+ * Modules
+ */
+/**
+ * Pages
+ */
+/**
+ * Pages
+ */
+/**
+ * Utilities
+ */
+/**
+ * Utilities
+ */
+.u-icon {
+  display: inline-block;
+  width: 1em;
+  height: 100%;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.u-a4 {
+  font-size: 80px;
+  line-height: 1.35em;
+}
+
+@media (min-width: 480px) {
+  .u-a4 {
+    font-size: calc(23.75vw - 34px);
+  }
+}
+@media (min-width: 1440px) {
+  .u-a4 {
+    font-size: 308px;
+  }
+}
+@media (min-width: 1920px) {
+  .u-a4 {
+    font-size: 16.0416666667vw;
+  }
+}
+@media (max-width: 800px) {
+  .u-a4 {
+    line-height: 1.25em;
+  }
+}
+.u-a4--roobert {
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -0.08em;
+  font-weight: 500;
+}
+
+.u-a4--teodor {
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -0.09em;
+  font-weight: 300;
+}
+
+.u-a3 {
+  font-size: 42px;
+  line-height: 1.22em;
+  letter-spacing: -0.05em;
+}
+
+@media (min-width: 480px) {
+  .u-a3 {
+    font-size: calc(8.6458333333vw + 0.5px);
+  }
+}
+@media (min-width: 1440px) {
+  .u-a3 {
+    font-size: 125px;
+  }
+}
+@media (min-width: 1920px) {
+  .u-a3 {
+    font-size: 6.5104166667vw;
+  }
+}
+.u-a3--roobert {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.u-a3--teodor {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+.u-a2 {
+  font-size: 32px;
+  line-height: 1.23em;
+  letter-spacing: -0.04em;
+}
+
+@media (min-width: 480px) {
+  .u-a2 {
+    font-size: calc(5vw + 8px);
+  }
+}
+@media (min-width: 1440px) {
+  .u-a2 {
+    font-size: 80px;
+  }
+}
+@media (min-width: 1920px) {
+  .u-a2 {
+    font-size: 4.1666666667vw;
+  }
+}
+@media (max-width: 800px) {
+  .u-a2 {
+    line-height: 1.103em;
+  }
+}
+.u-a2--roobert {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.u-a2--teodor {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+.u-a1 {
+  font-size: 18px;
+  line-height: 1.13em;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+}
+
+@media (min-width: 480px) {
+  .u-a1 {
+    font-size: calc(1.6666666667vw + 10px);
+  }
+}
+@media (min-width: 1440px) {
+  .u-a1 {
+    font-size: 34px;
+  }
+}
+@media (min-width: 1920px) {
+  .u-a1 {
+    font-size: 1.7708333333vw;
+  }
+}
+@media (max-width: 800px) {
+  .u-a1 {
+    line-height: 1.125em;
+  }
+}
+.u-b0, body {
+  font-size: 18px;
+  line-height: 0.81em;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+}
+
+@media (min-width: 480px) {
+  .u-b0, body {
+    font-size: calc(0.4166666667vw + 16px);
+  }
+}
+@media (min-width: 1440px) {
+  .u-b0, body {
+    font-size: 22px;
+  }
+}
+@media (min-width: 1920px) {
+  .u-b0, body {
+    font-size: 1.1458333333vw;
+  }
+}
+.u-b1 {
+  font-size: 14px;
+  line-height: 0.8em;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+}
+
+@media (min-width: 480px) {
+  .u-b1 {
+    font-size: calc(0.2083333333vw + 13px);
+  }
+}
+@media (min-width: 1440px) {
+  .u-b1 {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1920px) {
+  .u-b1 {
+    font-size: 0.8333333333vw;
+  }
+}
+.u-b2 {
+  font-size: 14px;
+  line-height: 1em;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+
+@media (min-width: 480px) {
+  .u-b2 {
+    font-size: calc(0.2083333333vw + 13px);
+  }
+}
+@media (min-width: 1440px) {
+  .u-b2 {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1920px) {
+  .u-b2 {
+    font-size: 0.8333333333vw;
+  }
+}
+.u-b3 {
+  font-size: 14px;
+  line-height: 1em;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 480px) {
+  .u-b3 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1440px) {
+  .u-b3 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1920px) {
+  .u-b3 {
+    font-size: 0.7291666667vw;
+  }
+}
+@media (max-width: 800px) {
+  .u-b3 {
+    letter-spacing: initial;
+  }
+}
+.u-b3--roobert {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.u-b3--teodor {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+.u-b4 {
+  font-size: 14px;
+  line-height: 1em;
+  font-weight: 300;
+}
+
+@media (min-width: 480px) {
+  .u-b4 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1440px) {
+  .u-b4 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1920px) {
+  .u-b4 {
+    font-size: 0.7291666667vw;
+  }
+}
+.u-b4--roobert {
+  font-family: "Roboto", sans-serif;
+}
+
+.u-b4--teodor {
+  font-family: "Roboto", sans-serif;
+}
+
+.u-uppercase {
+  text-transform: uppercase;
+}
+
+.u-capitalize {
+  text-transform: capitalize;
+}
+
+.u-text-left {
+  text-align: left;
+}
+
+.u-text-center {
+  text-align: center;
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+.u-underline {
+  text-decoration: underline;
+}
+
+.u-fw-thin,
+.u-fw-100 {
+  font-weight: 100;
+}
+
+.u-fw-extra-light,
+.u-fw-200 {
+  font-weight: 200;
+}
+
+.u-fw-light,
+.u-fw-300 {
+  font-weight: 300;
+}
+
+.u-fw-regular,
+.u-fw-normal,
+.u-fw-400 {
+  font-weight: 400;
+}
+
+.u-fw-medium,
+.u-fw-500 {
+  font-weight: 500;
+}
+
+.u-fw-semi-bold,
+.u-fw-600 {
+  font-weight: 600;
+}
+
+.u-fw-bold,
+.u-fw-700 {
+  font-weight: 700;
+}
+
+.u-fw-extra-bold,
+.u-fw-800 {
+  font-weight: 800;
+}
+
+.u-fw-black,
+.u-fw-900 {
+  font-weight: 900;
+}
+
+.u-gradient-transparent-270 {
+  background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
+  -webkit-backdrop-filter: blur(10.5px);
+          backdrop-filter: blur(10.5px);
+}
+
+.u-gradient-transparent-270--animated {
+  background-size: 100% 150%;
+  background-position-y: 0;
+  background-repeat: no-repeat;
+  -webkit-animation-name: transparent-270;
+          animation-name: transparent-270;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+.u-gradient-transparent-90 {
+  background: linear-gradient(170.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 44.53%, rgba(238, 128, 1, 0) 60.16%, #feb301 100%);
+  -webkit-backdrop-filter: blur(10.5px);
+          backdrop-filter: blur(10.5px);
+}
+
+.u-gradient-filled-270 {
+  background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
+  -webkit-backdrop-filter: blur(10.5px);
+          backdrop-filter: blur(10.5px);
+}
+
+.u-gradient-filled-270--animated {
+  background-size: 100% 150%;
+  background-position-y: 0;
+  background-repeat: no-repeat;
+  -webkit-animation-name: transparent-270;
+          animation-name: transparent-270;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+.u-gradient-blur-filled-270 {
+  background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 38.99%, rgba(238, 128, 1, 0) 68.58%, #feb301 100%), rgba(214, 186, 242, 0.1);
+  -webkit-backdrop-filter: blur(10.5px);
+          backdrop-filter: blur(10.5px);
+}
+
+.u-gradient-blur-filled-270--animated {
+  background-size: 100% 150%;
+  background-position-y: 0;
+  background-repeat: no-repeat;
+  -webkit-animation-name: transparent-270;
+          animation-name: transparent-270;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+.u-black-blur-overlay {
+  background: rgba(0, 0, 0, 0.8);
+  mix-blend-mode: normal;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+
+.u-gradient-blur-transparent-270 {
+  background: linear-gradient(260.45deg, #2400ff 0%, rgba(120, 24, 1, 0) 38.94%, rgba(238, 128, 1, 0) 73.6%, #feb301 99.87%);
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
+  -webkit-backdrop-filter: blur(17px);
+          backdrop-filter: blur(17px);
+}
+
+.u-gradient-blur-transparent-270--animated {
+  background-size: 100% 150%;
+  background-position-y: 0;
+  background-repeat: no-repeat;
+  -webkit-animation-name: transparent-270;
+          animation-name: transparent-270;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes transparent-270 {
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: 50%;
+  }
+}
+
+@keyframes transparent-270 {
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: 50%;
+  }
+}
+/**
+ * Vendors
+ */
+/**
+ * Third party vendors
+ */
+/**
+ * Vendors
+ */
+/*# sourceMappingURL=style.css.map */

@@ -8,6 +8,7 @@ export default class Cursor {
         };
 
         this.wrapper = document.querySelector(this.DOM.wrapper);
+        this.moved = false;
     }
 
     init() {
@@ -17,6 +18,11 @@ export default class Cursor {
         const offsetX = this.wrapper.offsetWidth * 0.05;
 
         window.addEventListener("mousemove", (ev) => {
+            if (!this.moved) {
+                this.moved = true;
+                this.wrapper.classList.add("is-moved");
+            }
+
             gsap.set(this.wrapper, {
                 x: ev.clientX - offsetX,
                 y: ev.clientY - offsetY,

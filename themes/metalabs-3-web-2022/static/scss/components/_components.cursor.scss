@@ -7,6 +7,12 @@
     left: 0;
     pointer-events: none;
     z-index: $z-index-cursor;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &.is-moved {
+        opacity: 1;
+    }
 
     @include mq(md) {
         display: none;
