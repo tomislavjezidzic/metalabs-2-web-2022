@@ -70,7 +70,7 @@ export default class ThreeDSlider {
     animateTitles(swiper) {
         this.animateTitleIn(swiper.slides[swiper.activeIndex]);
 
-        if (swiper.previousIndex) {
+        if (swiper.slides[swiper.previousIndex]) {
             this.animateTitleOut(swiper.slides[swiper.previousIndex]);
         }
     }

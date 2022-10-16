@@ -84,7 +84,7 @@ var ThreeDSlider = /*#__PURE__*/function () {
     key: "animateTitles",
     value: function animateTitles(swiper) {
       this.animateTitleIn(swiper.slides[swiper.activeIndex]);
-      if (swiper.previousIndex) {
+      if (swiper.slides[swiper.previousIndex]) {
         this.animateTitleOut(swiper.slides[swiper.previousIndex]);
       }
     }
