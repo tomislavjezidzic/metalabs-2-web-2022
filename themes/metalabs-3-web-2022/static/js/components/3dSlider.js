@@ -81,7 +81,7 @@ export default class ThreeDSlider {
 
         gsap.to(titlePrimaryChars, {
             visibility: "visible",
-            delay: 0.4,
+            delay: 0.6,
             duration: 0.2,
             stagger: {
                 each: 0.05,
@@ -91,7 +91,7 @@ export default class ThreeDSlider {
 
         gsap.to(titleSecondaryChars, {
             visibility: "hidden",
-            delay: 0.5,
+            delay: 0.4,
             duration: 0.2,
             stagger: {
                 each: 0.05,

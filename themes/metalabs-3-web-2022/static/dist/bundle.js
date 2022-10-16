@@ -95,7 +95,7 @@ var ThreeDSlider = /*#__PURE__*/function () {
       var titleSecondaryChars = slide.querySelector(this.DOM.secondaryTitle).querySelectorAll(".split-text-char");
       _gsap.default.to(titlePrimaryChars, {
         visibility: "visible",
-        delay: 0.4,
+        delay: 0.6,
         duration: 0.2,
         stagger: {
           each: 0.05,
@@ -104,7 +104,7 @@ var ThreeDSlider = /*#__PURE__*/function () {
       });
       _gsap.default.to(titleSecondaryChars, {
         visibility: "hidden",
-        delay: 0.5,
+        delay: 0.4,
         duration: 0.2,
         stagger: {
           each: 0.05,
