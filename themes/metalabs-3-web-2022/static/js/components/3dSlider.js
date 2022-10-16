@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import { SplitText } from "gsap/dist/SplitText";
 import Swiper, { Navigation, Pagination } from "swiper";
+import ThreeDSliderModels from "./3dSliderModels";
 
 gsap.registerPlugin(SplitText);
 
@@ -21,6 +22,7 @@ export default class ThreeDSlider {
 
     init() {
         if (!this.wrapper) return;
+        this.models = new ThreeDSliderModels(this.wrapper);
 
         const slider = this.wrapper.querySelector(this.DOM.slider);
         const next = this.wrapper.querySelector(this.DOM.next);
@@ -42,8 +44,18 @@ export default class ThreeDSlider {
                 prevEl: prev,
             },
             on: {
-                slideChange: (swiper) => this.animateTitles(swiper),
-                afterInit: (swiper) => setTimeout(() => this.animateTitles(swiper), 100),
+                slideChange: (swiper) => {
+                    this.animateTitles(swiper);
+
+                    this.models.changeSlide(swiper.activeIndex, swiper.previousIndex);
+                },
+                afterInit: (swiper) => {
+                    setTimeout(() => this.animateTitles(swiper), 100);
+
+                    this.models.init();
+
+                    swiper.slides.forEach((slide, index) => this.models.initModel(slide, index));
+                },
             },
         });
 

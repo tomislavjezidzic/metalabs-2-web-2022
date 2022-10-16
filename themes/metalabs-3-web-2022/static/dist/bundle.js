@@ -9,6 +9,7 @@ exports.default = void 0;
 var _gsap = _interopRequireDefault(require("gsap"));
 var _SplitText = require("gsap/dist/SplitText");
 var _swiper = _interopRequireWildcard(require("swiper"));
+var _dSliderModels = _interopRequireDefault(require("./3dSliderModels"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -35,6 +36,7 @@ var ThreeDSlider = /*#__PURE__*/function () {
     value: function init() {
       var _this = this;
       if (!this.wrapper) return;
+      this.models = new _dSliderModels.default(this.wrapper);
       var slider = this.wrapper.querySelector(this.DOM.slider);
       var next = this.wrapper.querySelector(this.DOM.next);
       var prev = this.wrapper.querySelector(this.DOM.prev);
@@ -55,12 +57,17 @@ var ThreeDSlider = /*#__PURE__*/function () {
         },
         on: {
           slideChange: function slideChange(swiper) {
-            return _this.animateTitles(swiper);
+            _this.animateTitles(swiper);
+            _this.models.changeSlide(swiper.activeIndex, swiper.previousIndex);
           },
           afterInit: function afterInit(swiper) {
-            return setTimeout(function () {
+            setTimeout(function () {
               return _this.animateTitles(swiper);
             }, 100);
+            _this.models.init();
+            swiper.slides.forEach(function (slide, index) {
+              return _this.models.initModel(slide, index);
+            });
           }
         }
       });
@@ -129,7 +136,228 @@ var ThreeDSlider = /*#__PURE__*/function () {
 }();
 exports.default = ThreeDSlider;
 
-},{"gsap":"gsap","gsap/dist/SplitText":"gsap/dist/SplitText","swiper":"swiper"}],2:[function(require,module,exports){
+},{"./3dSliderModels":2,"gsap":"gsap","gsap/dist/SplitText":"gsap/dist/SplitText","swiper":"swiper"}],2:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _gsap = _interopRequireDefault(require("gsap"));
+var THREE = _interopRequireWildcard(require("three"));
+var _DRACOLoader = require("three/examples/jsm/loaders/DRACOLoader");
+var _GLTFLoader = require("three/examples/jsm/loaders/GLTFLoader");
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+// import DracoDecoder from "three/examples/js/libs/draco/";
+var ThreeDSliderModels = /*#__PURE__*/function () {
+  function ThreeDSliderModels(wrapper) {
+    _classCallCheck(this, ThreeDSliderModels);
+    this.DOM = {
+      models: ".js-3d-slider-models",
+      slide: ".js-3d-slider-slide"
+    };
+    this.models = wrapper.querySelector(this.DOM.models);
+
+    // config
+    this.config = {
+      modelOffset: 5
+    };
+  }
+  _createClass(ThreeDSliderModels, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+      if (!this.models) return;
+      this.modelsArray = [];
+      this.loader = new _GLTFLoader.GLTFLoader();
+
+      // loader
+      var dracoLoader = new _DRACOLoader.DRACOLoader();
+      dracoLoader.setDecoderPath("https://threejs.org/examples/js/libs/draco/");
+      // dracoLoader.setDecoderPath(DracoDecoder);
+      dracoLoader.setDecoderConfig({
+        type: "js"
+      });
+      this.loader.setDRACOLoader(dracoLoader);
+      THREE.Cache.enabled = true;
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+      this.initCamera();
+      this.initScene();
+      this.initLights();
+      this.initRenderer();
+      this.animate();
+      this.mouseMove();
+
+      // handle resize
+      window.addEventListener("resize", function () {
+        return _this.onWindowResize();
+      }, false);
+    }
+  }, {
+    key: "mouseMove",
+    value: function mouseMove() {
+      window.addEventListener("mousemove", function (ev) {
+        var mouseX = ev.clientX;
+        var mouseY = ev.clientY;
+
+        // gsap.to(this.camera.position, {
+        //     y: -4 - (mouseY - window.innerHeight / 2) / 400,
+        //     x: 8 + (mouseX - window.innerWidth / 2) / 400,
+        // });
+      });
+    }
+
+    /**
+     * camera setup
+     */
+  }, {
+    key: "initCamera",
+    value: function initCamera() {
+      this.camera = new THREE.PerspectiveCamera(35, this.width / this.height, 0.5, 100);
+      this.camera.position.set(0, 0, 6);
+      this.camera.lookAt(0, 0, 0);
+    }
+
+    /**
+     * scene setup
+     */
+  }, {
+    key: "initScene",
+    value: function initScene() {
+      this.scene = new THREE.Scene();
+    }
+
+    /**
+     * lights setup - because of performance > all in one object
+     */
+  }, {
+    key: "initLights",
+    value: function initLights() {
+      var lightWrapper = new THREE.Object3D();
+      var hemiLight = new THREE.HemisphereLight(0x999999, 0x444444);
+      hemiLight.position.set(10, 10, 20);
+      this.ambientLight = new THREE.AmbientLight(0xcccccc);
+
+      // this is just back light - without it back side of model would be barely visible
+      this.dirSubLight = new THREE.DirectionalLight(0xcccccc, 1);
+      this.dirSubLight.position.set(0, 0, 10);
+      this.dirLight = new THREE.DirectionalLight(0xcccccc, 1);
+      this.dirLight.position.set(-4, -4, 10);
+      this.dirLight.castShadow = true;
+      lightWrapper.add(this.dirLight);
+      lightWrapper.add(this.dirSubLight);
+      lightWrapper.add(this.ambientLight);
+      lightWrapper.add(hemiLight);
+      this.scene.add(lightWrapper);
+    }
+
+    /**
+     * renderer setup
+     */
+  }, {
+    key: "initRenderer",
+    value: function initRenderer() {
+      this.renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        powerPreference: "high-performance",
+        alpha: true
+      });
+      this.renderer.shadowMap.enabled = true;
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      this.renderer.setClearColor(0x000000, 0);
+      this.renderer.setPixelRatio(window.devicePixelRatio > 2 ? 2 : window.devicePixelRatio);
+      this.renderer.setSize(this.width, this.height);
+      this.renderer.physicallyCorrectLights = true;
+      this.models.appendChild(this.renderer.domElement);
+    }
+
+    /**
+     * model setup and load call
+     */
+  }, {
+    key: "initModel",
+    value: function initModel(slide, index) {
+      var _this2 = this;
+      if (!slide) return;
+      this.loader.load(slide.dataset.model, function (gltf) {
+        gltf.scene.rotation.y = -Math.PI / 2;
+        gltf.scene.position.x = index * _this2.config.modelOffset;
+        gltf.scene.uuid = index;
+        _this2.modelsArray.push(gltf.scene);
+        _this2.scene.add(gltf.scene);
+      }, function (xhr) {
+        console.log(xhr.loaded / xhr.total * 100 + "% loaded"); /**/
+      }, function (error) {
+        console.log("An error happened");
+      });
+    }
+
+    /**
+     *
+     */
+  }, {
+    key: "onWindowResize",
+    value: function onWindowResize() {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    /**
+     * requestAnimationFrame
+     */
+  }, {
+    key: "animate",
+    value: function animate() {
+      var _this3 = this;
+      this.renderer.render(this.scene, this.camera);
+      if (this.renderer != null) {
+        requestAnimationFrame(function () {
+          return _this3.animate();
+        });
+      }
+    }
+  }, {
+    key: "changeSlide",
+    value: function changeSlide(index, prevIndex) {
+      var model = this.modelsArray.find(function (model) {
+        return model.uuid === index;
+      });
+      var prevModel = this.modelsArray.find(function (model) {
+        return model.uuid === prevIndex;
+      });
+      var direction = prevIndex > index ? 1 : -1;
+      _gsap.default.timeline().add("start").to(this.camera.position, {
+        x: index * this.config.modelOffset,
+        duration: 2,
+        ease: "power4.out"
+      }, "start").fromTo(model.rotation, {
+        y: -Math.PI / 2 + 1.5 * direction
+      }, {
+        y: -Math.PI / 2,
+        duration: 2,
+        ease: "power4.out"
+      }, "start").fromTo(prevModel.rotation, {
+        y: -Math.PI / 2
+      }, {
+        y: -Math.PI / 2 + -1.5 * direction,
+        duration: 2,
+        ease: "power4.out"
+      }, "start");
+    }
+  }]);
+  return ThreeDSliderModels;
+}();
+exports.default = ThreeDSliderModels;
+
+},{"gsap":"gsap","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -195,7 +423,7 @@ var Cursor = /*#__PURE__*/function () {
 }();
 exports.default = Cursor;
 
-},{"gsap":"gsap","is_js":"is_js"}],3:[function(require,module,exports){
+},{"gsap":"gsap","is_js":"is_js"}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -362,7 +590,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = NavigationController;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -489,7 +717,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = GridHelper;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 var _GridHelper = _interopRequireDefault(require("./helpers/GridHelper"));
@@ -583,6 +811,6 @@ ready(function () {
   }, 500);
 });
 
-},{"./components/3dSlider":1,"./components/Cursor":2,"./components/NavigationController":3,"./helpers/GridHelper":4}]},{},[5])
+},{"./components/3dSlider":1,"./components/Cursor":3,"./components/NavigationController":4,"./helpers/GridHelper":5}]},{},[6])
 
 //# sourceMappingURL=bundle.js.map
