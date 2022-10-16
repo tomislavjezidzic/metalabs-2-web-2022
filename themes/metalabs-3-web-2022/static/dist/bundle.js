@@ -166,7 +166,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
 
     // config
     this.config = {
-      modelOffset: 5
+      modelOffset: 6
     };
   }
   _createClass(ThreeDSliderModels, [{
@@ -175,6 +175,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       var _this = this;
       if (!this.models) return;
       this.modelsArray = [];
+      this.modelsWrapper = new THREE.Object3D();
       this.loader = new _GLTFLoader.GLTFLoader();
 
       // loader
@@ -194,6 +195,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       this.initRenderer();
       this.animate();
       this.mouseMove();
+      this.scene.add(this.modelsWrapper);
 
       // handle resize
       window.addEventListener("resize", function () {
@@ -203,14 +205,15 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
   }, {
     key: "mouseMove",
     value: function mouseMove() {
+      var _this2 = this;
       window.addEventListener("mousemove", function (ev) {
-        var mouseX = ev.clientX;
         var mouseY = ev.clientY;
-
-        // gsap.to(this.camera.position, {
-        //     y: -4 - (mouseY - window.innerHeight / 2) / 400,
-        //     x: 8 + (mouseX - window.innerWidth / 2) / 400,
-        // });
+        _gsap.default.to(_this2.yellowLight.position, {
+          y: -1 - (mouseY - window.innerHeight) / 400
+        });
+        _gsap.default.to(_this2.blueLight.position, {
+          y: -(mouseY - window.innerHeight) / 400
+        });
       });
     }
 
@@ -241,20 +244,16 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
     key: "initLights",
     value: function initLights() {
       var lightWrapper = new THREE.Object3D();
-      var hemiLight = new THREE.HemisphereLight(0x999999, 0x444444);
-      hemiLight.position.set(10, 10, 20);
-      this.ambientLight = new THREE.AmbientLight(0xcccccc);
+      this.yellowLight = new THREE.PointLight(0xfeb301, 5, 4);
+      this.yellowLight.position.set(-1, 1, 2);
+      // this.yellowLight.castShadow = true;
 
-      // this is just back light - without it back side of model would be barely visible
-      this.dirSubLight = new THREE.DirectionalLight(0xcccccc, 1);
-      this.dirSubLight.position.set(0, 0, 10);
-      this.dirLight = new THREE.DirectionalLight(0xcccccc, 1);
-      this.dirLight.position.set(-4, -4, 10);
-      this.dirLight.castShadow = true;
-      lightWrapper.add(this.dirLight);
-      lightWrapper.add(this.dirSubLight);
-      lightWrapper.add(this.ambientLight);
-      lightWrapper.add(hemiLight);
+      this.blueLight = new THREE.PointLight(0x2400ff, 5, 2);
+      this.blueLight.position.set(1, 0, 1);
+      // this.blueLight.castShadow = true;
+
+      lightWrapper.add(this.blueLight);
+      lightWrapper.add(this.yellowLight);
       this.scene.add(lightWrapper);
     }
 
@@ -284,14 +283,14 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
   }, {
     key: "initModel",
     value: function initModel(slide, index) {
-      var _this2 = this;
+      var _this3 = this;
       if (!slide) return;
       this.loader.load(slide.dataset.model, function (gltf) {
         gltf.scene.rotation.y = -Math.PI / 2;
-        gltf.scene.position.x = index * _this2.config.modelOffset;
+        gltf.scene.position.x = index * _this3.config.modelOffset;
         gltf.scene.uuid = index;
-        _this2.modelsArray.push(gltf.scene);
-        _this2.scene.add(gltf.scene);
+        _this3.modelsArray.push(gltf.scene);
+        _this3.modelsWrapper.add(gltf.scene);
       }, function (xhr) {
         console.log(xhr.loaded / xhr.total * 100 + "% loaded"); /**/
       }, function (error) {
@@ -316,11 +315,11 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
   }, {
     key: "animate",
     value: function animate() {
-      var _this3 = this;
+      var _this4 = this;
       this.renderer.render(this.scene, this.camera);
       if (this.renderer != null) {
         requestAnimationFrame(function () {
-          return _this3.animate();
+          return _this4.animate();
         });
       }
     }
@@ -334,12 +333,13 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
         return model.uuid === prevIndex;
       });
       var direction = prevIndex > index ? 1 : -1;
-      _gsap.default.timeline().add("start").to(this.camera.position, {
-        x: index * this.config.modelOffset,
+      console.log(this.modelsWrapper);
+      _gsap.default.timeline().add("start").to(this.modelsWrapper.position, {
+        x: -index * this.config.modelOffset,
         duration: 2,
         ease: "power4.out"
       }, "start").fromTo(model.rotation, {
-        y: -Math.PI / 2 + 1.5 * direction
+        y: -Math.PI / 2 + 2.5 * direction
       }, {
         y: -Math.PI / 2,
         duration: 2,
@@ -347,7 +347,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       }, "start").fromTo(prevModel.rotation, {
         y: -Math.PI / 2
       }, {
-        y: -Math.PI / 2 + -1.5 * direction,
+        y: -Math.PI / 2 + -2.5 * direction,
         duration: 2,
         ease: "power4.out"
       }, "start");

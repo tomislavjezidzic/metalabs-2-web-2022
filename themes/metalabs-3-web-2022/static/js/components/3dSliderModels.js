@@ -15,7 +15,7 @@ export default class ThreeDSliderModels {
 
         // config
         this.config = {
-            modelOffset: 5,
+            modelOffset: 6,
         };
     }
 
@@ -23,6 +23,8 @@ export default class ThreeDSliderModels {
         if (!this.models) return;
 
         this.modelsArray = [];
+
+        this.modelsWrapper = new THREE.Object3D();
 
         this.loader = new GLTFLoader();
 
@@ -47,19 +49,23 @@ export default class ThreeDSliderModels {
         this.animate();
         this.mouseMove();
 
+        this.scene.add(this.modelsWrapper);
+
         // handle resize
         window.addEventListener("resize", () => this.onWindowResize(), false);
     }
 
     mouseMove() {
         window.addEventListener("mousemove", (ev) => {
-            let mouseX = ev.clientX;
             let mouseY = ev.clientY;
 
-            // gsap.to(this.camera.position, {
-            //     y: -4 - (mouseY - window.innerHeight / 2) / 400,
-            //     x: 8 + (mouseX - window.innerWidth / 2) / 400,
-            // });
+            gsap.to(this.yellowLight.position, {
+                y: -1 - (mouseY - window.innerHeight) / 400,
+            });
+
+            gsap.to(this.blueLight.position, {
+                y: -(mouseY - window.innerHeight) / 400,
+            });
         });
     }
 
@@ -85,23 +91,16 @@ export default class ThreeDSliderModels {
     initLights() {
         const lightWrapper = new THREE.Object3D();
 
-        const hemiLight = new THREE.HemisphereLight(0x999999, 0x444444);
-        hemiLight.position.set(10, 10, 20);
+        this.yellowLight = new THREE.PointLight(0xfeb301, 5, 4);
+        this.yellowLight.position.set(-1, 1, 2);
+        // this.yellowLight.castShadow = true;
 
-        this.ambientLight = new THREE.AmbientLight(0xcccccc);
+        this.blueLight = new THREE.PointLight(0x2400ff, 5, 2);
+        this.blueLight.position.set(1, 0, 1);
+        // this.blueLight.castShadow = true;
 
-        // this is just back light - without it back side of model would be barely visible
-        this.dirSubLight = new THREE.DirectionalLight(0xcccccc, 1);
-        this.dirSubLight.position.set(0, 0, 10);
-
-        this.dirLight = new THREE.DirectionalLight(0xcccccc, 1);
-        this.dirLight.position.set(-4, -4, 10);
-        this.dirLight.castShadow = true;
-
-        lightWrapper.add(this.dirLight);
-        lightWrapper.add(this.dirSubLight);
-        lightWrapper.add(this.ambientLight);
-        lightWrapper.add(hemiLight);
+        lightWrapper.add(this.blueLight);
+        lightWrapper.add(this.yellowLight);
 
         this.scene.add(lightWrapper);
     }
@@ -141,7 +140,7 @@ export default class ThreeDSliderModels {
 
                 this.modelsArray.push(gltf.scene);
 
-                this.scene.add(gltf.scene);
+                this.modelsWrapper.add(gltf.scene);
             },
             (xhr) => {
                 console.log((xhr.loaded / xhr.total) * 100 + "% loaded"); /**/
@@ -178,12 +177,14 @@ export default class ThreeDSliderModels {
 
         const direction = prevIndex > index ? 1 : -1;
 
+        console.log(this.modelsWrapper);
+
         gsap.timeline()
             .add("start")
             .to(
-                this.camera.position,
+                this.modelsWrapper.position,
                 {
-                    x: index * this.config.modelOffset,
+                    x: -index * this.config.modelOffset,
                     duration: 2,
                     ease: "power4.out",
                 },
@@ -192,7 +193,7 @@ export default class ThreeDSliderModels {
             .fromTo(
                 model.rotation,
                 {
-                    y: -Math.PI / 2 + 1.5 * direction,
+                    y: -Math.PI / 2 + 2.5 * direction,
                 },
                 {
                     y: -Math.PI / 2,
@@ -207,7 +208,7 @@ export default class ThreeDSliderModels {
                     y: -Math.PI / 2,
                 },
                 {
-                    y: -Math.PI / 2 + -1.5 * direction,
+                    y: -Math.PI / 2 + -2.5 * direction,
                     duration: 2,
                     ease: "power4.out",
                 },
