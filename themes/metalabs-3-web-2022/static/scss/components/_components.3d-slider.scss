@@ -5,7 +5,35 @@
     }
 
     &__slide {
-        height: 100%;
+        height: auto !important;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+
+        h3 {
+            display: flex;
+
+            .split-text-char {
+                display: inline-block;
+            }
+
+            &:last-child {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    &__slide-title {
+        text-align: center;
+        position: relative;
     }
 
     &__models {
@@ -15,8 +43,6 @@
         width: 100%;
         height: 100%;
         pointer-events: none;
-
-        display: none;
     }
 
     &__overlay {
@@ -30,11 +56,9 @@
         background: radial-gradient(53.06% 84.79% at 53.06% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 51.97%, #000000 100%);
         -webkit-mask: radial-gradient(circle, #0000 percentage(13, 24), rgba(0, 0, 0, 0.9) percentage(13.1, 24));
         backdrop-filter: blur(7px);
-
-        display: none;
     }
 
-    &__navigaiton {
+    &__navigation {
         position: absolute;
         top: 0;
         left: 0;
@@ -42,6 +66,15 @@
         height: 100%;
         pointer-events: none;
         z-index: 2;
+        user-select: none;
+    }
+
+    &__pagination {
+        @include fluidValue("padding-bottom", "s-64");
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
     }
 
     // overwrite
@@ -54,7 +87,53 @@
 
     .swiper-button-prev,
     .swiper-button-next {
+        @include fluidValue("width", null, 60px);
+        @include fluidValue("height", null, 58px);
         pointer-events: auto;
         cursor: none;
+        color: $white;
+
+        .u-icon {
+            width: 100%;
+        }
+    }
+
+    .swiper-pagination-bullet {
+        @include fluidValue("width", null, 20px);
+        @include fluidValue("height", null, 20px);
+        position: relative;
+        opacity: 1;
+
+        &.swiper-pagination-bullet-active {
+            background: transparent;
+            border-radius: 0;
+
+            span {
+                &:first-child {
+                    transform: scaleX(0);
+                }
+
+                &:last-child {
+                    transform: translate(-50%, -50%) scaleX(1);
+                }
+            }
+        }
+
+        span {
+            display: inline-block;
+
+            &:first-child {
+                transform: scaleX(1);
+                transition: transform 0.3s;
+            }
+
+            &:last-child {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scaleX(0);
+                transition: transform 0.3s;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _gsap = _interopRequireDefault(require("gsap"));
+var _SplitText = require("gsap/dist/SplitText");
 var _swiper = _interopRequireWildcard(require("swiper"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -14,6 +15,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+_gsap.default.registerPlugin(_SplitText.SplitText);
 var ThreeDSlider = /*#__PURE__*/function () {
   function ThreeDSlider() {
     _classCallCheck(this, ThreeDSlider);
@@ -22,13 +24,16 @@ var ThreeDSlider = /*#__PURE__*/function () {
       slider: ".js-3d-slider",
       next: ".js-3d-slider-next",
       prev: ".js-3d-slider-prev",
-      pagination: ".js-3d-slider-pagination"
+      pagination: ".js-3d-slider-pagination",
+      primaryTitle: ".js-slide-title-primary",
+      secondaryTitle: ".js-slide-title-secondary"
     };
     this.wrapper = document.querySelector(this.DOM.wrapper);
   }
   _createClass(ThreeDSlider, [{
     key: "init",
     value: function init() {
+      var _this = this;
       if (!this.wrapper) return;
       var slider = this.wrapper.querySelector(this.DOM.slider);
       var next = this.wrapper.querySelector(this.DOM.next);
@@ -38,12 +43,85 @@ var ThreeDSlider = /*#__PURE__*/function () {
         modules: [_swiper.Navigation, _swiper.Pagination],
         loop: false,
         pagination: {
-          el: pagination
+          el: pagination,
+          clickable: false,
+          renderBullet: function renderBullet(index, className) {
+            return "<span class=\"".concat(className, "\"><span>0</span><span>1</span></span>");
+          }
         },
         navigation: {
           nextEl: next,
           prevEl: prev
+        },
+        on: {
+          slideChange: function slideChange(swiper) {
+            return _this.animateTitles(swiper);
+          },
+          afterInit: function afterInit(swiper) {
+            return setTimeout(function () {
+              return _this.animateTitles(swiper);
+            }, 100);
+          }
         }
+      });
+      swiper.slides.forEach(function (slide) {
+        var titlePrimary = slide.querySelector(_this.DOM.primaryTitle);
+        var titleSecondary = slide.querySelector(_this.DOM.secondaryTitle);
+        var splitPrimary = new _SplitText.SplitText(titlePrimary, {
+          type: "chars",
+          charsClass: "split-text-char"
+        });
+        var splitSecondary = new _SplitText.SplitText(titleSecondary, {
+          type: "chars",
+          charsClass: "split-text-char"
+        });
+        _gsap.default.set(splitPrimary.chars, {
+          visibility: "hidden"
+        });
+      });
+    }
+  }, {
+    key: "animateTitles",
+    value: function animateTitles(swiper) {
+      this.animateTitleIn(swiper.slides[swiper.activeIndex]);
+      if (swiper.previousIndex) {
+        this.animateTitleOut(swiper.slides[swiper.previousIndex]);
+      }
+    }
+  }, {
+    key: "animateTitleIn",
+    value: function animateTitleIn(slide) {
+      var titlePrimaryChars = slide.querySelector(this.DOM.primaryTitle).querySelectorAll(".split-text-char");
+      var titleSecondaryChars = slide.querySelector(this.DOM.secondaryTitle).querySelectorAll(".split-text-char");
+      _gsap.default.to(titlePrimaryChars, {
+        visibility: "visible",
+        delay: 0.4,
+        duration: 0.2,
+        stagger: {
+          each: 0.05,
+          from: "center"
+        }
+      });
+      _gsap.default.to(titleSecondaryChars, {
+        visibility: "hidden",
+        delay: 0.5,
+        duration: 0.2,
+        stagger: {
+          each: 0.05,
+          from: "center"
+        }
+      });
+    }
+  }, {
+    key: "animateTitleOut",
+    value: function animateTitleOut(slide) {
+      var titlePrimaryChars = slide.querySelector(this.DOM.primaryTitle).querySelectorAll(".split-text-char");
+      var titleSecondaryChars = slide.querySelector(this.DOM.secondaryTitle).querySelectorAll(".split-text-char");
+      _gsap.default.to(titlePrimaryChars, {
+        visibility: "hidden"
+      });
+      _gsap.default.to(titleSecondaryChars, {
+        visibility: "visible"
       });
     }
   }]);
@@ -51,7 +129,7 @@ var ThreeDSlider = /*#__PURE__*/function () {
 }();
 exports.default = ThreeDSlider;
 
-},{"gsap":"gsap","swiper":"swiper"}],2:[function(require,module,exports){
+},{"gsap":"gsap","gsap/dist/SplitText":"gsap/dist/SplitText","swiper":"swiper"}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -486,18 +564,19 @@ ready(function () {
   navigation.init();
 
   /**
-   * Cursor
-   * @type {Cursor}
-   */
-  var cursor = new _Cursor.default();
-  cursor.init();
-
-  /**
    * ThreeDSlider
    * @type {ThreeDSlider}
    */
   var threeDSlider = new _dSlider.default();
   threeDSlider.init();
+  setTimeout(function () {
+    /**
+     * Cursor
+     * @type {Cursor}
+     */
+    var cursor = new _Cursor.default();
+    cursor.init();
+  }, 500);
 });
 
 },{"./components/3dSlider":1,"./components/Cursor":2,"./components/NavigationController":3,"./helpers/GridHelper":4}]},{},[5])

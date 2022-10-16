@@ -15,7 +15,7 @@
     }
 
     &--teodor {
-        font-family: $font-roobert;
+        font-family: $font-teodor;
         letter-spacing: -0.09em;
         font-weight: 300;
     }
@@ -32,7 +32,7 @@
     }
 
     &--teodor {
-        font-family: $font-roobert;
+        font-family: $font-teodor;
         font-weight: 300;
     }
 }
@@ -52,7 +52,7 @@
     }
 
     &--teodor {
-        font-family: $font-roobert;
+        font-family: $font-teodor;
         font-weight: 300;
     }
 }
@@ -60,7 +60,7 @@
 .u-a1 {
     @include fontSize("a1");
     line-height: 1.13em;
-    font-family: $font-roobert;
+    font-family: $font-teodor;
     letter-spacing: -0.03em;
     font-weight: 300;
 
@@ -108,7 +108,7 @@
     }
 
     &--teodor {
-        font-family: $font-roobert;
+        font-family: $font-teodor;
         font-weight: 300;
     }
 }
@@ -123,7 +123,7 @@
     }
 
     &--teodor {
-        font-family: $font-roobert;
+        font-family: $font-teodor;
     }
 }
 

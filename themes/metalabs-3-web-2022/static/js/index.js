@@ -73,16 +73,18 @@ ready(() => {
     navigation.init();
 
     /**
-     * Cursor
-     * @type {Cursor}
-     */
-    const cursor = new Cursor();
-    cursor.init();
-
-    /**
      * ThreeDSlider
      * @type {ThreeDSlider}
      */
     const threeDSlider = new ThreeDSlider();
     threeDSlider.init();
+
+    setTimeout(() => {
+        /**
+         * Cursor
+         * @type {Cursor}
+         */
+        const cursor = new Cursor();
+        cursor.init();
+    }, 500);
 });
