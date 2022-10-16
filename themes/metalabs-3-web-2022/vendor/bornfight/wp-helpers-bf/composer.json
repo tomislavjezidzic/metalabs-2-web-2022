@@ -1,6 +1,6 @@
 {
   "name": "bornfight/wp-helpers-bf",
-  "description": "Standard package for WP development used at Bornfight",
+  "description": "Standard package for WP development",
   "type": "library",
   "license": "MIT",
   "authors": [

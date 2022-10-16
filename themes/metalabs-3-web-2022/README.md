@@ -1,8 +1,3 @@
-<a href="http://www.bornfight.com">
-<img width="84px" src="https://www.bornfight.com/wp-content/themes/bf/static/ui/BF-sign-dark.svg?" title="Bornfight" alt="Bornfight">
-</a>
-
-
 # metalabs-3-web-2022
 
 > Project short description
@@ -55,16 +50,6 @@ $ brew install fvcproductions
 
 ---
 
-## Support
-
-Reach out to us:
-
-- email <a href="mailto: frontend@bornfight.com" target="_blank">`frontend@bornfight.com`</a>
-
-
 ## License
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-
-- **[MIT license](http://opensource.org/licenses/mit-license.php)**
-- Copyright 2020 © <a href="https://www.bornfight.com" target="_blank">Bornfight</a>.
