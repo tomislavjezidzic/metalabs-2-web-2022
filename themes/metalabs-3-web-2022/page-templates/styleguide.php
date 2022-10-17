@@ -37,28 +37,28 @@ get_partial( 'layout/cursor' );
         <br>
         <br>
 
-        <p class="u-a4 u-a4--roobert">
+        <p class="u-a4">
             A4
 
-            <span class="u-a4--teodor">A4</span>
+            <span class="u-serif">A4</span>
         </p>
 
-        <p class="u-a3 u-a3--roobert">
+        <p class="u-a3">
             A3
 
-            <span class="u-a3--teodor">A3</span>
+            <span class="u-serif">A3</span>
         </p>
 
-        <p class="u-a2 u-a2--roobert">
+        <p class="u-a2">
             A2
 
-            <span class="u-a2--teodor">A2</span>
+            <span class="u-serif">A2</span>
         </p>
 
         <p class="u-a1">
             A1
 
-            <span class="u-a1--teodor">A1</span>
+            <span class="u-serif">A1</span>
         </p>
 
         <p class="u-b0">
@@ -73,16 +73,16 @@ get_partial( 'layout/cursor' );
             B2
         </p>
 
-        <p class="u-b3 u-b3--roobert">
+        <p class="u-b3">
             B3
 
-            <span class="u-b3--teodor">B3</span>
+            <span class="u-serif">B3</span>
         </p>
 
-        <p class="u-b4 u-b4--roobert">
+        <p class="u-b4">
             B4
 
-            <span class="u-b4--teodor">B4</span>
+            <span class="u-serif">B4</span>
         </p>
 
         <div class="u-gradient-filled-270" style="width: 200px; height: 200px;">

@@ -3,21 +3,11 @@
 .u-a4 {
     @include fontSize("a4");
     line-height: 1.35em;
+    font-family: $font-roobert;
+    letter-spacing: -0.08em;
 
     @include mq(md) {
         line-height: 1.25em;
-    }
-
-    &--roobert {
-        font-family: $font-roobert;
-        letter-spacing: -0.08em;
-        font-weight: 500;
-    }
-
-    &--teodor {
-        font-family: $font-teodor;
-        letter-spacing: -0.09em;
-        font-weight: 300;
     }
 }
 
@@ -25,44 +15,25 @@
     @include fontSize("a3");
     line-height: 1.22em;
     letter-spacing: -0.05em;
-
-    &--roobert {
-        font-family: $font-roobert;
-        font-weight: 500;
-    }
-
-    &--teodor {
-        font-family: $font-teodor;
-        font-weight: 300;
-    }
+    font-family: $font-roobert;
 }
 
 .u-a2 {
     @include fontSize("a2");
     line-height: 1.23em;
     letter-spacing: -0.04em;
+    font-family: $font-roobert;
 
     @include mq(md) {
         line-height: 1.103em;
-    }
-
-    &--roobert {
-        font-family: $font-roobert;
-        font-weight: 500;
-    }
-
-    &--teodor {
-        font-family: $font-teodor;
-        font-weight: 300;
     }
 }
 
 .u-a1 {
     @include fontSize("a1");
     line-height: 1.13em;
-    font-family: $font-teodor;
+    font-family: $font-roobert;
     letter-spacing: -0.03em;
-    font-weight: 300;
 
     @include mq(md) {
         line-height: 1.125em;
@@ -74,7 +45,6 @@
     line-height: 0.81em;
     font-family: $font-roobert;
     letter-spacing: -0.01em;
-    font-weight: 300;
 }
 
 .u-b1 {
@@ -82,7 +52,6 @@
     line-height: 0.8em;
     font-family: $font-roobert;
     letter-spacing: -0.01em;
-    font-weight: 300;
 }
 
 .u-b2 {
@@ -90,41 +59,27 @@
     line-height: 1em;
     font-family: $font-roobert;
     letter-spacing: -0.01em;
-    font-weight: 500;
 }
 
 .u-b3 {
     @include fontSize("b3");
     line-height: 1em;
     letter-spacing: -0.02em;
+    font-family: $font-roobert;
 
     @include mq(md) {
         letter-spacing: initial;
-    }
-
-    &--roobert {
-        font-family: $font-roobert;
-        font-weight: 500;
-    }
-
-    &--teodor {
-        font-family: $font-teodor;
-        font-weight: 300;
     }
 }
 
 .u-b4 {
     @include fontSize("b4");
     line-height: 1em;
-    font-weight: 300;
+    font-family: $font-roobert;
+}
 
-    &--roobert {
-        font-family: $font-roobert;
-    }
-
-    &--teodor {
-        font-family: $font-teodor;
-    }
+.u-serif {
+    font-family: $font-teodor;
 }
 
 .u-uppercase {
