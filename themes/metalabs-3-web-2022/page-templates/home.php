@@ -13,6 +13,7 @@ get_partial( 'layout/cursor' );
 <!-- PAGE WRAPPER -->
 <div id="<?= $template_name ?>" class="o-page o-page--<?= $template_name ?>">
 
+    <p>test</p>
 	<?php
 	get_partial( 'home/header', [
 		"modifier_class" => $template_name
