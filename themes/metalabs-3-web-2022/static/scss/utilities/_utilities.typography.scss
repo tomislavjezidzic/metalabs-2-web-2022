@@ -2,54 +2,50 @@
 
 .u-a4 {
     @include fontSize("a4");
-    line-height: 1.35em;
+    line-height: 0.74em;
     font-family: $font-roobert;
     letter-spacing: -0.08em;
 
     @include mq(md) {
-        line-height: 1.25em;
+        line-height: 0.8em;
     }
 }
 
 .u-a3 {
     @include fontSize("a3");
-    line-height: 1.22em;
+    line-height: 0.8em;
     letter-spacing: -0.05em;
     font-family: $font-roobert;
 }
 
 .u-a2 {
     @include fontSize("a2");
-    line-height: 1.23em;
+    line-height: 0.81em;
     letter-spacing: -0.04em;
     font-family: $font-roobert;
 
     @include mq(md) {
-        line-height: 1.103em;
+        line-height: 0.91em;
     }
 }
 
 .u-a1 {
     @include fontSize("a1");
-    line-height: 1.13em;
+    line-height: 0.88em;
     font-family: $font-roobert;
     letter-spacing: -0.03em;
-
-    @include mq(md) {
-        line-height: 1.125em;
-    }
 }
 
 .u-b0 {
     @include fontSize("b0");
-    line-height: 0.81em;
+    line-height: 1.22em;
     font-family: $font-roobert;
     letter-spacing: -0.01em;
 }
 
 .u-b1 {
     @include fontSize("b1");
-    line-height: 0.8em;
+    line-height: 1.25em;
     font-family: $font-roobert;
     letter-spacing: -0.01em;
 }

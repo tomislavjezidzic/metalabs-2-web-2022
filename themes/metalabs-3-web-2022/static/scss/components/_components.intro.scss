@@ -1,0 +1,26 @@
+.c-intro {
+    @include fluidValue("padding-top", "s-120");
+    @include fluidValue("padding-bottom", "s-120");
+
+    display: grid;
+    grid-template-columns: repeat(22, 1fr);
+
+    &__title {
+        @include fluidValue("padding-bottom", "s-64");
+
+        max-width: em(1020px, 80px);
+        grid-column: span 22;
+        margin-left: auto;
+    }
+
+    &__description {
+        grid-column: 14 / -1;
+        max-width: em(240px, 18px);
+
+        @include mq(md) {
+            max-width: 250px;
+            grid-column: span 22;
+            margin-left: auto;
+        }
+    }
+}

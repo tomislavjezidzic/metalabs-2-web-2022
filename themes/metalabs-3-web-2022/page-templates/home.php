@@ -14,18 +14,13 @@ get_partial( 'layout/cursor' );
 <div id="<?= $template_name ?>" class="o-page o-page--<?= $template_name ?>">
 
 	<?php
-	get_partial( 'home/header', [
-		"modifier_class" => $template_name
-
-	] );
+	get_partial( 'home/header');
 	?>
 
     <!-- PAGE CONTENT -->
     <div class="o-page__inner o-page__inner--<?= $template_name ?>">
 		<?php
-		get_partial( 'home/section', [
-			"modifier_class" => "o-section--1",
-		] );
+		get_partial( 'home/intro');
 		?>
     </div>
     <!-- //PAGE CONTENT -->

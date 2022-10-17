@@ -1,2 +1,45 @@
+.c-navigation-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: getZindex("navigation");
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0) 100%);
+}
+
 .c-navigation {
+    @include fluidValue("padding-top", null, 40px);
+    @include fluidValue("padding-bottom", null, 40px);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__logo {
+        width: get-vw(180px, $breakpoint-xl);
+        display: block;
+
+        @include mq(md) {
+            width: 122px;
+        }
+
+        .u-icon {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__list {
+        //@include fluidValue("gap", "s-56");
+
+        display: flex;
+        gap: get-vw(56px, $breakpoint-xl);
+
+        @include mq(md) {
+            display: none;
+        }
+
+    }
+
 }

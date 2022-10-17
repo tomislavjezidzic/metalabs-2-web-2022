@@ -45,6 +45,6 @@
  * usage:
  * padding-top: em(20px);
  */
-@function em($size) {
-    @return math.div($size, 16px) * 1em; /* 1 */
+@function em($size, $font-size: 16px) {
+    @return math.div($size, $font-size) * 1em; /* 1 */
 }

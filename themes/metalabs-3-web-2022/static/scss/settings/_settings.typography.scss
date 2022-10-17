@@ -1,54 +1,53 @@
 /**
  * Roboto
  */
-@include font-face("Roboto", "Roboto-Regular");
-@include font-face("Roboto", "Roboto-Bold", $font-weight: 700);
+@include font-face("Roobert", "Roobert-Medium");
+@include font-face("Teodor", "Teodor-Light");
 
 /**
  * Font variables
  */
-$roboto: "Roboto", sans-serif;
-$font-roobert: "Arial", sans-serif;
-$font-teodor: "Times New Roman", serif;
+$font-roobert: "Roobert", sans-serif;
+$font-teodor: "Teodor", serif;
 
 /**
  * Font size map
  */
 $settings-typography: (
     "a4": (
-        $breakpoint-sm: 80px,
+        $breakpoint-xs: 80px,
         $breakpoint-xl: 308px,
     ),
     "a3": (
-        $breakpoint-sm: 42px,
+        $breakpoint-xs: 42px,
         $breakpoint-xl: 125px,
     ),
     "a2": (
-        $breakpoint-sm: 32px,
+        $breakpoint-xs: 32px,
         $breakpoint-xl: 80px,
     ),
     "a1": (
-        $breakpoint-sm: 18px,
+        $breakpoint-xs: 18px,
         $breakpoint-xl: 34px,
     ),
     "b0": (
-        $breakpoint-sm: 18px,
+        $breakpoint-xs: 18px,
         $breakpoint-xl: 22px,
     ),
     "b1": (
-        $breakpoint-sm: 14px,
+        $breakpoint-xs: 14px,
         $breakpoint-xl: 16px,
     ),
     "b2": (
-        $breakpoint-sm: 14px,
+        $breakpoint-xs: 14px,
         $breakpoint-xl: 16px,
     ),
     "b3": (
-        $breakpoint-sm: 14px,
+        $breakpoint-xs: 14px,
         $breakpoint-xl: 14px,
     ),
     "b4": (
-        $breakpoint-sm: 14px,
+        $breakpoint-xs: 14px,
         $breakpoint-xl: 14px,
     ),
 );

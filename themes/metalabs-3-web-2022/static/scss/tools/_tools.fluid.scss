@@ -6,11 +6,11 @@
     @if $size != null {
         @include poly-fluid-sizing("font-size", getFontValues($size));
     }
-    @include mq(null, xxl) {
+    @include mq(null, xl) {
         @if $value != null {
-            font-size: get-vw($value, $breakpoint-xxl);
+            font-size: get-vw($value, $breakpoint-xl);
         } @else {
-            font-size: get-vw(map-deep-get($settings-typography, $size, $breakpoint-xl), $breakpoint-xxl);
+            font-size: get-vw(map-deep-get($settings-typography, $size, $breakpoint-xl), $breakpoint-xl);
         }
     }
 }
