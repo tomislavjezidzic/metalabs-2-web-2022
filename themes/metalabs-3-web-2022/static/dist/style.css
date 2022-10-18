@@ -878,7 +878,6 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   position: absolute;
   right: 0;
   left: 58.3333333333%;
-  border: 1px solid red;
 }
 
 @media (min-width: 480px) {

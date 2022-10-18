@@ -6,7 +6,7 @@
             Web 3.0 Agency
         </h1>
 
-        <div class="c-header__model js-header-model-wrapper" data-model="<?= bu( "models/slider-model-1.glb" ) ?>">
+        <div class="c-header__model js-header-model-wrapper" data-model="<?= bu( "models/bista.glb" ) ?>">
 
         </div>
 
