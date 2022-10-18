@@ -1141,7 +1141,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 }
 @media (max-width: 480px) {
   .c-3d-slider__overlay {
-    -webkit-mask: radial-gradient(circle, rgba(0, 0, 0, 0) 29.1666666667%, rgba(0, 0, 0, 0.9) 29.5833333333%);
+    -webkit-mask: radial-gradient(circle, rgba(0, 0, 0, 0) 41.6666666667%, rgba(0, 0, 0, 0.9) 42.0833333333%);
   }
 }
 .c-3d-slider__navigation {
@@ -1194,6 +1194,16 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   min-height: var(--win-height);
 }
 
+@media (max-width: 800px) {
+  .c-3d-slider .swiper-wrapper {
+    min-height: 500px;
+  }
+}
+@media (max-width: 480px) {
+  .c-3d-slider .swiper-wrapper {
+    min-height: 400px;
+  }
+}
 .c-3d-slider .swiper-button-next {
   right: 4.1666666667%;
 }

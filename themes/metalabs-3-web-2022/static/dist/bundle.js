@@ -190,8 +190,8 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       this.loader.setDRACOLoader(dracoLoader);
       THREE.Cache.enabled = true;
       this.resizeModels();
-      this.width = window.innerWidth;
-      this.height = window.innerHeight;
+      this.width = this.models.offsetWidth;
+      this.height = this.models.offsetHeight;
       this.initCamera();
       this.initScene();
       this.initLights();
@@ -226,8 +226,8 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
           }
         },
         "(max-width: 475px)": function maxWidth475px() {
-          if (_this2.config.modelScale !== 0.4) {
-            _this2.config.modelScale = 0.4;
+          if (_this2.config.modelScale !== 0.6) {
+            _this2.config.modelScale = 0.6;
           }
         }
       });
@@ -336,9 +336,9 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       this.modelsWrapper.children.forEach(function (model) {
         return model.scale.set(_this5.config.modelScale, _this5.config.modelScale, _this5.config.modelScale);
       });
-      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.aspect = this.models.offsetWidth / this.models.offsetHeight;
       this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.renderer.setSize(this.models.offsetWidth, this.models.offsetHeight);
     }
 
     /**

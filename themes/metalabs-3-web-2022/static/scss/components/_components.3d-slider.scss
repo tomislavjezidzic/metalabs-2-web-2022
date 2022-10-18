@@ -59,12 +59,12 @@
         -webkit-mask: radial-gradient(circle, #0000 percentage(10, 24), rgba(0, 0, 0, 0.9) percentage(10.1, 24));
         backdrop-filter: blur(7px);
 
-        @include mq(md){
+        @include mq(md) {
             -webkit-mask: radial-gradient(circle, #0000 percentage(9, 24), rgba(0, 0, 0, 0.9) percentage(9.1, 24));
         }
 
-        @include mq(sm){
-            -webkit-mask: radial-gradient(circle, #0000 percentage(7, 24), rgba(0, 0, 0, 0.9) percentage(7.1, 24));
+        @include mq(sm) {
+            -webkit-mask: radial-gradient(circle, #0000 percentage(10, 24), rgba(0, 0, 0, 0.9) percentage(10.1, 24));
         }
     }
 
@@ -96,6 +96,14 @@
 
     .swiper-wrapper {
         min-height: var(--win-height);
+
+        @include mq(md) {
+            min-height: 500px;
+        }
+
+        @include mq(sm) {
+            min-height: 400px;
+        }
     }
 
     .swiper-button-next {

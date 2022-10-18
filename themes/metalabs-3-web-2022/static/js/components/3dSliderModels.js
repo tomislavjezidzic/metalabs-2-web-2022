@@ -44,8 +44,8 @@ export default class ThreeDSliderModels {
 
         this.resizeModels();
 
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
+        this.width = this.models.offsetWidth;
+        this.height = this.models.offsetHeight;
 
         this.initCamera();
         this.initScene();
@@ -78,8 +78,8 @@ export default class ThreeDSliderModels {
                 }
             },
             "(max-width: 475px)": () => {
-                if (this.config.modelScale !== 0.4) {
-                    this.config.modelScale = 0.4;
+                if (this.config.modelScale !== 0.6) {
+                    this.config.modelScale = 0.6;
                 }
             },
         });
@@ -189,10 +189,10 @@ export default class ThreeDSliderModels {
 
         this.modelsWrapper.children.forEach((model) => model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale));
 
-        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.aspect = this.models.offsetWidth / this.models.offsetHeight;
         this.camera.updateProjectionMatrix();
 
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(this.models.offsetWidth, this.models.offsetHeight);
     }
 
     /**
