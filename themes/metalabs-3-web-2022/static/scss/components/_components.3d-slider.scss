@@ -130,6 +130,13 @@
 
         span {
             display: inline-block;
+            line-height: 0;
+            vertical-align: top;
+
+            .u-icon {
+                @include fluidValue("height", null, 18px);
+                width: auto;
+            }
 
             &:last-child {
                 transform: scaleX(1);
@@ -142,6 +149,11 @@
                 left: 50%;
                 transform: translate(-50%, -50%) scaleX(0);
                 transition: transform 0.3s;
+
+                .u-icon {
+                    @include fluidValue("height", null, 19px);
+                    @include fluidValue("margin-top", null, -2px);
+                }
             }
         }
     }

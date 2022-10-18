@@ -1,11 +1,11 @@
 <section class="o-section c-3d-slider js-3d-slider-wrapper">
-    <div class="c-3d-slider__slider u-a4 u-fw-500 u-uppercase">
+    <div class="c-3d-slider__slider u-a4 u-uppercase">
         <div class="swiper js-3d-slider">
             <div class="swiper-wrapper">
                 <div class="swiper-slide c-3d-slider__slide js-3d-slider-slide"
                      data-model="<?= bu( "models/slider-model-1.glb" ) ?>">
                     <div class="c-3d-slider__slide-title">
-                        <h3 class="js-slide-title-primary">
+                        <h3 class="u-fw-500 js-slide-title-primary">
                             discover
                         </h3>
                         <h3 class="u-serif u-fw-300 js-slide-title-secondary">
@@ -17,7 +17,7 @@
                 <div class="swiper-slide c-3d-slider__slide js-3d-slider-slide"
                      data-model="<?= bu( "models/slider-model-2.glb" ) ?>">
                     <div class="c-3d-slider__slide-title">
-                        <h3 class="js-slide-title-primary">
+                        <h3 class="u-fw-500 js-slide-title-primary">
                             awake
                         </h3>
                         <h3 class="u-serif u-fw-300 js-slide-title-secondary">
@@ -29,7 +29,7 @@
                 <div class="swiper-slide c-3d-slider__slide js-3d-slider-slide"
                      data-model="<?= bu( "models/slider-model-3.glb" ) ?>">
                     <div class="c-3d-slider__slide-title">
-                        <h3 class="js-slide-title-primary">
+                        <h3 class="u-fw-500 js-slide-title-primary">
                             create
                         </h3>
                         <h3 class="u-serif u-fw-300 js-slide-title-secondary">
@@ -41,7 +41,7 @@
                 <div class="swiper-slide c-3d-slider__slide js-3d-slider-slide"
                      data-model="<?= bu( "models/slider-model-4.glb" ) ?>">
                     <div class="c-3d-slider__slide-title">
-                        <h3 class="js-slide-title-primary">
+                        <h3 class="u-fw-500 js-slide-title-primary">
                             sustain
                         </h3>
                         <h3 class="u-serif u-fw-300 js-slide-title-secondary">

@@ -1253,8 +1253,20 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 
 .c-3d-slider .swiper-pagination-bullet span {
   display: inline-block;
+  line-height: 0;
+  vertical-align: top;
 }
 
+.c-3d-slider .swiper-pagination-bullet span .u-icon {
+  height: 18px;
+  width: auto;
+}
+
+@media (min-width: 1920px) {
+  .c-3d-slider .swiper-pagination-bullet span .u-icon {
+    height: 0.9375vw;
+  }
+}
 .c-3d-slider .swiper-pagination-bullet span:last-child {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
@@ -1276,6 +1288,21 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   transition: transform 0.3s, -webkit-transform 0.3s;
 }
 
+.c-3d-slider .swiper-pagination-bullet span:first-child .u-icon {
+  height: 19px;
+  margin-top: -2px;
+}
+
+@media (min-width: 1920px) {
+  .c-3d-slider .swiper-pagination-bullet span:first-child .u-icon {
+    height: 0.9895833333vw;
+  }
+}
+@media (min-width: 1920px) {
+  .c-3d-slider .swiper-pagination-bullet span:first-child .u-icon {
+    margin-top: -0.1041666667vw;
+  }
+}
 .c-intro {
   padding-top: 72px;
   padding-bottom: 72px;

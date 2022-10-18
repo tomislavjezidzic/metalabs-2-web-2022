@@ -48,7 +48,7 @@ var ThreeDSlider = /*#__PURE__*/function () {
           el: pagination,
           clickable: false,
           renderBullet: function renderBullet(index, className) {
-            return "<span class=\"".concat(className, "\"><span>0</span><span>1</span></span>");
+            return "\n                        <span class=\"".concat(className, "\">\n                            <span>\n                                <svg class=\"u-icon\" viewBox=\"0 0 12 19\" xmlns=\"http://www.w3.org/2000/svg\">\n                                    <path d=\"M6.18029 18.7476C9.98524 18.7476 11.5688 15.6579 11.5688 10.0807V8.66682C11.5688 3.08968 9.98524 0 6.18029 0H5.38851C1.60556 0 0 3.0635 0 8.66682V10.0807C0 15.6841 1.60556 18.7476 5.38851 18.7476H6.18029ZM5.47649 16.3387C3.34308 16.3387 2.30936 14.4272 2.30936 10.6044V8.14315C2.30936 4.32032 3.34308 2.4089 5.47649 2.4089H6.11431C8.24772 2.4089 9.28143 4.32032 9.28143 8.14315V10.6044C9.28143 14.4272 8.24772 16.3387 6.11431 16.3387H5.47649Z\"/>\n                                </svg>\n                            </span>\n                            <span>\n                                <svg class=\"u-icon\" viewBox=\"0 0 8 19\" xmlns=\"http://www.w3.org/2000/svg\">\n                                    <path d=\"M2.6973 1.57724L0.851562 0H7.27867L5.43294 1.57724V16.7863L7.27867 18.3635H0.851562L2.6973 16.7863V1.57724Z\"/>\n                                </svg>\n                            </span>\n                        </span>");
           }
         },
         navigation: {
