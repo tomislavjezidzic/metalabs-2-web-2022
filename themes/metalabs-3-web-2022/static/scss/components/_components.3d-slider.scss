@@ -1,10 +1,6 @@
 .c-3d-slider {
     position: relative;
 
-    //////
-    margin-top: 200vh;
-    /////
-
     &__slider {
     }
 
@@ -80,6 +76,9 @@
         left: 0;
         width: 100%;
         text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
     }
 
     // overwrite
@@ -104,10 +103,15 @@
     }
 
     .swiper-pagination-bullet {
-        @include fluidValue("width", null, 20px);
-        @include fluidValue("height", null, 20px);
+        @include fluidValue("width", null, 12px);
+        @include fluidValue("height", null, 19px);
         position: relative;
         opacity: 1;
+        background-color: transparent;
+        display: inline-flexflex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
 
         &.swiper-pagination-bullet-active {
             background: transparent;
