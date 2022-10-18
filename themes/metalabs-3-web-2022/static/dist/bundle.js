@@ -334,14 +334,30 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
     key: "animate",
     value: function animate() {
       var _this4 = this;
-      if (this.inViewport) {
-        this.renderer.render(this.scene, this.camera);
-      }
-      if (this.renderer != null) {
-        requestAnimationFrame(function () {
-          return _this4.animate();
-        });
-      }
+      var raf = null;
+      var animate = function animate() {
+        _this4.renderer.render(_this4.scene, _this4.camera);
+        if (_this4.renderer != null) {
+          raf = requestAnimationFrame(animate);
+        }
+      };
+      _ScrollTrigger.default.create({
+        trigger: this.models,
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: function onEnter() {
+          raf = requestAnimationFrame(animate);
+        },
+        onLeave: function onLeave() {
+          cancelAnimationFrame(raf);
+        },
+        onEnterBack: function onEnterBack() {
+          raf = requestAnimationFrame(animate);
+        },
+        onLeaveBack: function onLeaveBack() {
+          cancelAnimationFrame(raf);
+        }
+      });
     }
   }, {
     key: "changeSlide",

@@ -186,12 +186,32 @@ export default class ThreeDSliderModels {
      * requestAnimationFrame
      */
     animate() {
-        if (this.inViewport) {
+        let raf = null;
+
+        const animate = () => {
             this.renderer.render(this.scene, this.camera);
-        }
-        if (this.renderer != null) {
-            requestAnimationFrame(() => this.animate());
-        }
+            if (this.renderer != null) {
+                raf = requestAnimationFrame(animate);
+            }
+        };
+
+        ScrollTrigger.create({
+            trigger: this.models,
+            start: "top bottom",
+            end: "bottom top",
+            onEnter: () => {
+                raf = requestAnimationFrame(animate);
+            },
+            onLeave: () => {
+                cancelAnimationFrame(raf);
+            },
+            onEnterBack: () => {
+                raf = requestAnimationFrame(animate);
+            },
+            onLeaveBack: () => {
+                cancelAnimationFrame(raf);
+            },
+        });
     }
 
     changeSlide(index, prevIndex) {
