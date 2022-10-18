@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import is from "is_js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,11 +16,10 @@ export default class ThreeDSliderModels {
 
         this.models = wrapper.querySelector(this.DOM.models);
 
-        this.inViewport = false;
-
         // config
         this.config = {
             modelOffset: 6,
+            modelScale: 1,
         };
     }
 
@@ -42,23 +42,7 @@ export default class ThreeDSliderModels {
 
         THREE.Cache.enabled = true;
 
-        ScrollTrigger.create({
-            trigger: this.models,
-            start: "top bottom",
-            end: "bottom top",
-            onEnter: () => {
-                this.inViewport = true;
-            },
-            onLeave: () => {
-                this.inViewport = false;
-            },
-            onEnterBack: () => {
-                this.inViewport = true;
-            },
-            onLeaveBack: () => {
-                this.inViewport = false;
-            },
-        });
+        this.resizeModels();
 
         this.width = window.innerWidth;
         this.height = window.innerHeight;
@@ -74,6 +58,31 @@ export default class ThreeDSliderModels {
 
         // handle resize
         window.addEventListener("resize", () => this.onWindowResize(), false);
+    }
+
+    resizeModels() {
+        ScrollTrigger.matchMedia({
+            "(min-width: 1100px)": () => {
+                if (this.config.modelScale !== 0.9) {
+                    this.config.modelScale = 0.9;
+                }
+            },
+            "(max-width: 801px)": () => {
+                if (this.config.modelScale !== 0.7) {
+                    this.config.modelScale = 0.7;
+                }
+            },
+            "(max-width: 600px)": () => {
+                if (this.config.modelScale !== 0.6) {
+                    this.config.modelScale = 0.6;
+                }
+            },
+            "(max-width: 475px)": () => {
+                if (this.config.modelScale !== 0.4) {
+                    this.config.modelScale = 0.4;
+                }
+            },
+        });
     }
 
     mouseMove() {
@@ -114,11 +123,9 @@ export default class ThreeDSliderModels {
 
         this.yellowLight = new THREE.PointLight(0xfeb301, 5, 4);
         this.yellowLight.position.set(-1, 1, 2);
-        // this.yellowLight.castShadow = true;
 
         this.blueLight = new THREE.PointLight(0x2400ff, 5, 2);
         this.blueLight.position.set(1, 0, 1);
-        // this.blueLight.castShadow = true;
 
         lightWrapper.add(this.blueLight);
         lightWrapper.add(this.yellowLight);
@@ -157,6 +164,8 @@ export default class ThreeDSliderModels {
 
                 gltf.scene.position.x = index * this.config.modelOffset;
 
+                gltf.scene.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
+
                 gltf.scene.uuid = index;
 
                 this.modelsArray.push(gltf.scene);
@@ -176,6 +185,10 @@ export default class ThreeDSliderModels {
      *
      */
     onWindowResize() {
+        this.resizeModels();
+
+        this.modelsWrapper.children.forEach((model) => model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale));
+
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
 

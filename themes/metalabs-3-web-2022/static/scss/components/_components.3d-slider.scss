@@ -6,6 +6,7 @@
 
     &__slide {
         height: auto !important;
+        width: 100% !important;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -57,6 +58,14 @@
         background: radial-gradient(53.06% 84.79% at 53.06% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 51.97%, #000000 100%);
         -webkit-mask: radial-gradient(circle, #0000 percentage(10, 24), rgba(0, 0, 0, 0.9) percentage(10.1, 24));
         backdrop-filter: blur(7px);
+
+        @include mq(md){
+            -webkit-mask: radial-gradient(circle, #0000 percentage(9, 24), rgba(0, 0, 0, 0.9) percentage(9.1, 24));
+        }
+
+        @include mq(sm){
+            -webkit-mask: radial-gradient(circle, #0000 percentage(7, 24), rgba(0, 0, 0, 0.9) percentage(7.1, 24));
+        }
     }
 
     &__navigation {
@@ -71,7 +80,7 @@
     }
 
     &__pagination {
-        @include fluidValue("padding-bottom", "s-64");
+        @include fluidValue("margin-bottom", "s-64");
         bottom: 0;
         left: 0;
         width: 100%;
@@ -89,6 +98,14 @@
         min-height: var(--win-height);
     }
 
+    .swiper-button-next {
+        right: percentage(1, 24);
+    }
+
+    .swiper-button-prev {
+        left: percentage(1, 24);
+    }
+
     .swiper-button-prev,
     .swiper-button-next {
         @include fluidValue("width", null, 60px);
@@ -96,6 +113,15 @@
         pointer-events: auto;
         cursor: none;
         color: $white;
+        transition: opacity 0.3s;
+
+        @include mq(md) {
+            @include fluidValue("margin-bottom", "s-64");
+            width: 47px;
+            top: auto;
+            bottom: 0;
+            height: auto;
+        }
 
         .u-icon {
             width: 100%;

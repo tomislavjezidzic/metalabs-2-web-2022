@@ -149,6 +149,7 @@ var THREE = _interopRequireWildcard(require("three"));
 var _DRACOLoader = require("three/examples/jsm/loaders/DRACOLoader");
 var _GLTFLoader = require("three/examples/jsm/loaders/GLTFLoader");
 var _ScrollTrigger = _interopRequireDefault(require("gsap/ScrollTrigger"));
+var _is_js = _interopRequireDefault(require("is_js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -164,11 +165,11 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       slide: ".js-3d-slider-slide"
     };
     this.models = wrapper.querySelector(this.DOM.models);
-    this.inViewport = false;
 
     // config
     this.config = {
-      modelOffset: 6
+      modelOffset: 6,
+      modelScale: 1
     };
   }
   _createClass(ThreeDSliderModels, [{
@@ -188,23 +189,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       });
       this.loader.setDRACOLoader(dracoLoader);
       THREE.Cache.enabled = true;
-      _ScrollTrigger.default.create({
-        trigger: this.models,
-        start: "top bottom",
-        end: "bottom top",
-        onEnter: function onEnter() {
-          _this.inViewport = true;
-        },
-        onLeave: function onLeave() {
-          _this.inViewport = false;
-        },
-        onEnterBack: function onEnterBack() {
-          _this.inViewport = true;
-        },
-        onLeaveBack: function onLeaveBack() {
-          _this.inViewport = false;
-        }
-      });
+      this.resizeModels();
       this.width = window.innerWidth;
       this.height = window.innerHeight;
       this.initCamera();
@@ -221,15 +206,42 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       }, false);
     }
   }, {
+    key: "resizeModels",
+    value: function resizeModels() {
+      var _this2 = this;
+      _ScrollTrigger.default.matchMedia({
+        "(min-width: 1100px)": function minWidth1100px() {
+          if (_this2.config.modelScale !== 0.9) {
+            _this2.config.modelScale = 0.9;
+          }
+        },
+        "(max-width: 801px)": function maxWidth801px() {
+          if (_this2.config.modelScale !== 0.7) {
+            _this2.config.modelScale = 0.7;
+          }
+        },
+        "(max-width: 600px)": function maxWidth600px() {
+          if (_this2.config.modelScale !== 0.6) {
+            _this2.config.modelScale = 0.6;
+          }
+        },
+        "(max-width: 475px)": function maxWidth475px() {
+          if (_this2.config.modelScale !== 0.4) {
+            _this2.config.modelScale = 0.4;
+          }
+        }
+      });
+    }
+  }, {
     key: "mouseMove",
     value: function mouseMove() {
-      var _this2 = this;
+      var _this3 = this;
       window.addEventListener("mousemove", function (ev) {
         var mouseY = ev.clientY;
-        _gsap.default.to(_this2.yellowLight.position, {
+        _gsap.default.to(_this3.yellowLight.position, {
           y: -1 - (mouseY - window.innerHeight) / 400
         });
-        _gsap.default.to(_this2.blueLight.position, {
+        _gsap.default.to(_this3.blueLight.position, {
           y: -(mouseY - window.innerHeight) / 400
         });
       });
@@ -264,12 +276,8 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       var lightWrapper = new THREE.Object3D();
       this.yellowLight = new THREE.PointLight(0xfeb301, 5, 4);
       this.yellowLight.position.set(-1, 1, 2);
-      // this.yellowLight.castShadow = true;
-
       this.blueLight = new THREE.PointLight(0x2400ff, 5, 2);
       this.blueLight.position.set(1, 0, 1);
-      // this.blueLight.castShadow = true;
-
       lightWrapper.add(this.blueLight);
       lightWrapper.add(this.yellowLight);
       this.scene.add(lightWrapper);
@@ -301,14 +309,15 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
   }, {
     key: "initModel",
     value: function initModel(slide, index) {
-      var _this3 = this;
+      var _this4 = this;
       if (!slide) return;
       this.loader.load(slide.dataset.model, function (gltf) {
         gltf.scene.rotation.y = -Math.PI / 2;
-        gltf.scene.position.x = index * _this3.config.modelOffset;
+        gltf.scene.position.x = index * _this4.config.modelOffset;
+        gltf.scene.scale.set(_this4.config.modelScale, _this4.config.modelScale, _this4.config.modelScale);
         gltf.scene.uuid = index;
-        _this3.modelsArray.push(gltf.scene);
-        _this3.modelsWrapper.add(gltf.scene);
+        _this4.modelsArray.push(gltf.scene);
+        _this4.modelsWrapper.add(gltf.scene);
       }, function (xhr) {
         console.log(xhr.loaded / xhr.total * 100 + "% loaded"); /**/
       }, function (error) {
@@ -322,6 +331,11 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
   }, {
     key: "onWindowResize",
     value: function onWindowResize() {
+      var _this5 = this;
+      this.resizeModels();
+      this.modelsWrapper.children.forEach(function (model) {
+        return model.scale.set(_this5.config.modelScale, _this5.config.modelScale, _this5.config.modelScale);
+      });
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -333,11 +347,11 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
   }, {
     key: "animate",
     value: function animate() {
-      var _this4 = this;
+      var _this6 = this;
       var raf = null;
       var animate = function animate() {
-        _this4.renderer.render(_this4.scene, _this4.camera);
-        if (_this4.renderer != null) {
+        _this6.renderer.render(_this6.scene, _this6.camera);
+        if (_this6.renderer != null) {
           raf = requestAnimationFrame(animate);
         }
       };
@@ -392,7 +406,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
 }();
 exports.default = ThreeDSliderModels;
 
-},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],3:[function(require,module,exports){
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","is_js":"is_js","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
