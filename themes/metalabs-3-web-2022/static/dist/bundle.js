@@ -149,7 +149,6 @@ var THREE = _interopRequireWildcard(require("three"));
 var _DRACOLoader = require("three/examples/jsm/loaders/DRACOLoader");
 var _GLTFLoader = require("three/examples/jsm/loaders/GLTFLoader");
 var _ScrollTrigger = _interopRequireDefault(require("gsap/ScrollTrigger"));
-var _is_js = _interopRequireDefault(require("is_js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -319,9 +318,9 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
         _this4.modelsArray.push(gltf.scene);
         _this4.modelsWrapper.add(gltf.scene);
       }, function (xhr) {
-        console.log(xhr.loaded / xhr.total * 100 + "% loaded"); /**/
+        // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
       }, function (error) {
-        console.log("An error happened");
+        // console.log("An error happened");
       });
     }
 
@@ -406,7 +405,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
 }();
 exports.default = ThreeDSliderModels;
 
-},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","is_js":"is_js","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],3:[function(require,module,exports){
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -473,6 +472,245 @@ var Cursor = /*#__PURE__*/function () {
 exports.default = Cursor;
 
 },{"gsap":"gsap","is_js":"is_js"}],4:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _gsap = _interopRequireDefault(require("gsap"));
+var THREE = _interopRequireWildcard(require("three"));
+var _DRACOLoader = require("three/examples/jsm/loaders/DRACOLoader");
+var _GLTFLoader = require("three/examples/jsm/loaders/GLTFLoader");
+var _ScrollTrigger = _interopRequireDefault(require("gsap/ScrollTrigger"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+_gsap.default.registerPlugin(_ScrollTrigger.default);
+var HeaderModel = /*#__PURE__*/function () {
+  function HeaderModel() {
+    _classCallCheck(this, HeaderModel);
+    this.DOM = {
+      wrapper: ".js-header-model-wrapper"
+    };
+    this.wrapper = document.querySelector(this.DOM.wrapper);
+    this.model = null;
+
+    // config
+    this.config = {
+      modelOffset: 6,
+      modelScale: 1
+    };
+  }
+  _createClass(HeaderModel, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+      if (!this.wrapper) return;
+      this.loader = new _GLTFLoader.GLTFLoader();
+
+      // loader
+      var dracoLoader = new _DRACOLoader.DRACOLoader();
+      dracoLoader.setDecoderPath(window.dracoPath);
+      dracoLoader.setDecoderConfig({
+        type: "js"
+      });
+      this.loader.setDRACOLoader(dracoLoader);
+      THREE.Cache.enabled = true;
+      this.resizeModels();
+      this.width = this.wrapper.offsetWidth;
+      this.height = this.wrapper.offsetHeight;
+      this.initCamera();
+      this.initScene();
+      this.initLights();
+      this.initRenderer();
+      this.animate();
+      this.mouseMove();
+      this.initModel();
+
+      // handle resize
+      window.addEventListener("resize", function () {
+        return _this.onWindowResize();
+      }, false);
+    }
+  }, {
+    key: "resizeModels",
+    value: function resizeModels() {
+      var _this2 = this;
+      _ScrollTrigger.default.matchMedia({
+        "(min-width: 1100px)": function minWidth1100px() {
+          if (_this2.config.modelScale !== 0.9) {
+            _this2.config.modelScale = 0.9;
+          }
+        },
+        "(max-width: 801px)": function maxWidth801px() {
+          if (_this2.config.modelScale !== 0.7) {
+            _this2.config.modelScale = 0.7;
+          }
+        },
+        "(max-width: 600px)": function maxWidth600px() {
+          if (_this2.config.modelScale !== 0.6) {
+            _this2.config.modelScale = 0.6;
+          }
+        },
+        "(max-width: 475px)": function maxWidth475px() {
+          if (_this2.config.modelScale !== 0.6) {
+            _this2.config.modelScale = 0.6;
+          }
+        }
+      });
+    }
+  }, {
+    key: "mouseMove",
+    value: function mouseMove() {
+      var _this3 = this;
+      window.addEventListener("mousemove", function (ev) {
+        var mouseY = ev.clientY;
+        _gsap.default.to(_this3.yellowLight.position, {
+          y: -1 - (mouseY - window.innerHeight) / 400
+        });
+        _gsap.default.to(_this3.blueLight.position, {
+          y: -(mouseY - window.innerHeight) / 400
+        });
+      });
+    }
+
+    /**
+     * camera setup
+     */
+  }, {
+    key: "initCamera",
+    value: function initCamera() {
+      this.camera = new THREE.PerspectiveCamera(35, this.width / this.height, 0.5, 100);
+      this.camera.position.set(0, 0, 6);
+      this.camera.lookAt(0, 0, 0);
+    }
+
+    /**
+     * scene setup
+     */
+  }, {
+    key: "initScene",
+    value: function initScene() {
+      this.scene = new THREE.Scene();
+    }
+
+    /**
+     * lights setup - because of performance > all in one object
+     */
+  }, {
+    key: "initLights",
+    value: function initLights() {
+      var lightWrapper = new THREE.Object3D();
+      this.yellowLight = new THREE.PointLight(0xfeb301, 5, 4);
+      this.yellowLight.position.set(-1, 1, 2);
+      this.blueLight = new THREE.PointLight(0x2400ff, 5, 2);
+      this.blueLight.position.set(1, 0, 1);
+      lightWrapper.add(this.blueLight);
+      lightWrapper.add(this.yellowLight);
+      this.scene.add(lightWrapper);
+    }
+
+    /**
+     * renderer setup
+     */
+  }, {
+    key: "initRenderer",
+    value: function initRenderer() {
+      this.renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        powerPreference: "high-performance",
+        alpha: true
+      });
+      this.renderer.shadowMap.enabled = true;
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      this.renderer.setClearColor(0x000000, 0);
+      this.renderer.setPixelRatio(window.devicePixelRatio > 2 ? 2 : window.devicePixelRatio);
+      this.renderer.setSize(this.width, this.height);
+      this.renderer.physicallyCorrectLights = true;
+      this.wrapper.appendChild(this.renderer.domElement);
+    }
+
+    /**
+     * model setup and load call
+     */
+  }, {
+    key: "initModel",
+    value: function initModel() {
+      var _this$wrapper$dataset,
+        _this$wrapper$dataset2,
+        _this4 = this;
+      if (((_this$wrapper$dataset = this.wrapper.dataset) === null || _this$wrapper$dataset === void 0 ? void 0 : _this$wrapper$dataset.model) === "" || ((_this$wrapper$dataset2 = this.wrapper.dataset) === null || _this$wrapper$dataset2 === void 0 ? void 0 : _this$wrapper$dataset2.model) === null) return;
+      this.loader.load(this.wrapper.dataset.model, function (gltf) {
+        gltf.scene.rotation.y = -Math.PI / 2;
+        gltf.scene.scale.set(_this4.config.modelScale, _this4.config.modelScale, _this4.config.modelScale);
+        _this4.model = gltf.scene;
+        _this4.scene.add(gltf.scene);
+      }, function (xhr) {
+        // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+      }, function (error) {
+        // console.log("An error happened");
+      });
+    }
+
+    /**
+     *
+     */
+  }, {
+    key: "onWindowResize",
+    value: function onWindowResize() {
+      var _this5 = this;
+      this.resizeModels();
+      this.model.children.forEach(function (model) {
+        return model.scale.set(_this5.config.modelScale, _this5.config.modelScale, _this5.config.modelScale);
+      });
+      this.camera.aspect = this.wrapper.offsetWidth / this.wrapper.offsetHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(this.wrapper.offsetWidth, this.wrapper.offsetHeight);
+    }
+
+    /**
+     * requestAnimationFrame
+     */
+  }, {
+    key: "animate",
+    value: function animate() {
+      var _this6 = this;
+      var raf = null;
+      var animate = function animate() {
+        _this6.renderer.render(_this6.scene, _this6.camera);
+        if (_this6.renderer != null) {
+          raf = requestAnimationFrame(animate);
+        }
+      };
+      _ScrollTrigger.default.create({
+        trigger: this.wrapper,
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: function onEnter() {
+          raf = requestAnimationFrame(animate);
+        },
+        onLeave: function onLeave() {
+          cancelAnimationFrame(raf);
+        },
+        onEnterBack: function onEnterBack() {
+          raf = requestAnimationFrame(animate);
+        },
+        onLeaveBack: function onLeaveBack() {
+          cancelAnimationFrame(raf);
+        }
+      });
+    }
+  }]);
+  return HeaderModel;
+}();
+exports.default = HeaderModel;
+
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -639,7 +877,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = NavigationController;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -766,13 +1004,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = GridHelper;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 var _GridHelper = _interopRequireDefault(require("./helpers/GridHelper"));
 var _NavigationController = _interopRequireDefault(require("./components/NavigationController"));
 var _Cursor = _interopRequireDefault(require("./components/Cursor"));
 var _dSlider = _interopRequireDefault(require("./components/3dSlider"));
+var _HeaderModel = _interopRequireDefault(require("./components/HeaderModel"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /**
  * MAIN JS FILE
@@ -850,6 +1089,13 @@ ready(function () {
    */
   var threeDSlider = new _dSlider.default();
   threeDSlider.init();
+
+  /**
+   * HeaderModel
+   * @type {HeaderModel}
+   */
+  var headerModel = new _HeaderModel.default();
+  headerModel.init();
   setTimeout(function () {
     /**
      * Cursor
@@ -860,6 +1106,6 @@ ready(function () {
   }, 500);
 });
 
-},{"./components/3dSlider":1,"./components/Cursor":3,"./components/NavigationController":4,"./helpers/GridHelper":5}]},{},[6])
+},{"./components/3dSlider":1,"./components/Cursor":3,"./components/HeaderModel":4,"./components/NavigationController":5,"./helpers/GridHelper":6}]},{},[7])
 
 //# sourceMappingURL=bundle.js.map

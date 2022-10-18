@@ -5,10 +5,11 @@
             <span class="u-serif u-fw-300">A Transcending</span><br>
             Web 3.0 Agency
         </h1>
-<!--        todo: delete inline style-->
-        <div class="c-header__model" style="min-height: 400px;">
+
+        <div class="c-header__model js-header-model-wrapper" data-model="<?= bu( "models/slider-model-1.glb" ) ?>">
 
         </div>
+
         <p class="c-header__subtitle u-a1 u-serif u-fw-300 u-uppercase">
             Web 3.0 digital<br>Renaissance<br>exploring the<br>digital DNA
         </p>

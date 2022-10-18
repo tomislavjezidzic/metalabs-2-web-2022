@@ -6,14 +6,14 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default class ThreeDSliderModels {
-    constructor(wrapper) {
+export default class HeaderModel {
+    constructor() {
         this.DOM = {
-            models: ".js-3d-slider-models",
-            slide: ".js-3d-slider-slide",
+            wrapper: ".js-header-model-wrapper",
         };
 
-        this.models = wrapper.querySelector(this.DOM.models);
+        this.wrapper = document.querySelector(this.DOM.wrapper);
+        this.model = null;
 
         // config
         this.config = {
@@ -23,11 +23,7 @@ export default class ThreeDSliderModels {
     }
 
     init() {
-        if (!this.models) return;
-
-        this.modelsArray = [];
-
-        this.modelsWrapper = new THREE.Object3D();
+        if (!this.wrapper) return;
 
         this.loader = new GLTFLoader();
 
@@ -43,8 +39,8 @@ export default class ThreeDSliderModels {
 
         this.resizeModels();
 
-        this.width = this.models.offsetWidth;
-        this.height = this.models.offsetHeight;
+        this.width = this.wrapper.offsetWidth;
+        this.height = this.wrapper.offsetHeight;
 
         this.initCamera();
         this.initScene();
@@ -52,8 +48,7 @@ export default class ThreeDSliderModels {
         this.initRenderer();
         this.animate();
         this.mouseMove();
-
-        this.scene.add(this.modelsWrapper);
+        this.initModel();
 
         // handle resize
         window.addEventListener("resize", () => this.onWindowResize(), false);
@@ -147,29 +142,25 @@ export default class ThreeDSliderModels {
         this.renderer.setPixelRatio(window.devicePixelRatio > 2 ? 2 : window.devicePixelRatio);
         this.renderer.setSize(this.width, this.height);
         this.renderer.physicallyCorrectLights = true;
-        this.models.appendChild(this.renderer.domElement);
+        this.wrapper.appendChild(this.renderer.domElement);
     }
 
     /**
      * model setup and load call
      */
-    initModel(slide, index) {
-        if (!slide) return;
+    initModel() {
+        if (this.wrapper.dataset?.model === "" || this.wrapper.dataset?.model === null) return;
 
         this.loader.load(
-            slide.dataset.model,
+            this.wrapper.dataset.model,
             (gltf) => {
                 gltf.scene.rotation.y = -Math.PI / 2;
 
-                gltf.scene.position.x = index * this.config.modelOffset;
-
                 gltf.scene.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
 
-                gltf.scene.uuid = index;
+                this.model = gltf.scene;
 
-                this.modelsArray.push(gltf.scene);
-
-                this.modelsWrapper.add(gltf.scene);
+                this.scene.add(gltf.scene);
             },
             (xhr) => {
                 // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
@@ -186,12 +177,12 @@ export default class ThreeDSliderModels {
     onWindowResize() {
         this.resizeModels();
 
-        this.modelsWrapper.children.forEach((model) => model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale));
+        this.model.children.forEach((model) => model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale));
 
-        this.camera.aspect = this.models.offsetWidth / this.models.offsetHeight;
+        this.camera.aspect = this.wrapper.offsetWidth / this.wrapper.offsetHeight;
         this.camera.updateProjectionMatrix();
 
-        this.renderer.setSize(this.models.offsetWidth, this.models.offsetHeight);
+        this.renderer.setSize(this.wrapper.offsetWidth, this.wrapper.offsetHeight);
     }
 
     /**
@@ -208,7 +199,7 @@ export default class ThreeDSliderModels {
         };
 
         ScrollTrigger.create({
-            trigger: this.models,
+            trigger: this.wrapper,
             start: "top bottom",
             end: "bottom top",
             onEnter: () => {
@@ -224,48 +215,5 @@ export default class ThreeDSliderModels {
                 cancelAnimationFrame(raf);
             },
         });
-    }
-
-    changeSlide(index, prevIndex) {
-        const model = this.modelsArray.find((model) => model.uuid === index);
-        const prevModel = this.modelsArray.find((model) => model.uuid === prevIndex);
-
-        const direction = prevIndex > index ? 1 : -1;
-
-        gsap.timeline()
-            .add("start")
-            .to(
-                this.modelsWrapper.position,
-                {
-                    x: -index * this.config.modelOffset,
-                    duration: 2,
-                    ease: "power4.out",
-                },
-                "start",
-            )
-            .fromTo(
-                model.rotation,
-                {
-                    y: -Math.PI / 2 + 2.5 * direction,
-                },
-                {
-                    y: -Math.PI / 2,
-                    duration: 2,
-                    ease: "power4.out",
-                },
-                "start",
-            )
-            .fromTo(
-                prevModel.rotation,
-                {
-                    y: -Math.PI / 2,
-                },
-                {
-                    y: -Math.PI / 2 + -2.5 * direction,
-                    duration: 2,
-                    ease: "power4.out",
-                },
-                "start",
-            );
     }
 }

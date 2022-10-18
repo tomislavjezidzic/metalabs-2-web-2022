@@ -16,6 +16,7 @@ import GridHelper from "./helpers/GridHelper";
 import NavigationController from "./components/NavigationController";
 import Cursor from "./components/Cursor";
 import ThreeDSlider from "./components/3dSlider";
+import HeaderModel from "./components/HeaderModel";
 
 /**
  * Check if document is ready cross-browser
@@ -78,6 +79,13 @@ ready(() => {
      */
     const threeDSlider = new ThreeDSlider();
     threeDSlider.init();
+
+    /**
+     * HeaderModel
+     * @type {HeaderModel}
+     */
+    const headerModel = new HeaderModel();
+    headerModel.init();
 
     setTimeout(() => {
         /**
