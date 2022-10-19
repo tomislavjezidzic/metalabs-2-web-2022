@@ -1,6 +1,16 @@
 .o-section {
 
-    &--relative{
+    &--relative {
         position: relative;
+    }
+
+    &--with-padding {
+        @include fluidValue("padding-top", "s-120");
+        @include fluidValue("padding-bottom", "s-120");
+
+        @include mq(sm) {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
     }
 }

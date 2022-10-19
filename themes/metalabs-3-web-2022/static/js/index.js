@@ -17,6 +17,7 @@ import NavigationController from "./components/NavigationController";
 import Cursor from "./components/Cursor";
 import ThreeDSlider from "./components/3dSlider";
 import HeaderModel from "./components/HeaderModel";
+import Marquee from "./components/Marquee";
 
 /**
  * Check if document is ready cross-browser
@@ -86,6 +87,9 @@ ready(() => {
      */
     const headerModel = new HeaderModel();
     headerModel.init();
+
+    const marquee = new Marquee();
+    marquee.init();
 
     setTimeout(() => {
         /**

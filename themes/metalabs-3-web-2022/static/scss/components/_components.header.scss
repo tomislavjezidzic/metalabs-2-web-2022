@@ -9,7 +9,7 @@
     color: $white;
 
     @include mq(md) {
-        min-height: auto;
+        min-height: unset;
         grid-template-rows: auto;
     }
 
@@ -46,11 +46,20 @@
     &__model {
         @include fluidValue("top", "s-64");
         @include fluidValue("bottom", "s-64");
+
         position: absolute;
         right: 0;
+        z-index: 0;
         left: percentage(14, 24);
 
         @include mq(md) {
+            position: relative;
+            grid-column: span 22;
+            aspect-ratio: 400/ 375;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
         }
     }
 

@@ -1,0 +1,30 @@
+.c-marque-module {
+    @include fluidValue("gap", "s-64");
+
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    &__wrapper {
+        display: flex;
+        white-space: nowrap;
+    }
+
+    &__mover {
+        @include fluidValue("gap", "s-64");
+
+        display: inline-flex;
+        align-items: center;
+        animation-play-state: running;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform-style: preserve-3d;
+        will-change: transform;
+    }
+
+    &__logo {
+        @include fluidValue("width", null, 240px);
+        @include fluidValue("height", null, 144px);
+
+        object-fit: contain;
+    }
+}

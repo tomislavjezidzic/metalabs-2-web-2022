@@ -2,13 +2,18 @@
  * Components
  */
 @import "components.footer";
-@import "components.header";
+
 @import "components.loader";
 @import "components.navigation";
 @import "components.cursor";
 @import "components.3d-slider";
-@import "components.intro";
+@import "components.services-card";
 
 /**
  * Modules
  */
+@import "components.header";
+@import "components.text-module";
+@import "components.services-grid-module";
+@import "components.marque-module";
+

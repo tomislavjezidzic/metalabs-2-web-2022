@@ -1,0 +1,30 @@
+.c-services-grid-module {
+    &__list {
+        @include fluidValue("row-gap", null, 60px);
+
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: get-vw(720px);
+
+        @include mq(xl) {
+            max-width: 720px;
+        }
+
+        @include mq(md) {
+            gap: get-vw(240px);
+            padding-left: get-vw(60px);
+            padding-right: get-vw(60px);
+        }
+    }
+
+    &__item {
+        padding-left: get-vw(120px);
+
+        @include mq(md) {
+            padding-left: 0;
+        }
+    }
+
+}

@@ -1,0 +1,48 @@
+.c-text-module {
+    &__inner {
+        display: grid;
+        grid-template-columns: repeat(22, 1fr);
+        position: relative;
+    }
+
+    &__title {
+        //width: em(1020px, 80px);
+        width: get-vw(1020px);
+        max-width: 100%;
+        grid-column: span 22;
+        margin-left: auto;
+        //todo: need to think this through
+        //text-indent: em(460px, 80px);
+        text-indent: get-vw(484px);
+        @include mq(md) {
+            text-indent: em(75px, 32px);
+        }
+    }
+
+    &__description {
+        @include fluidValue("padding-top", null, 60px);
+
+        grid-column: 14 / -1;
+        max-width: em(240px, 18px);
+        margin-left: get-vw(4px);
+
+        @include mq(md) {
+            max-width: 250px;
+            grid-column: span 22;
+            margin-left: auto;
+        }
+    }
+
+    &__side-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        @include mq(md) {
+            position: relative;
+            margin-right: auto;
+        }
+    }
+}

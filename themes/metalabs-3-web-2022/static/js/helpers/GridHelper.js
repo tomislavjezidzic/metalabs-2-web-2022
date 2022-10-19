@@ -30,7 +30,7 @@ export default class GridHelper {
             initialDisplay: "none", // "flex" or "none" — initial display for the grid — string
             columnCount: 24, // number of grid columns — integer
             gridWidth: 1440, // base grid used in design; value in px — integer
-            gridFixed: true, // should grid width be restricted to gridWidth or it should go full width a nd behave fluidly across all screen sizes
+            gridFixed: false, // should grid width be restricted to gridWidth or it should go full width a nd behave fluidly across all screen sizes
             gutterWidth: 0, // grid gutters value in px — integer
             gutterFixed: false, // should grid gutter be a fixed value (px) or fluid — integer
             gridColor: "rgb(255, 0, 255, 0.15)", // grid guides color — string of an rgba or hex value

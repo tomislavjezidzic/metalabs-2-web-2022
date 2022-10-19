@@ -1,9 +1,4 @@
 .o-container {
-    @include fluidValue("padding-left", null, 60px);
-    @include fluidValue("padding-right", null, 60px);
-
-    @include mq(md) {
-        padding-left: get-vw(60px);
-        padding-right: get-vw(60px);
-    }
+    padding-left: get-vw(60px);
+    padding-right: get-vw(60px);
 }
