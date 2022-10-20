@@ -10,9 +10,11 @@ export default class HeaderModel {
     constructor() {
         this.DOM = {
             wrapper: ".js-header-model-wrapper",
+            header: ".js-header",
         };
 
         this.wrapper = document.querySelector(this.DOM.wrapper);
+        this.header = document.querySelector(this.DOM.header);
         this.model = null;
 
         // config
@@ -160,6 +162,8 @@ export default class HeaderModel {
 
                 this.model = gltf.scene;
 
+                this.scrollModelAnimation(gltf.scene);
+
                 this.scene.add(gltf.scene);
             },
             (xhr) => {
@@ -171,13 +175,31 @@ export default class HeaderModel {
         );
     }
 
+    scrollModelAnimation(model) {
+        gsap.fromTo(
+            model.rotation,
+            {
+                y: "-=0.25",
+            },
+            {
+                y: "+=0.5",
+                scrollTrigger: {
+                    trigger: this.header,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 0.8,
+                },
+            },
+        );
+    }
+
     /**
      *
      */
     onWindowResize() {
         this.resizeModels();
 
-        this.model.children.forEach((model) => model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale));
+        this.model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
 
         this.camera.aspect = this.wrapper.offsetWidth / this.wrapper.offsetHeight;
         this.camera.updateProjectionMatrix();
