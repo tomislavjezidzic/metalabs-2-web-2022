@@ -1259,6 +1259,15 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   max-width: 15em;
 }
 
+.c-flickering-text b {
+  font-weight: 500;
+}
+
+.c-flickering-text b.is-serif {
+  font-family: "Teodor", serif;
+  font-weight: 300;
+}
+
 /**
  * Modules
  */

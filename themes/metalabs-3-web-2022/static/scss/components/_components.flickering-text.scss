@@ -1,0 +1,10 @@
+.c-flickering-text {
+    b {
+        font-weight: 500;
+
+        &.is-serif {
+            font-family: $font-teodor;
+            font-weight: 300;
+        }
+    }
+}

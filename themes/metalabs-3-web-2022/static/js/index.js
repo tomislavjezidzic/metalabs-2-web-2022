@@ -18,6 +18,7 @@ import Cursor from "./components/Cursor";
 import ThreeDSlider from "./components/3dSlider";
 import HeaderModel from "./components/HeaderModel";
 import Marquee from "./components/Marquee";
+import FlickeringText from "./components/FlickeringText";
 
 /**
  * Check if document is ready cross-browser
@@ -90,6 +91,9 @@ ready(() => {
 
     const marquee = new Marquee();
     marquee.init();
+
+    const flickeringText = new FlickeringText();
+    flickeringText.init();
 
     setTimeout(() => {
         /**

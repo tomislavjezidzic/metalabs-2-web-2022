@@ -14,7 +14,7 @@
                 </span>
 			<?php } ?>
 			<?php if ( ! empty( $title ) ) { ?>
-                <h2 class="c-text-module__title u-a2 u-fw-500 u-uppercase">
+                <h2 class="c-text-module__title u-a2 u-fw-500 u-uppercase js-flickering-text c-flickering-text">
 					<?= $title ?>
                 </h2>
 			<?php } ?>

@@ -524,6 +524,71 @@ exports.default = Cursor;
 },{"gsap":"gsap","is_js":"is_js"}],4:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _gsap = _interopRequireDefault(require("gsap"));
+var _ScrollTrigger = _interopRequireDefault(require("gsap/ScrollTrigger"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+_gsap.default.registerPlugin(_ScrollTrigger.default);
+var FlickeringText = /*#__PURE__*/function () {
+  function FlickeringText() {
+    _classCallCheck(this, FlickeringText);
+    this.DOM = {
+      wrapper: ".js-flickering-text"
+    };
+    this.wrappers = document.querySelectorAll(this.DOM.wrapper);
+  }
+  _createClass(FlickeringText, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+      if (this.wrappers.length < 1) return;
+      this.wrappers.forEach(function (wrapper) {
+        return _this.singleWrapper(wrapper);
+      });
+    }
+  }, {
+    key: "singleWrapper",
+    value: function singleWrapper(wrapper) {
+      var texts = wrapper.querySelectorAll("b");
+      if (texts.length < 1) return;
+      texts.forEach(function (text) {
+        _gsap.default.timeline({
+          scrollTrigger: {
+            trigger: text,
+            start: "top 70%"
+          }
+        }).to(text, {
+          classList: "is-serif",
+          duration: 0.05
+        }).to(text, {
+          classList: "",
+          duration: 0.05
+        }).to(text, {
+          classList: "is-serif",
+          duration: 0.075
+        }).to(text, {
+          classList: "",
+          duration: 0.075
+        }).to(text, {
+          classList: "is-serif",
+          duration: 0.1
+        });
+      });
+    }
+  }]);
+  return FlickeringText;
+}();
+exports.default = FlickeringText;
+
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger"}],5:[function(require,module,exports){
+"use strict";
+
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -775,7 +840,7 @@ var HeaderModel = /*#__PURE__*/function () {
 }();
 exports.default = HeaderModel;
 
-},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],5:[function(require,module,exports){
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -845,7 +910,7 @@ var Marquee = /*#__PURE__*/function () {
 }();
 exports.default = Marquee;
 
-},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger"}],6:[function(require,module,exports){
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger"}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1012,7 +1077,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = NavigationController;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1139,7 +1204,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = GridHelper;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 var _GridHelper = _interopRequireDefault(require("./helpers/GridHelper"));
@@ -1148,6 +1213,7 @@ var _Cursor = _interopRequireDefault(require("./components/Cursor"));
 var _dSlider = _interopRequireDefault(require("./components/3dSlider"));
 var _HeaderModel = _interopRequireDefault(require("./components/HeaderModel"));
 var _Marquee = _interopRequireDefault(require("./components/Marquee"));
+var _FlickeringText = _interopRequireDefault(require("./components/FlickeringText"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /**
  * MAIN JS FILE
@@ -1234,6 +1300,8 @@ ready(function () {
   headerModel.init();
   var marquee = new _Marquee.default();
   marquee.init();
+  var flickeringText = new _FlickeringText.default();
+  flickeringText.init();
   setTimeout(function () {
     /**
      * Cursor
@@ -1244,6 +1312,6 @@ ready(function () {
   }, 500);
 });
 
-},{"./components/3dSlider":1,"./components/Cursor":3,"./components/HeaderModel":4,"./components/Marquee":5,"./components/NavigationController":6,"./helpers/GridHelper":7}]},{},[8])
+},{"./components/3dSlider":1,"./components/Cursor":3,"./components/FlickeringText":4,"./components/HeaderModel":5,"./components/Marquee":6,"./components/NavigationController":7,"./helpers/GridHelper":8}]},{},[9])
 
 //# sourceMappingURL=bundle.js.map

@@ -2,17 +2,17 @@
     <div class="c-marque-module u-a3 u-fw-500 u-uppercase">
         <div class="c-marque-module__wrapper">
             <div class="c-marque-module__item js-scroll-marquee">
-                <div class="c-marque-module__mover">
+                <div class="c-marque-module__mover c-flickering-text js-flickering-text">
                     <p>projects</p>
-                    <p class="u-serif u-fw-300">projects</p>
+                    <b>projects</b>
                     <p>projects</p>
-                    <p class="u-serif u-fw-300">projects</p>
+                    <b>projects</b>
                 </div>
-                <div class="c-marque-module__mover">
+                <div class="c-marque-module__mover c-flickering-text js-flickering-text">
                     <p>projects</p>
-                    <p class="u-serif u-fw-300">projects</p>
+                    <b>projects</b>
                     <p>projects</p>
-                    <p class="u-serif u-fw-300">projects</p>
+                    <b>projects</b>
                 </div>
             </div>
         </div>
