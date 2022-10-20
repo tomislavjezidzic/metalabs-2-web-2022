@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import is from "is_js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,7 +50,9 @@ export default class HeaderModel {
         this.initLights();
         this.initRenderer();
         this.animate();
-        this.mouseMove();
+        if (!is.mobile()) {
+            this.mouseMove();
+        }
         this.initModel();
 
         // handle resize

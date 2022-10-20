@@ -170,6 +170,7 @@ var THREE = _interopRequireWildcard(require("three"));
 var _DRACOLoader = require("three/examples/jsm/loaders/DRACOLoader");
 var _GLTFLoader = require("three/examples/jsm/loaders/GLTFLoader");
 var _ScrollTrigger = _interopRequireDefault(require("gsap/ScrollTrigger"));
+var _is_js = _interopRequireDefault(require("is_js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -217,8 +218,10 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       this.initLights();
       this.initRenderer();
       this.animate();
-      this.mouseMove();
       this.onScrollAnimation();
+      if (!_is_js.default.mobile()) {
+        this.mouseMove();
+      }
       this.scene.add(this.modelsWrapper);
 
       // handle resize
@@ -266,12 +269,12 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
         },
         "(max-width: 600px)": function maxWidth600px() {
           if (_this2.config.modelScale !== 0.6) {
-            _this2.config.modelScale = 0.6;
+            _this2.config.modelScale = 0.7;
           }
         },
         "(max-width: 475px)": function maxWidth475px() {
           if (_this2.config.modelScale !== 0.6) {
-            _this2.config.modelScale = 0.6;
+            _this2.config.modelScale = 0.7;
           }
         }
       });
@@ -293,6 +296,31 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
         _gsap.default.to(_this3.modelsWrapper.rotation, {
           x: -singlePercentCoefficient * (halfHeight - ev.clientY)
         });
+      });
+    }
+  }, {
+    key: "deviceOrientation",
+    value: function deviceOrientation() {
+      DeviceMotionEvent.requestPermission().then(function (response) {
+        if (response === "granted") {
+          console.log("accelerometer permission granted");
+          if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", function (ev) {
+              console.log(11);
+              console.log(1, [ev.beta, ev.gamma]);
+            }, true);
+          } else if (window.DeviceMotionEvent) {
+            console.log(22);
+            window.addEventListener("devicemotion", function (ev) {
+              console.log(2, [ev.acceleration.x * 2, ev.acceleration.y * 2]);
+            }, true);
+          } else {
+            console.log(33);
+            window.addEventListener("MozOrientation", function (ev) {
+              console.log(3, [ev.x * 50, ev.y * 50]);
+            }, true);
+          }
+        }
       });
     }
 
@@ -455,7 +483,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
 }();
 exports.default = ThreeDSliderModels;
 
-},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],3:[function(require,module,exports){
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","is_js":"is_js","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -599,6 +627,7 @@ var THREE = _interopRequireWildcard(require("three"));
 var _DRACOLoader = require("three/examples/jsm/loaders/DRACOLoader");
 var _GLTFLoader = require("three/examples/jsm/loaders/GLTFLoader");
 var _ScrollTrigger = _interopRequireDefault(require("gsap/ScrollTrigger"));
+var _is_js = _interopRequireDefault(require("is_js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -646,7 +675,9 @@ var HeaderModel = /*#__PURE__*/function () {
       this.initLights();
       this.initRenderer();
       this.animate();
-      this.mouseMove();
+      if (!_is_js.default.mobile()) {
+        this.mouseMove();
+      }
       this.initModel();
 
       // handle resize
@@ -842,7 +873,7 @@ var HeaderModel = /*#__PURE__*/function () {
 }();
 exports.default = HeaderModel;
 
-},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],6:[function(require,module,exports){
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger","is_js":"is_js","three":"three","three/examples/jsm/loaders/DRACOLoader":"three/examples/jsm/loaders/DRACOLoader","three/examples/jsm/loaders/GLTFLoader":"three/examples/jsm/loaders/GLTFLoader"}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

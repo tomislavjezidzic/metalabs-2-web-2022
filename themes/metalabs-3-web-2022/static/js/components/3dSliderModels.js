@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import is from "is_js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,8 +52,11 @@ export default class ThreeDSliderModels {
         this.initLights();
         this.initRenderer();
         this.animate();
-        this.mouseMove();
         this.onScrollAnimation();
+
+        if (!is.mobile()) {
+            this.mouseMove();
+        }
 
         this.scene.add(this.modelsWrapper);
 
@@ -109,12 +113,12 @@ export default class ThreeDSliderModels {
             },
             "(max-width: 600px)": () => {
                 if (this.config.modelScale !== 0.6) {
-                    this.config.modelScale = 0.6;
+                    this.config.modelScale = 0.7;
                 }
             },
             "(max-width: 475px)": () => {
                 if (this.config.modelScale !== 0.6) {
-                    this.config.modelScale = 0.6;
+                    this.config.modelScale = 0.7;
                 }
             },
         });
@@ -138,6 +142,42 @@ export default class ThreeDSliderModels {
             gsap.to(this.modelsWrapper.rotation, {
                 x: -singlePercentCoefficient * (halfHeight - ev.clientY),
             });
+        });
+    }
+
+    deviceOrientation() {
+        DeviceMotionEvent.requestPermission().then((response) => {
+            if (response === "granted") {
+                console.log("accelerometer permission granted");
+                if (window.DeviceOrientationEvent) {
+                    window.addEventListener(
+                        "deviceorientation",
+                        (ev) => {
+                            console.log(11);
+                            console.log(1, [ev.beta, ev.gamma]);
+                        },
+                        true,
+                    );
+                } else if (window.DeviceMotionEvent) {
+                    console.log(22);
+                    window.addEventListener(
+                        "devicemotion",
+                        (ev) => {
+                            console.log(2, [ev.acceleration.x * 2, ev.acceleration.y * 2]);
+                        },
+                        true,
+                    );
+                } else {
+                    console.log(33);
+                    window.addEventListener(
+                        "MozOrientation",
+                        (ev) => {
+                            console.log(3, [ev.x * 50, ev.y * 50]);
+                        },
+                        true,
+                    );
+                }
+            }
         });
     }
 
