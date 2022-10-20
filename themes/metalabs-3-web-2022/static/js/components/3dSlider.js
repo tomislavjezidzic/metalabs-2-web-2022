@@ -62,11 +62,11 @@ export default class ThreeDSlider {
                     this.models.changeSlide(swiper.activeIndex, swiper.previousIndex);
                 },
                 afterInit: (swiper) => {
-                    setTimeout(() => this.animateTitles(swiper), 100);
-
                     this.models.init();
 
                     swiper.slides.forEach((slide, index) => this.models.initModel(slide, index));
+
+                    this.onScrollAnimation(swiper.slides[0], swiper);
                 },
             },
         });
@@ -135,5 +135,29 @@ export default class ThreeDSlider {
         gsap.to(titleSecondaryChars, {
             visibility: "visible",
         });
+    }
+
+    onScrollAnimation(firstSlide, swiper) {
+        if (!firstSlide) return;
+
+        gsap.fromTo(
+            firstSlide,
+            {
+                x: "100%",
+                autoAlpha: 0,
+            },
+            {
+                x: "0%",
+                autoAlpha: 1,
+                ease: "power4.out",
+                duration: 1.2,
+                scrollTrigger: {
+                    trigger: this.wrapper,
+                    start: "top 40%",
+                    end: "bottom bottom",
+                },
+                onStart: () => this.animateTitles(swiper),
+            },
+        );
     }
 }

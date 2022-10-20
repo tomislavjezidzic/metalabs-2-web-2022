@@ -52,11 +52,47 @@ export default class ThreeDSliderModels {
         this.initRenderer();
         this.animate();
         this.mouseMove();
+        this.onScrollAnimation();
 
         this.scene.add(this.modelsWrapper);
 
         // handle resize
         window.addEventListener("resize", () => this.onWindowResize(), false);
+    }
+
+    onScrollAnimation() {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: this.models,
+                start: "top 30%",
+                end: "bottom bottom",
+            },
+        })
+            .add("start")
+            .fromTo(
+                this.modelsWrapper.position,
+                {
+                    y: -3,
+                },
+                {
+                    y: 0,
+                    ease: "power4.out",
+                    duration: 1,
+                },
+                "start",
+            )
+            .fromTo(
+                this.modelsWrapper.rotation,
+                {
+                    x: -3,
+                },
+                {
+                    x: 0,
+                    ease: "power4.out",
+                    duration: 1,
+                },
+                "start",
+            );
     }
 
     resizeModels() {
@@ -85,6 +121,9 @@ export default class ThreeDSliderModels {
     }
 
     mouseMove() {
+        const halfHeight = this.height / 2;
+        const singlePercentCoefficient = 0.05 / halfHeight;
+
         window.addEventListener("mousemove", (ev) => {
             let mouseY = ev.clientY;
 
@@ -94,6 +133,10 @@ export default class ThreeDSliderModels {
 
             gsap.to(this.blueLight.position, {
                 y: -(mouseY - window.innerHeight) / 400,
+            });
+
+            gsap.to(this.modelsWrapper.rotation, {
+                x: -singlePercentCoefficient * (halfHeight - ev.clientY),
             });
         });
     }

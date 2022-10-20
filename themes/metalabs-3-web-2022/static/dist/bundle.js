@@ -61,13 +61,11 @@ var ThreeDSlider = /*#__PURE__*/function () {
             _this.models.changeSlide(swiper.activeIndex, swiper.previousIndex);
           },
           afterInit: function afterInit(swiper) {
-            setTimeout(function () {
-              return _this.animateTitles(swiper);
-            }, 100);
             _this.models.init();
             swiper.slides.forEach(function (slide, index) {
               return _this.models.initModel(slide, index);
             });
+            _this.onScrollAnimation(swiper.slides[0], swiper);
           }
         }
       });
@@ -129,6 +127,29 @@ var ThreeDSlider = /*#__PURE__*/function () {
       });
       _gsap.default.to(titleSecondaryChars, {
         visibility: "visible"
+      });
+    }
+  }, {
+    key: "onScrollAnimation",
+    value: function onScrollAnimation(firstSlide, swiper) {
+      var _this2 = this;
+      if (!firstSlide) return;
+      _gsap.default.fromTo(firstSlide, {
+        x: "100%",
+        autoAlpha: 0
+      }, {
+        x: "0%",
+        autoAlpha: 1,
+        ease: "power4.out",
+        duration: 1.2,
+        scrollTrigger: {
+          trigger: this.wrapper,
+          start: "top 40%",
+          end: "bottom bottom"
+        },
+        onStart: function onStart() {
+          return _this2.animateTitles(swiper);
+        }
       });
     }
   }]);
@@ -197,12 +218,36 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       this.initRenderer();
       this.animate();
       this.mouseMove();
+      this.onScrollAnimation();
       this.scene.add(this.modelsWrapper);
 
       // handle resize
       window.addEventListener("resize", function () {
         return _this.onWindowResize();
       }, false);
+    }
+  }, {
+    key: "onScrollAnimation",
+    value: function onScrollAnimation() {
+      _gsap.default.timeline({
+        scrollTrigger: {
+          trigger: this.models,
+          start: "top 30%",
+          end: "bottom bottom"
+        }
+      }).add("start").fromTo(this.modelsWrapper.position, {
+        y: -3
+      }, {
+        y: 0,
+        ease: "power4.out",
+        duration: 1
+      }, "start").fromTo(this.modelsWrapper.rotation, {
+        x: -3
+      }, {
+        x: 0,
+        ease: "power4.out",
+        duration: 1
+      }, "start");
     }
   }, {
     key: "resizeModels",
@@ -235,6 +280,8 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
     key: "mouseMove",
     value: function mouseMove() {
       var _this3 = this;
+      var halfHeight = this.height / 2;
+      var singlePercentCoefficient = 0.05 / halfHeight;
       window.addEventListener("mousemove", function (ev) {
         var mouseY = ev.clientY;
         _gsap.default.to(_this3.yellowLight.position, {
@@ -242,6 +289,9 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
         });
         _gsap.default.to(_this3.blueLight.position, {
           y: -(mouseY - window.innerHeight) / 400
+        });
+        _gsap.default.to(_this3.modelsWrapper.rotation, {
+          x: -singlePercentCoefficient * (halfHeight - ev.clientY)
         });
       });
     }
