@@ -179,10 +179,12 @@ export default class HeaderModel {
         gsap.fromTo(
             model.rotation,
             {
-                y: "-=0.25",
+                y: "+=0.25",
+                x: "-=0.1",
             },
             {
-                y: "+=0.5",
+                y: "-=0.5",
+                x: "+=0.2",
                 scrollTrigger: {
                     trigger: this.header,
                     start: "top top",
