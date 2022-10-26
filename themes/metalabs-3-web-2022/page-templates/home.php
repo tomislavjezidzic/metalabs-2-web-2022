@@ -44,12 +44,7 @@ get_partial( 'layout/cursor' );
 			'title'       => '<b>The Web3 Renaissance is a paradigm shift</b> that is unfolding before our very eyes wide shut.',
 			'description' => 'It is a moment in time in which we can regain control of our destinies, expand our businesses and empower our communities to do much more than society is used to. The only thing we need to do is wake up and see the rejuvenation of the internet, dare to join the movement, and pick up a brush to start painting the new Web3 landscape.',
 		] );
-		get_partial( 'slice-partials/modules/text-module', [
-			'side_text'   => 'CONTACT',
-			'title'       => 'CONTACT <b>Us</b>',
-			'description' => 'Don’t get left behind in the Web3 Renaissance. Start building your work of art today.',
-		] );
-
+		get_partial( 'slice-partials/modules/contact-wrapper-module' );
 		?>
     </div>
     <!-- //PAGE CONTENT -->

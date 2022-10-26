@@ -17,6 +17,7 @@ import NavigationController from "./components/NavigationController";
 import Cursor from "./components/Cursor";
 import ThreeDSlider from "./components/3dSlider";
 import HeaderModel from "./components/HeaderModel";
+import ContactModel from "./components/ContactModel";
 import Marquee from "./components/Marquee";
 import FlickeringText from "./components/FlickeringText";
 
@@ -88,6 +89,13 @@ ready(() => {
      */
     const headerModel = new HeaderModel();
     headerModel.init();
+
+    /**
+     * ContactModel
+     * @type {ContactModel}
+     */
+    const contactModel = new ContactModel();
+    contactModel.init();
 
     const marquee = new Marquee();
     marquee.init();
