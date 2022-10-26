@@ -78,6 +78,7 @@ export default class FlickeringText {
                 autoAlpha: 1,
                 ease: "power4.out",
                 stagger: 0.05,
+                duration: 0.5,
                 scrollTrigger: {
                     trigger: wrapper,
                     start: "top 90%",
