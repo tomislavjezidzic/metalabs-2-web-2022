@@ -696,6 +696,11 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   padding-right: 4.1666666667vw;
 }
 
+.o-container--full-width {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .o-section--relative {
   position: relative;
 }
@@ -1664,6 +1669,42 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     height: 7.5vw;
   }
 }
+.c-full-width-video-module {
+  position: relative;
+}
+
+.c-full-width-video-module:after, .c-full-width-video-module:before {
+  height: 100px;
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+@media (min-width: 1920px) {
+  .c-full-width-video-module:after, .c-full-width-video-module:before {
+    height: 5.2083333333vw;
+  }
+}
+.c-full-width-video-module:after {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 0, 0)), color-stop(65%, rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 65%, rgba(0, 0, 0, 0) 100%);
+  top: 0;
+}
+
+.c-full-width-video-module:before {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)), color-stop(65%, rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 65%, rgba(0, 0, 0, 0) 100%);
+  bottom: 0;
+}
+
+.c-full-width-video-module video {
+  width: 100%;
+  height: auto;
+}
+
 /**
  * Pages
  */

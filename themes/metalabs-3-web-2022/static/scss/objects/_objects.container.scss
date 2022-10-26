@@ -1,4 +1,9 @@
 .o-container {
     padding-left: get-vw(60px);
     padding-right: get-vw(60px);
+
+    &--full-width {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
