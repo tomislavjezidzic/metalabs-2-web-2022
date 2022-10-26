@@ -13,9 +13,17 @@
         margin-left: auto;
         //todo: need to think this through
         //text-indent: em(460px, 80px);
-        text-indent: get-vw(484px);
-        @include mq(md) {
-            text-indent: em(75px, 32px);
+
+        &:before {
+            content: "000";
+            width: get-vw(484px);
+            opacity: 0;
+            visibility: hidden;
+            display: inline-block;
+
+            @include mq(md) {
+                width: em(75px, 32px);
+            }
         }
     }
 

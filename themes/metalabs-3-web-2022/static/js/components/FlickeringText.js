@@ -1,7 +1,8 @@
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { SplitText } from "gsap/dist/SplitText";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default class FlickeringText {
     constructor() {
@@ -19,15 +20,23 @@ export default class FlickeringText {
     }
 
     singleWrapper(wrapper) {
+        const split = new SplitText(wrapper, {
+            type: "words",
+            wordsClass: "u-split-text-word",
+        });
+
+        this.animateIn(split.words, wrapper);
+
         const texts = wrapper.querySelectorAll("b");
 
         if (texts.length < 1) return;
 
         texts.forEach((text) => {
             gsap.timeline({
+                delay: 1,
                 scrollTrigger: {
                     trigger: text,
-                    start: "top 70%",
+                    start: "top 90%",
                 },
             })
                 .to(text, {
@@ -51,5 +60,30 @@ export default class FlickeringText {
                     duration: 0.1,
                 });
         });
+    }
+
+    animateIn(words, wrapper) {
+        gsap.set(words, {
+            autoAlpha: 0,
+        });
+
+        gsap.fromTo(
+            words,
+            {
+                y: "20%",
+                autoAlpha: 0,
+            },
+            {
+                y: "0%",
+                autoAlpha: 1,
+                ease: "power4.out",
+                stagger: 0.05,
+                scrollTrigger: {
+                    trigger: wrapper,
+                    start: "top 90%",
+                    end: "bottom top",
+                },
+            },
+        );
     }
 }

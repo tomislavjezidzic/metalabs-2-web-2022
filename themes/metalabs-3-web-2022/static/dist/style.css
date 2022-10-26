@@ -1554,12 +1554,19 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   max-width: 100%;
   grid-column: span 22;
   margin-left: auto;
-  text-indent: 33.6111111111vw;
+}
+
+.c-text-module__title:before {
+  content: "000";
+  width: 33.6111111111vw;
+  opacity: 0;
+  visibility: hidden;
+  display: inline-block;
 }
 
 @media (max-width: 800px) {
-  .c-text-module__title {
-    text-indent: 2.34375em;
+  .c-text-module__title:before {
+    width: 2.34375em;
   }
 }
 .c-text-module__description {
