@@ -141,43 +141,8 @@ export default class ThreeDSliderModels {
 
             gsap.to(this.modelsWrapper.rotation, {
                 x: -singlePercentCoefficient * (halfHeight - ev.clientY),
+                delay: 0.1,
             });
-        });
-    }
-
-    deviceOrientation() {
-        DeviceMotionEvent.requestPermission().then((response) => {
-            if (response === "granted") {
-                console.log("accelerometer permission granted");
-                if (window.DeviceOrientationEvent) {
-                    window.addEventListener(
-                        "deviceorientation",
-                        (ev) => {
-                            console.log(11);
-                            console.log(1, [ev.beta, ev.gamma]);
-                        },
-                        true,
-                    );
-                } else if (window.DeviceMotionEvent) {
-                    console.log(22);
-                    window.addEventListener(
-                        "devicemotion",
-                        (ev) => {
-                            console.log(2, [ev.acceleration.x * 2, ev.acceleration.y * 2]);
-                        },
-                        true,
-                    );
-                } else {
-                    console.log(33);
-                    window.addEventListener(
-                        "MozOrientation",
-                        (ev) => {
-                            console.log(3, [ev.x * 50, ev.y * 50]);
-                        },
-                        true,
-                    );
-                }
-            }
         });
     }
 

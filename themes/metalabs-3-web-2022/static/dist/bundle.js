@@ -294,33 +294,9 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
           y: -(mouseY - window.innerHeight) / 400
         });
         _gsap.default.to(_this3.modelsWrapper.rotation, {
-          x: -singlePercentCoefficient * (halfHeight - ev.clientY)
+          x: -singlePercentCoefficient * (halfHeight - ev.clientY),
+          delay: 0.1
         });
-      });
-    }
-  }, {
-    key: "deviceOrientation",
-    value: function deviceOrientation() {
-      DeviceMotionEvent.requestPermission().then(function (response) {
-        if (response === "granted") {
-          console.log("accelerometer permission granted");
-          if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", function (ev) {
-              console.log(11);
-              console.log(1, [ev.beta, ev.gamma]);
-            }, true);
-          } else if (window.DeviceMotionEvent) {
-            console.log(22);
-            window.addEventListener("devicemotion", function (ev) {
-              console.log(2, [ev.acceleration.x * 2, ev.acceleration.y * 2]);
-            }, true);
-          } else {
-            console.log(33);
-            window.addEventListener("MozOrientation", function (ev) {
-              console.log(3, [ev.x * 50, ev.y * 50]);
-            }, true);
-          }
-        }
       });
     }
 
