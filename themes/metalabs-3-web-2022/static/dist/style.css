@@ -691,7 +691,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 /**
  * Objects
  */
-.o-container {
+.o-container, .c-navigation {
   padding-left: 4.1666666667vw;
   padding-right: 4.1666666667vw;
 }
@@ -753,13 +753,13 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
  * Components
  */
 .c-navigation-wrapper {
+  z-index: 10;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 0, 0)), color-stop(65%, rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 65%, rgba(0, 0, 0, 0) 100%);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 0, 0)), color-stop(65%, rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
-  background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 65%, rgba(0, 0, 0, 0) 100%);
 }
 
 .c-navigation {
@@ -774,6 +774,16 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+  -webkit-transition: padding 0.4s, -webkit-transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: padding 0.4s, -webkit-transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955), padding 0.4s;
+  transition: transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955), padding 0.4s, -webkit-transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 @media (min-width: 1920px) {
@@ -786,9 +796,42 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     padding-bottom: 2.0833333333vw;
   }
 }
+.c-navigation.has-scrolled {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 1920px) {
+  .c-navigation.has-scrolled {
+    padding-top: 1.0416666667vw;
+  }
+}
+@media (min-width: 1920px) {
+  .c-navigation.has-scrolled {
+    padding-bottom: 1.0416666667vw;
+  }
+}
+.c-navigation.slide-up {
+  -webkit-transform: translateY(-105%);
+          transform: translateY(-105%);
+}
+
+.c-navigation:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
 .c-navigation__logo {
   width: 12.5vw;
   display: block;
+  z-index: 1;
 }
 
 @media (max-width: 800px) {
@@ -803,6 +846,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 }
 
 .c-navigation__list {
+  z-index: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
