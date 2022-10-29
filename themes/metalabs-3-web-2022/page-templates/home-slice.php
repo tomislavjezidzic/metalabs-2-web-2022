@@ -38,13 +38,13 @@ get_partial( 'layout/cursor' );
 			'title'       => 'Let the space become <b>the canvas</b> for bringing your best ideas to life.',
 			'description' => 'From beginning to end, we are here to make sure that your Web3 experience is as enlightening as it is invigorating.',
 		] );
-		get_partial( 'slice-partials/modules/marque-module' );
+		get_partial( 'slice-partials/modules/_marque-module' );
 		get_partial( 'slice-partials/modules/_text-module', [
 			'side_text'   => 'MANIFESTO',
 			'title'       => '<b>The Web3 Renaissance is a paradigm shift</b> that is unfolding before our very eyes wide shut.',
 			'description' => 'It is a moment in time in which we can regain control of our destinies, expand our businesses and empower our communities to do much more than society is used to. The only thing we need to do is wake up and see the rejuvenation of the internet, dare to join the movement, and pick up a brush to start painting the new Web3 landscape.',
 		] );
-		get_partial( 'slice-partials/modules/contact-wrapper-module' );
+		get_partial( 'slice-partials/modules/_contact-wrapper-module' );
 		?>
     </div>
     <!-- //PAGE CONTENT -->

@@ -29,11 +29,7 @@ $medium_editor_helper = new MediumEditorHelper();
 
     <!-- PAGE CONTENT -->
     <div class="o-page__inner o-page__inner--<?= $template_name ?>">
-		<?php
-        get_modules_partial($acf_provider->get_field('modules'));
-
-		get_partial( 'slice-partials/modules/contact-wrapper-module' );
-		?>
+		<?php get_modules_partial( $acf_provider->get_field( 'modules' ) ); ?>
     </div>
     <!-- //PAGE CONTENT -->
 	<?php
