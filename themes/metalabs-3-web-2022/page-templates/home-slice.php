@@ -5,7 +5,7 @@ $template_name = 'home';
 get_header();
 
 get_partial( 'layout/loader' );
-get_partial( 'slice-partials/layout/navigation' );
+get_partial( 'slice-partials/layout/_navigation' );
 get_partial( 'layout/cursor' );
 
 ?>

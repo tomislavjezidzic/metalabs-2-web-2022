@@ -5,7 +5,7 @@ $template_name = 'styleguide';
 get_header();
 
 get_partial( 'layout/loader' );
-get_partial( 'layout/navigation' );
+get_partial( 'slice-partials/layout/_navigation' );
 get_partial( 'layout/cursor' );
 
 ?>

@@ -33,10 +33,11 @@ class ServicePostType extends BasePostType implements CustomPostTypeInterface {
 	 * @return array
 	 */
 	public function get_args(): array {
-		$args              = $this->get_default_args( $this->get_labels() );
-		$args['public']    = false;
-		$args['supports']  = array( 'title', 'thumbnail' );
-		$args['menu_icon'] = 'dashicons-edit-large';
+		$args                       = $this->get_default_args( $this->get_labels() );
+		$args['public']             = false;
+		$args['publicly_queryable'] = false;
+		$args['supports']           = array( 'title', 'thumbnail' );
+		$args['menu_icon']          = 'dashicons-edit-large';
 
 		return $args;
 	}
