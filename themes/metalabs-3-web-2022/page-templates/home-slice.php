@@ -32,7 +32,7 @@ get_partial( 'layout/cursor' );
 			'description' => '',
 		] );
 		get_partial( 'slice-partials/modules/_services-grid-module' );
-		get_partial( 'slice-partials/components/3d-slider' );
+		get_partial( 'slice-partials/components/_3d-slider' );
 		get_partial( 'slice-partials/modules/_text-module', [
 			'side_text'   => 'FLOW',
 			'title'       => 'Let the space become <b>the canvas</b> for bringing your best ideas to life.',

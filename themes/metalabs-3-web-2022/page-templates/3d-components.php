@@ -16,7 +16,7 @@ get_partial( 'layout/cursor' );
     <div class="o-page__inner o-page__inner--<?= $template_name ?>">
 	    <?php
 	    get_partial( 'slice-partials/modules/_header');
-	    get_partial( 'slice-partials/components/3d-slider');
+	    get_partial( 'slice-partials/components/_3d-slider');
 	    ?>
     </div>
     <!-- //PAGE CONTENT -->

@@ -235,6 +235,51 @@
                     "acfe_flexible_settings_size": "medium",
                     "acfe_flexible_modal_edit_size": false,
                     "acfe_flexible_category": false
+                },
+                "layout_635d25514f789": {
+                    "key": "layout_635d25514f789",
+                    "name": "3d_slider_module",
+                    "label": "3d Slider Module",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_635d255b4f78a",
+                            "label": "3d Slider Module",
+                            "name": "3d_slider_module",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_635d24f7c274a"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0,
+                            "acfe_seamless_style": 0,
+                            "acfe_clone_modal": 0,
+                            "acfe_clone_modal_close": 0,
+                            "acfe_clone_modal_button": "",
+                            "acfe_clone_modal_size": "large"
+                        }
+                    ],
+                    "min": "",
+                    "max": "",
+                    "acfe_flexible_thumbnail": "",
+                    "acfe_flexible_render_template": false,
+                    "acfe_flexible_render_style": false,
+                    "acfe_flexible_render_script": false,
+                    "acfe_flexible_settings": false,
+                    "acfe_flexible_settings_size": "medium",
+                    "acfe_flexible_modal_edit_size": false,
+                    "acfe_flexible_category": false
                 }
             },
             "min": "",
@@ -280,7 +325,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1667047687,
+    "modified": 1667048805,
     "acfe_categories": {
         "templates": "Templates"
     }

@@ -33,7 +33,7 @@ $medium_editor_helper = new MediumEditorHelper();
         get_modules_partial($acf_provider->get_field('modules'));
 
 
-		get_partial( 'slice-partials/components/3d-slider' );
+		get_partial( 'slice-partials/components/_3d-slider' );
 		get_partial( 'slice-partials/modules/_text-module', [
 			'side_text'   => 'FLOW',
 			'title'       => 'Let the space become <b>the canvas</b> for bringing your best ideas to life.',
