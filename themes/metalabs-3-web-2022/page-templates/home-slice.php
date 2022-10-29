@@ -1,8 +1,5 @@
 <?php
-/** Template Name: Home Template */
-
-use metalabs3Web2022\acf\ACFProvider;
-use metalabs3Web2022\helpers\MediumEditorHelper;
+/** Template Name: Home SLICE template */
 
 $template_name = 'home';
 get_header();
@@ -11,20 +8,13 @@ get_partial( 'layout/loader' );
 get_partial( 'layout/navigation' );
 get_partial( 'layout/cursor' );
 
-$acf_provider         = ACFProvider::get_instance();
-$medium_editor_helper = new MediumEditorHelper();
 ?>
 
 <!-- PAGE WRAPPER -->
 <div id="<?= $template_name ?>" class="o-page o-page--<?= $template_name ?>">
 
 	<?php
-	$header = $acf_provider->get_field( 'header' );
-	get_partial( 'components/header', array(
-		'title'    => $medium_editor_helper->format_emphasized_text( $header['medium_editor_title'] ),
-		'subtitle' => $header['subtitle'] ?? '',
-		'model'    => $header['model'],
-	) );
+	get_partial( 'slice-partials/modules/header' );
 	?>
 
     <!-- PAGE CONTENT -->

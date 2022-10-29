@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+use metalabs3Web2022\acf\ACFDefaults;
 use metalabs3Web2022\menus\Menus;
 use metalabs3Web2022\options\RewriteRules;
 use metalabs3Web2022\options\RoleManagement;
@@ -39,7 +40,7 @@ final class Core {
 		}
 	}
 
-	private function init_classes() : void {
+	private function init_classes(): void {
 		$custom_post_types = new CustomPostTypes();
 		$custom_post_types->register();
 
@@ -77,5 +78,8 @@ final class Core {
 
 		$wp_plugins = new WPPlugins();
 		$wp_plugins->init();
+
+		$acf_defaults = new ACFDefaults();
+		$acf_defaults->init();
 	}
 }

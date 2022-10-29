@@ -1,0 +1,62 @@
+{
+    "key": "group_635d08d92e4c7",
+    "title": "Component - Medium Editor Title",
+    "fields": [
+        {
+            "key": "field_635d08d9a3d83",
+            "label": "Medium Editor Title",
+            "name": "medium_editor_title",
+            "aria-label": "",
+            "type": "medium_editor",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "standard_buttons": [
+                "bold",
+                "removeFormat"
+            ],
+            "other_options": [
+                "disableReturn",
+                "disableDoubleReturn",
+                "allowBreakInSingleLineInput"
+            ],
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": "",
+    "modified": 1667043118,
+    "acfe_categories": {
+        "components": "Components"
+    }
+}
