@@ -1,5 +1,5 @@
 <?php
-/** Template Name: Home SLICE template */
+/** Template Name: Home template */
 
 $template_name = 'home';
 get_header();

@@ -381,9 +381,9 @@
     "location": [
         [
             {
-                "param": "page_template",
+                "param": "page_type",
                 "operator": "==",
-                "value": "page-templates\/home.php"
+                "value": "front_page"
             }
         ]
     ],
@@ -415,7 +415,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1667051325,
+    "modified": 1667060493,
     "acfe_categories": {
         "templates": "Templates"
     }
