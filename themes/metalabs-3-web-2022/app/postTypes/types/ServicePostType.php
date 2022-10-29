@@ -9,18 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 use bornfight\wpHelpers\postTypes\BasePostType;
 use bornfight\wpHelpers\postTypes\CustomPostTypeInterface;
 
-class TestPostType extends BasePostType implements CustomPostTypeInterface {
-	public const LABEL = 'Test';
-	public const LABEL_PLURAL = 'Tests';
-	public const SLUG = 'test';
+class ServicePostType extends BasePostType implements CustomPostTypeInterface {
+	public const LABEL = 'Service';
+	public const LABEL_PLURAL = 'Services';
+	public const SLUG = 'service';
 
 	public function get_post_type_slug(): string {
 		return self::SLUG;
-	}
-
-	// DELETE to register post type
-	public function register(): void {
-
 	}
 
 	/**
@@ -38,6 +33,11 @@ class TestPostType extends BasePostType implements CustomPostTypeInterface {
 	 * @return array
 	 */
 	public function get_args(): array {
-		return $this->get_default_args( $this->get_labels() );
+		$args              = $this->get_default_args( $this->get_labels() );
+		$args['public']    = false;
+		$args['supports']  = array( 'title', 'thumbnail' );
+		$args['menu_icon'] = 'dashicons-edit-large';
+
+		return $args;
 	}
 }

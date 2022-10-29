@@ -31,7 +31,7 @@ get_partial( 'layout/cursor' );
 			'title'       => 'We offer the most <b>invigorating</b> web3 solutions and services',
 			'description' => '',
 		] );
-		get_partial( 'slice-partials/modules/services-grid-module' );
+		get_partial( 'slice-partials/modules/_services-grid-module' );
 		get_partial( 'slice-partials/components/3d-slider' );
 		get_partial( 'slice-partials/modules/_text-module', [
 			'side_text'   => 'FLOW',

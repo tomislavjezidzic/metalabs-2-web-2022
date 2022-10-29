@@ -32,12 +32,7 @@ $medium_editor_helper = new MediumEditorHelper();
 		<?php
         get_modules_partial($acf_provider->get_field('modules'));
 
-		get_partial( 'slice-partials/modules/_text-module', [
-			'side_text'   => 'SERVICES',
-			'title'       => 'We offer the most <b>invigorating</b> web3 solutions and services',
-			'description' => '',
-		] );
-		get_partial( 'slice-partials/modules/services-grid-module' );
+
 		get_partial( 'slice-partials/components/3d-slider' );
 		get_partial( 'slice-partials/modules/_text-module', [
 			'side_text'   => 'FLOW',

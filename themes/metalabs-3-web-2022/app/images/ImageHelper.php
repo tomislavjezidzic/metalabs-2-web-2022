@@ -19,4 +19,15 @@ class ImageHelper extends ImageHandler {
 
 		return get_partial( 'images/image', $args, true );
 	}
+
+	public function get_service_card_image( int $image_id ): string {
+		$image_url = $this->get_image_by_size_name( $image_id, 'image_600' );
+
+		if ( empty( $image_url ) ) {
+			return '';
+		}
+
+		return sprintf( '<img src="%s" loading="lazy"
+                 alt="%s">', esc_url( $image_url ), $this->get_attachment_alt_text( $image_id ) );
+	}
 }
