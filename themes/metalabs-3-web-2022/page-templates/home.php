@@ -32,19 +32,8 @@ $medium_editor_helper = new MediumEditorHelper();
 		<?php get_modules_partial( $acf_provider->get_field( 'modules' ) ); ?>
     </div>
     <!-- //PAGE CONTENT -->
-	<?php
-	get_partial( 'styleguide', [
-		"modifier_class" => "o-section--styleguide",
-	] );
-	get_partial( 'layout/footer', [
-
-	] );
-	?>
-
+	<?php get_partial( 'layout/footer'); ?>
 </div>
 <!-- //PAGE WRAPPER -->
 <?php
-
 get_footer();
-
-?>

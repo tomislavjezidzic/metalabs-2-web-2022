@@ -9,5 +9,4 @@
 <!-- //FOOTER -->
 
 <?php
-get_partial( 'layout/cookie-message', [] )
-?>
+get_partial( 'layout/cookie-message' );
