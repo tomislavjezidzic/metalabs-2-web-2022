@@ -14,7 +14,7 @@ get_partial( 'layout/cursor' );
 <div id="<?= $template_name ?>" class="o-page o-page--<?= $template_name ?>">
 
 	<?php
-	get_partial( 'slice-partials/modules/header' );
+	get_partial( 'slice-partials/modules/_header' );
 	?>
 
     <!-- PAGE CONTENT -->

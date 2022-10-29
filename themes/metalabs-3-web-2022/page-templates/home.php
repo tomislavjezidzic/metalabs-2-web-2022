@@ -30,11 +30,12 @@ $medium_editor_helper = new MediumEditorHelper();
     <!-- PAGE CONTENT -->
     <div class="o-page__inner o-page__inner--<?= $template_name ?>">
 		<?php
-		get_partial( 'slice-partials/modules/text-module', [
-			'side_text'   => 'ABOUT  US',
-			'title'       => '<b>Just like the artists of the Renaissance</b> we too take pride in crafting the ultimate solutions for our clients.',
-			'description' => 'We are a full-service Web3 agency focused on building the future of the internet one block at a time. Leveraging our experience and expertise, we develop and deliver superior strategic, creative, and technological solutions that transcend all expectations.',
-		] );
+        get_modules_partial($acf_provider->get_field('modules'));
+//		get_partial( 'slice-partials/modules/text-module', [
+//			'side_text'   => 'ABOUT  US',
+//			'title'       => '<b>Just like the artists of the Renaissance</b> we too take pride in crafting the ultimate solutions for our clients.',
+//			'description' => 'We are a full-service Web3 agency focused on building the future of the internet one block at a time. Leveraging our experience and expertise, we develop and deliver superior strategic, creative, and technological solutions that transcend all expectations.',
+//		] );
 		get_partial( 'slice-partials/modules/full-width-video-module' );
 		get_partial( 'slice-partials/modules/text-module', [
 			'side_text'   => 'SERVICES',
