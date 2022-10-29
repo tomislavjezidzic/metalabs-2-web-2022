@@ -15,8 +15,9 @@ if ( empty( $max_pages ) ) {
 }
 
 if ( $max_pages > 1 ) {
-	$prev_page = PaginationHelper::get_pagination_start_page( $current_page );
-	$next_page = PaginationHelper::get_pagination_end_page( $current_page, $max_pages );
+	$pagination_helper = new PaginationHelper();
+	$prev_page         = $pagination_helper->get_pagination_start_page( $current_page );
+	$next_page         = $pagination_helper->get_pagination_end_page( $current_page, $max_pages );
 	?>
     <div class="o-pagination-wrapper">
 

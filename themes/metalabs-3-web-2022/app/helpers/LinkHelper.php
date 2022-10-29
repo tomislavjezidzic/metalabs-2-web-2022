@@ -34,8 +34,4 @@ class LinkHelper extends ACFLinkHelper{
 
 		return $link_data;
 	}
-
-	public function get_underline_link( array $params ): string {
-		return get_partial( 'components/underline-link', $params, true );
-	}
 }
