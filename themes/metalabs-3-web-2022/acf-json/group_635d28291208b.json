@@ -1,14 +1,14 @@
 {
-    "key": "group_635d08d92e4c7",
-    "title": "Component - Medium Editor Title",
+    "key": "group_635d28291208b",
+    "title": "Component - Marque Text",
     "fields": [
         {
-            "key": "field_635d08d9a3d83",
-            "label": "Medium Editor Title",
-            "name": "medium_editor_title",
+            "key": "field_635d2829f2c6b",
+            "label": "Marque Text",
+            "name": "marque_text",
             "aria-label": "",
             "type": "medium_editor",
-            "instructions": "For break line add HTML tag <br\/>",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -25,7 +25,7 @@
             "other_options": [
                 "disableReturn",
                 "disableDoubleReturn",
-                "allowBreakInSingleLineInput"
+                "disableExtraSpaces"
             ],
             "delay": 0
         }
@@ -55,7 +55,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1667049155,
+    "modified": 1667049558,
     "acfe_categories": {
         "components": "Components"
     }

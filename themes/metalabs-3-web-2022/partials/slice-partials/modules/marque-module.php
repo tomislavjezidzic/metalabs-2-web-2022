@@ -9,10 +9,10 @@
                     <b>projects</b>
                 </div>
                 <div class="c-marque-module__mover c-flickering-text js-flickering-text">
-                    <p>projects</p>
-                    <b>projects</b>
-                    <p>projects</p>
-                    <b>projects</b>
+                    <p>projectsa</p>
+                    <b>projectsaa</b>
+                    <p>projectsa</p>
+                    <b>projectsa</b>
                 </div>
             </div>
         </div>
