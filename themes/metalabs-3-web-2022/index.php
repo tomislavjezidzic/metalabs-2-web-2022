@@ -13,30 +13,5 @@
  * @subpackage angelo
  */
 
-get_header(); ?>
-
-<div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
-
-        <?php
-        // Include the page content template.
-
-        $args = array(
-            'post_status' => 'publish',
-            'posts_per_page' => -1);
-        $my_query = null;
-        $my_query = new WP_Query($args);
-        if( $my_query->have_posts() ) {
-            while ($my_query->have_posts()) : $my_query->the_post();
-                var_dump(get_field('slider'));
-            endwhile;
-        }
-        wp_reset_query();  // Restore global post data stomped by the_post().
-        the_content();
-
-        ?>
-
-    </main><!-- .site-main -->
-</div><!-- .content-area -->
-
-<?php get_footer(); ?>
+wp_safe_redirect(get_home_url());
+exit;

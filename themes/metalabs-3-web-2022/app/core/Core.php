@@ -22,7 +22,7 @@ use metalabs3Web2022\optimization\WPPlugins;
 
 final class Core {
 	public function init(): void {
-		$this->init_theme_update_checker();
+//		$this->init_theme_update_checker();
 		$this->init_classes();
 	}
 
