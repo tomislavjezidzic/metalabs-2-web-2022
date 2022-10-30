@@ -1,8 +1,9 @@
 /**
  * Roboto
  */
-@include font-face("Roobert", "Roobert-Medium");
-@include font-face("Teodor", "Teodor-Light");
+@include font-face("Roobert", "Roobert-Light", $font-weight: 300);
+@include font-face("Roobert", "Roobert-Medium", $font-weight: 400);
+@include font-face("Teodor", "Teodor-Light", $font-weight: 300);
 
 /**
  * Font variables
