@@ -49,9 +49,6 @@ get_partial( 'layout/cursor' );
     </div>
     <!-- //PAGE CONTENT -->
 	<?php
-	get_partial( 'styleguide', [
-		"modifier_class" => "o-section--styleguide",
-	] );
 	get_partial( 'layout/footer', [
 
 	] );

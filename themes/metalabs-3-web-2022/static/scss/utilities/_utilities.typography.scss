@@ -4,11 +4,7 @@
     @include fontSize("a4");
     line-height: 0.74em;
     font-family: $font-roobert;
-    letter-spacing: -0.08em;
-
-    @include mq(md) {
-        line-height: 0.8em;
-    }
+    letter-spacing: -0.09em;
 }
 
 .u-a3 {
