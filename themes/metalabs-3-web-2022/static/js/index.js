@@ -13,6 +13,7 @@ import GridHelper from "./helpers/GridHelper";
 /**
  * Components
  */
+import Loader from "./components/Loader";
 import NavigationController from "./components/NavigationController";
 import Cursor from "./components/Cursor";
 import ThreeDSlider from "./components/3dSlider";
@@ -68,6 +69,13 @@ ready(() => {
     /**
      * COMPONENTS INIT
      */
+
+    /**
+     * Loader
+     * @type {Loader}
+     */
+    const loader = new Loader();
+    loader.init();
 
     /**
      * Navigation

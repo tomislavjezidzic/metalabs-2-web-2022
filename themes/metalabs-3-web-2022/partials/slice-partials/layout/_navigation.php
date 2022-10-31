@@ -1,7 +1,7 @@
 <!-- NAVIGATION -->
 <nav class="c-navigation-wrapper">
     <nav class="c-navigation js-navigation">
-        <a class="c-navigation__logo">
+        <a class="c-navigation__logo js-nav-logo">
             <?= get_icon("logo") ?>
         </a>
         <ul class="c-navigation__list u-b3">

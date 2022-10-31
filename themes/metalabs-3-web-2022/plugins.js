@@ -8,4 +8,5 @@ export const plugins = [
     "three/examples/jsm/loaders/DRACOLoader",
     "three/examples/jsm/loaders/GLTFLoader",
     "three/examples/jsm/controls/OrbitControls",
+    "lottie-web/build/player/lottie_light",
 ];

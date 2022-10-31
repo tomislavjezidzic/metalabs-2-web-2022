@@ -10,7 +10,7 @@ $navigation_helper = new NavigationHelper();
     <!-- NAVIGATION -->
     <nav class="c-navigation-wrapper">
         <nav class="c-navigation js-navigation">
-            <a class="c-navigation__logo">
+            <a class="c-navigation__logo js-nav-logo">
 				<?= get_icon( 'logo' ); ?>
             </a>
 

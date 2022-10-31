@@ -4643,6 +4643,85 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _gsap = _interopRequireDefault(require("gsap"));
+var _lottie_light = _interopRequireDefault(require("lottie-web/build/player/lottie_light"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var Loader = /*#__PURE__*/function () {
+  function Loader() {
+    _classCallCheck(this, Loader);
+    this.DOM = {
+      wrapper: ".js-loader",
+      animation: ".js-loader-animation",
+      animationWrapper: ".js-loader-animation-wrapper",
+      logo: ".js-nav-logo"
+    };
+    this.wrapper = document.querySelector(this.DOM.wrapper);
+    this.logo = document.querySelector(this.DOM.logo).getBoundingClientRect();
+  }
+  _createClass(Loader, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+      if (!this.wrapper) return;
+      var animation = this.wrapper.querySelector(this.DOM.animation);
+      var animationWrapper = this.wrapper.querySelector(this.DOM.animationWrapper);
+      var json = animation.dataset.loader;
+      if (!json) return;
+      var lottieAnim = _lottie_light.default.loadAnimation({
+        container: animation,
+        renderer: "svg",
+        autoplay: true,
+        path: json
+      });
+      lottieAnim.addEventListener("enterFrame", function (animation) {
+        if (animation.currentTime > lottieAnim.totalFrames - 1) {
+          lottieAnim.pause();
+          _this.endOfAnimation(animationWrapper);
+        }
+      });
+    }
+  }, {
+    key: "endOfAnimation",
+    value: function endOfAnimation(animationWrapper) {
+      var topOffset = animationWrapper.getBoundingClientRect().top;
+      var topLogoOffset = this.logo.top;
+      var leftLogoOffset = this.logo.left;
+      var additionOffset = 10 / 1440 * window.innerWidth;
+      var x = -(-leftLogoOffset - additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
+      var y = -(topOffset - topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
+      var scale = 0.7;
+      var duration = 1;
+      if (window.innerWidth < 800) {
+        x = 0;
+        y = 0;
+        scale = 1;
+        duration = 0;
+      }
+      _gsap.default.timeline().to(animationWrapper, {
+        x: x,
+        y: y,
+        scale: scale,
+        duration: duration,
+        ease: "power3.inOut"
+      }).to(this.wrapper, {
+        autoAlpha: 0
+      });
+    }
+  }]);
+  return Loader;
+}();
+exports.default = Loader;
+
+},{"gsap":"gsap","lottie-web/build/player/lottie_light":"lottie-web/build/player/lottie_light"}],10:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _gsap = _interopRequireDefault(require("gsap"));
 var _ScrollTrigger = _interopRequireDefault(require("gsap/ScrollTrigger"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4705,7 +4784,7 @@ var Marquee = /*#__PURE__*/function () {
 }();
 exports.default = Marquee;
 
-},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger"}],10:[function(require,module,exports){
+},{"gsap":"gsap","gsap/ScrollTrigger":"gsap/ScrollTrigger"}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4872,7 +4951,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = NavigationController;
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4999,10 +5078,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = GridHelper;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 
 var _GridHelper = _interopRequireDefault(require("./helpers/GridHelper"));
+var _Loader = _interopRequireDefault(require("./components/Loader"));
 var _NavigationController = _interopRequireDefault(require("./components/NavigationController"));
 var _Cursor = _interopRequireDefault(require("./components/Cursor"));
 var _dSlider = _interopRequireDefault(require("./components/3dSlider"));
@@ -5075,6 +5155,13 @@ ready(function () {
    */
 
   /**
+   * Loader
+   * @type {Loader}
+   */
+  var loader = new _Loader.default();
+  loader.init();
+
+  /**
    * Navigation
    * @type {NavigationController}
    */
@@ -5115,6 +5202,6 @@ ready(function () {
   }, 500);
 });
 
-},{"./components/3dSlider":3,"./components/ContactModel":5,"./components/Cursor":6,"./components/FlickeringText":7,"./components/HeaderModel":8,"./components/Marquee":9,"./components/NavigationController":10,"./helpers/GridHelper":11}]},{},[12])
+},{"./components/3dSlider":3,"./components/ContactModel":5,"./components/Cursor":6,"./components/FlickeringText":7,"./components/HeaderModel":8,"./components/Loader":9,"./components/Marquee":10,"./components/NavigationController":11,"./helpers/GridHelper":12}]},{},[13])
 
 //# sourceMappingURL=bundle.js.map
