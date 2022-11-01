@@ -8,7 +8,7 @@ import is from "is_js";
 gsap.registerPlugin(ScrollTrigger);
 
 export default class HeaderModel {
-    constructor() {
+    constructor(afterLoader) {
         this.DOM = {
             wrapper: ".js-header-model-wrapper",
             header: ".js-header",
@@ -49,7 +49,11 @@ export default class HeaderModel {
         this.initScene();
         this.initLights();
         this.initRenderer();
-        this.animate();
+
+        document.addEventListener("afterLoader", () => {
+            this.animate();
+        });
+
         if (!is.mobile()) {
             this.mouseMove();
         }

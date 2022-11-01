@@ -66,6 +66,8 @@ ready(() => {
     const doc = document.documentElement;
     doc.style.setProperty("--win-height", `${window.innerHeight}px`);
 
+    const afterLoader = new Event("afterLoader");
+
     /**
      * COMPONENTS INIT
      */
@@ -74,7 +76,7 @@ ready(() => {
      * Loader
      * @type {Loader}
      */
-    const loader = new Loader();
+    const loader = new Loader(afterLoader);
     loader.init();
 
     /**

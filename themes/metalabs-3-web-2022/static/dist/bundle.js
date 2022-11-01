@@ -3717,7 +3717,9 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       this.initScene();
       this.initLights();
       this.initRenderer();
-      this.animate();
+      document.addEventListener("afterLoader", function () {
+        _this.animate();
+      });
       this.onScrollAnimation();
       if (!_is_js.default.mobile()) {
         this.mouseMove();
@@ -4017,7 +4019,9 @@ var HeaderModel = /*#__PURE__*/function () {
       this.initScene();
       this.initLights();
       this.initRenderer();
-      this.animate();
+      document.addEventListener("afterLoader", function () {
+        _this.animate();
+      });
       if (!_is_js.default.mobile()) {
         this.mouseMove();
       }
@@ -4398,7 +4402,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 _gsap.default.registerPlugin(_ScrollTrigger.default);
 var HeaderModel = /*#__PURE__*/function () {
-  function HeaderModel() {
+  function HeaderModel(afterLoader) {
     _classCallCheck(this, HeaderModel);
     this.DOM = {
       wrapper: ".js-header-model-wrapper",
@@ -4436,7 +4440,9 @@ var HeaderModel = /*#__PURE__*/function () {
       this.initScene();
       this.initLights();
       this.initRenderer();
-      this.animate();
+      document.addEventListener("afterLoader", function () {
+        _this.animate();
+      });
       if (!_is_js.default.mobile()) {
         this.mouseMove();
       }
@@ -4649,7 +4655,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 var Loader = /*#__PURE__*/function () {
-  function Loader() {
+  function Loader(afterLoader) {
     _classCallCheck(this, Loader);
     this.DOM = {
       wrapper: ".js-loader",
@@ -4659,6 +4665,10 @@ var Loader = /*#__PURE__*/function () {
     };
     this.wrapper = document.querySelector(this.DOM.wrapper);
     this.logo = document.querySelector(this.DOM.logo).getBoundingClientRect();
+    this.topLogoOffset = this.logo.top;
+    this.leftLogoOffset = this.logo.left;
+    this.additionOffset = 10 / 1440 * window.innerWidth;
+    this.afterLoader = afterLoader;
   }
   _createClass(Loader, [{
     key: "init",
@@ -4685,12 +4695,10 @@ var Loader = /*#__PURE__*/function () {
   }, {
     key: "endOfAnimation",
     value: function endOfAnimation(animationWrapper) {
-      var topOffset = animationWrapper.getBoundingClientRect().top;
-      var topLogoOffset = this.logo.top;
-      var leftLogoOffset = this.logo.left;
-      var additionOffset = 10 / 1440 * window.innerWidth;
-      var x = -(-leftLogoOffset - additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
-      var y = -(topOffset - topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
+      document.dispatchEvent(this.afterLoader);
+      this.topOffset = animationWrapper.getBoundingClientRect().top;
+      var x = -(-this.leftLogoOffset - this.additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
+      var y = -(this.topOffset - this.topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
       var scale = 0.69;
       var duration = 0.3;
       if (window.innerWidth < 800) {
@@ -4704,7 +4712,6 @@ var Loader = /*#__PURE__*/function () {
         y: y,
         scale: scale,
         duration: duration
-        // ease: "power3.out",
       }).to(this.wrapper, {
         autoAlpha: 0
       }, "-=0.1");
@@ -5149,6 +5156,7 @@ ready(function () {
   }
   var doc = document.documentElement;
   doc.style.setProperty("--win-height", "".concat(window.innerHeight, "px"));
+  var afterLoader = new Event("afterLoader");
 
   /**
    * COMPONENTS INIT
@@ -5158,7 +5166,7 @@ ready(function () {
    * Loader
    * @type {Loader}
    */
-  var loader = new _Loader.default();
+  var loader = new _Loader.default(afterLoader);
   loader.init();
 
   /**

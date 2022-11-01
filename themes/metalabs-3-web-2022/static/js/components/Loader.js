@@ -2,7 +2,7 @@ import gsap from "gsap";
 import lottie from "lottie-web/build/player/lottie_light";
 
 export default class Loader {
-    constructor() {
+    constructor(afterLoader) {
         this.DOM = {
             wrapper: ".js-loader",
             animation: ".js-loader-animation",
@@ -12,6 +12,11 @@ export default class Loader {
 
         this.wrapper = document.querySelector(this.DOM.wrapper);
         this.logo = document.querySelector(this.DOM.logo).getBoundingClientRect();
+
+        this.topLogoOffset = this.logo.top;
+        this.leftLogoOffset = this.logo.left;
+        this.additionOffset = (10 / 1440) * window.innerWidth;
+        this.afterLoader = afterLoader;
     }
 
     init() {
@@ -39,12 +44,10 @@ export default class Loader {
     }
 
     endOfAnimation(animationWrapper) {
-        const topOffset = animationWrapper.getBoundingClientRect().top;
-        const topLogoOffset = this.logo.top;
-        const leftLogoOffset = this.logo.left;
-        const additionOffset = (10 / 1440) * window.innerWidth;
-        let x = -(-leftLogoOffset - additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
-        let y = -(topOffset - topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
+        document.dispatchEvent(this.afterLoader);
+        this.topOffset = animationWrapper.getBoundingClientRect().top;
+        let x = -(-this.leftLogoOffset - this.additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
+        let y = -(this.topOffset - this.topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
         let scale = 0.69;
         let duration = 0.3;
 

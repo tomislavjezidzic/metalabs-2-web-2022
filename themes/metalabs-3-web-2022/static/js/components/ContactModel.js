@@ -47,7 +47,11 @@ export default class HeaderModel {
         this.initScene();
         this.initLights();
         this.initRenderer();
-        this.animate();
+
+        document.addEventListener("afterLoader", () => {
+            this.animate();
+        });
+
         if (!is.mobile()) {
             this.mouseMove();
         }

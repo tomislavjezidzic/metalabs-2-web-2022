@@ -51,7 +51,11 @@ export default class ThreeDSliderModels {
         this.initScene();
         this.initLights();
         this.initRenderer();
-        this.animate();
+
+        document.addEventListener("afterLoader", () => {
+            this.animate();
+        });
+
         this.onScrollAnimation();
 
         if (!is.mobile()) {
