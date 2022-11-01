@@ -23,6 +23,9 @@ import Marquee from "./components/Marquee";
 import FlickeringText from "./components/FlickeringText";
 import SmoothScroll from "./components/SmoothScroll";
 
+
+import ScrollTo from "@bornfight/b-scroll-to";
+
 /**
  * Check if document is ready cross-browser
  * @param callback
@@ -128,5 +131,7 @@ ready(() => {
          */
         const cursor = new Cursor();
         cursor.init();
+
+        new ScrollTo();
     }, 500);
 });
