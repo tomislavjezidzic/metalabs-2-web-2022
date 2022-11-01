@@ -61,7 +61,6 @@ export default class Loader {
                 y: y,
                 scale: scale,
                 duration: duration,
-                // ease: "power3.out",
             })
             .to(
                 this.wrapper,
