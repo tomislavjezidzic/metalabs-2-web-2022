@@ -10,7 +10,7 @@ $navigation_helper = new NavigationHelper();
     <!-- NAVIGATION -->
     <nav class="c-navigation-wrapper js-navigation-wrapper">
         <nav class="c-navigation js-navigation">
-            <a class="c-navigation__logo js-nav-logo">
+            <a class="c-navigation__logo js-nav-logo" data-scroll-to="#home">
 				<?= get_icon( 'logo' ); ?>
             </a>
 
