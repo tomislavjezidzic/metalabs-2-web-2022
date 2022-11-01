@@ -21,6 +21,7 @@ import HeaderModel from "./components/HeaderModel";
 import ContactModel from "./components/ContactModel";
 import Marquee from "./components/Marquee";
 import FlickeringText from "./components/FlickeringText";
+import SmoothScroll from "./components/SmoothScroll";
 
 /**
  * Check if document is ready cross-browser
@@ -78,6 +79,13 @@ ready(() => {
      */
     const loader = new Loader(afterLoader);
     loader.init();
+
+    /**
+     * SmoothScroll
+     * @type {SmoothScroll}
+     */
+    const smoothScroll = new SmoothScroll();
+    smoothScroll.init();
 
     /**
      * Navigation
