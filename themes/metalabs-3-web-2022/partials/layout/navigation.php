@@ -8,7 +8,7 @@ $menu_items        = $menus->get_nav_menu_items_by_location( $menus::HEADER_MENU
 $navigation_helper = new NavigationHelper();
 ?>
     <!-- NAVIGATION -->
-    <nav class="c-navigation-wrapper">
+    <nav class="c-navigation-wrapper js-navigation-wrapper">
         <nav class="c-navigation js-navigation">
             <a class="c-navigation__logo js-nav-logo">
 				<?= get_icon( 'logo' ); ?>

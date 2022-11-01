@@ -2,6 +2,8 @@
     @include fluidValue("padding-top", "s-120");
     @include fluidValue("padding-bottom", "s-40");
 
+    opacity: 0;
+    visibility: hidden;
     display: grid;
     grid-template-columns: repeat(22, 1fr);
     grid-template-rows: auto 1fr;

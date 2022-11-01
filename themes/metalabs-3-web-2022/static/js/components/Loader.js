@@ -8,15 +8,29 @@ export default class Loader {
             animation: ".js-loader-animation",
             animationWrapper: ".js-loader-animation-wrapper",
             logo: ".js-nav-logo",
+            header: ".js-header",
+            nav: ".js-navigation-wrapper",
         };
 
         this.wrapper = document.querySelector(this.DOM.wrapper);
         this.logo = document.querySelector(this.DOM.logo).getBoundingClientRect();
+        this.header = document.querySelector(this.DOM.header);
+        this.nav = document.querySelector(this.DOM.nav);
 
         this.topLogoOffset = this.logo.top;
         this.leftLogoOffset = this.logo.left;
         this.additionOffset = (10 / 1440) * window.innerWidth;
         this.afterLoader = afterLoader;
+
+        gsap.set(this.header, {
+            x: 50,
+            y: 50,
+            autoAlpha: 0,
+        });
+
+        gsap.set(this.nav, {
+            autoAlpha: 0,
+        });
     }
 
     init() {
@@ -31,9 +45,13 @@ export default class Loader {
         const lottieAnim = lottie.loadAnimation({
             container: animation,
             renderer: "svg",
-            autoplay: true,
+            autoplay: false,
             path: json,
         });
+
+        setTimeout(() => {
+            lottieAnim.play();
+        }, 200);
 
         lottieAnim.addEventListener("enterFrame", (animation) => {
             if (animation.currentTime > lottieAnim.totalFrames - 1) {
@@ -51,6 +69,8 @@ export default class Loader {
         let scale = 0.69;
         let duration = 0.3;
 
+        this.wrapper.classList.add("is-transparent");
+
         if (window.innerWidth < 800) {
             x = 0;
             y = 0;
@@ -59,18 +79,43 @@ export default class Loader {
         }
 
         gsap.timeline()
-            .to(animationWrapper, {
-                x: x,
-                y: y,
-                scale: scale,
-                duration: duration,
-            })
+            .add("start")
+            .to(
+                animationWrapper,
+                {
+                    x: x,
+                    y: y,
+                    scale: scale,
+                    duration: duration,
+                },
+                "start",
+            )
+            .add("nav", "start+=0.2")
             .to(
                 this.wrapper,
                 {
                     autoAlpha: 0,
                 },
-                "-=0.1",
+                "nav",
+            )
+            .to(
+                this.nav,
+                {
+                    autoAlpha: 1,
+                },
+                "nav",
+            )
+            .add("content", "-=0.1")
+            .to(
+                this.header,
+                {
+                    x: 0,
+                    y: 0,
+                    autoAlpha: 1,
+                    duration: 1.2,
+                    ease: "expo.out",
+                },
+                "content",
             );
     }
 }

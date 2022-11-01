@@ -4321,35 +4321,38 @@ var FlickeringText = /*#__PURE__*/function () {
   }, {
     key: "singleWrapper",
     value: function singleWrapper(wrapper) {
+      var _this2 = this;
       var split = new _SplitText.SplitText(wrapper, {
         type: "words",
         wordsClass: "u-split-text-word"
       });
-      this.animateIn(split.words, wrapper);
-      var texts = wrapper.querySelectorAll("b");
-      if (texts.length < 1) return;
-      texts.forEach(function (text) {
-        _gsap.default.timeline({
-          delay: 1,
-          scrollTrigger: {
-            trigger: text,
-            start: "top 90%"
-          }
-        }).to(text, {
-          classList: "is-serif",
-          duration: 0.05
-        }).to(text, {
-          classList: "",
-          duration: 0.05
-        }).to(text, {
-          classList: "is-serif",
-          duration: 0.075
-        }).to(text, {
-          classList: "",
-          duration: 0.075
-        }).to(text, {
-          classList: "is-serif",
-          duration: 0.1
+      document.addEventListener("afterLoader", function () {
+        _this2.animateIn(split.words, wrapper);
+        var texts = wrapper.querySelectorAll("b");
+        if (texts.length < 1) return;
+        texts.forEach(function (text) {
+          _gsap.default.timeline({
+            delay: 1,
+            scrollTrigger: {
+              trigger: text,
+              start: "top 90%"
+            }
+          }).to(text, {
+            classList: "is-serif",
+            duration: 0.05
+          }).to(text, {
+            classList: "",
+            duration: 0.05
+          }).to(text, {
+            classList: "is-serif",
+            duration: 0.075
+          }).to(text, {
+            classList: "",
+            duration: 0.075
+          }).to(text, {
+            classList: "is-serif",
+            duration: 0.1
+          });
         });
       });
     }
@@ -4661,14 +4664,26 @@ var Loader = /*#__PURE__*/function () {
       wrapper: ".js-loader",
       animation: ".js-loader-animation",
       animationWrapper: ".js-loader-animation-wrapper",
-      logo: ".js-nav-logo"
+      logo: ".js-nav-logo",
+      header: ".js-header",
+      nav: ".js-navigation-wrapper"
     };
     this.wrapper = document.querySelector(this.DOM.wrapper);
     this.logo = document.querySelector(this.DOM.logo).getBoundingClientRect();
+    this.header = document.querySelector(this.DOM.header);
+    this.nav = document.querySelector(this.DOM.nav);
     this.topLogoOffset = this.logo.top;
     this.leftLogoOffset = this.logo.left;
     this.additionOffset = 10 / 1440 * window.innerWidth;
     this.afterLoader = afterLoader;
+    _gsap.default.set(this.header, {
+      x: 50,
+      y: 50,
+      autoAlpha: 0
+    });
+    _gsap.default.set(this.nav, {
+      autoAlpha: 0
+    });
   }
   _createClass(Loader, [{
     key: "init",
@@ -4682,9 +4697,12 @@ var Loader = /*#__PURE__*/function () {
       var lottieAnim = _lottie_light.default.loadAnimation({
         container: animation,
         renderer: "svg",
-        autoplay: true,
+        autoplay: false,
         path: json
       });
+      setTimeout(function () {
+        lottieAnim.play();
+      }, 200);
       lottieAnim.addEventListener("enterFrame", function (animation) {
         if (animation.currentTime > lottieAnim.totalFrames - 1) {
           lottieAnim.pause();
@@ -4701,20 +4719,29 @@ var Loader = /*#__PURE__*/function () {
       var y = -(this.topOffset - this.topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
       var scale = 0.69;
       var duration = 0.3;
+      this.wrapper.classList.add("is-transparent");
       if (window.innerWidth < 800) {
         x = 0;
         y = 0;
         scale = 1;
         duration = 0;
       }
-      _gsap.default.timeline().to(animationWrapper, {
+      _gsap.default.timeline().add("start").to(animationWrapper, {
         x: x,
         y: y,
         scale: scale,
         duration: duration
-      }).to(this.wrapper, {
+      }, "start").add("nav", "start+=0.2").to(this.wrapper, {
         autoAlpha: 0
-      }, "-=0.1");
+      }, "nav").to(this.nav, {
+        autoAlpha: 1
+      }, "nav").add("content", "-=0.1").to(this.header, {
+        x: 0,
+        y: 0,
+        autoAlpha: 1,
+        duration: 1.2,
+        ease: "expo.out"
+      }, "content");
     }
   }]);
   return Loader;

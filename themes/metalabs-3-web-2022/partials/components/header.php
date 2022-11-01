@@ -11,7 +11,7 @@ if ( ! empty( $title ) && ! empty( $model ) ) { ?>
     <!-- HEADER -->
     <div class="o-section">
         <header class="o-container c-header js-header">
-            <h1 class="c-header__title u-a3 u-fw-500 u-uppercase">
+            <h1 class="c-header__title u-a3 u-fw-500 u-uppercase js-flickering-text c-flickering-text">
 				<?= wp_kses_post( $title ); ?>
             </h1>
             <div class="c-header__model js-header-model-wrapper" data-model="<?= esc_url( $model['url'] ); ?>"></div>

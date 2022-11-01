@@ -25,40 +25,42 @@ export default class FlickeringText {
             wordsClass: "u-split-text-word",
         });
 
-        this.animateIn(split.words, wrapper);
+        document.addEventListener("afterLoader", () => {
+            this.animateIn(split.words, wrapper);
 
-        const texts = wrapper.querySelectorAll("b");
+            const texts = wrapper.querySelectorAll("b");
 
-        if (texts.length < 1) return;
+            if (texts.length < 1) return;
 
-        texts.forEach((text) => {
-            gsap.timeline({
-                delay: 1,
-                scrollTrigger: {
-                    trigger: text,
-                    start: "top 90%",
-                },
-            })
-                .to(text, {
-                    classList: "is-serif",
-                    duration: 0.05,
+            texts.forEach((text) => {
+                gsap.timeline({
+                    delay: 1,
+                    scrollTrigger: {
+                        trigger: text,
+                        start: "top 90%",
+                    },
                 })
-                .to(text, {
-                    classList: "",
-                    duration: 0.05,
-                })
-                .to(text, {
-                    classList: "is-serif",
-                    duration: 0.075,
-                })
-                .to(text, {
-                    classList: "",
-                    duration: 0.075,
-                })
-                .to(text, {
-                    classList: "is-serif",
-                    duration: 0.1,
-                });
+                    .to(text, {
+                        classList: "is-serif",
+                        duration: 0.05,
+                    })
+                    .to(text, {
+                        classList: "",
+                        duration: 0.05,
+                    })
+                    .to(text, {
+                        classList: "is-serif",
+                        duration: 0.075,
+                    })
+                    .to(text, {
+                        classList: "",
+                        duration: 0.075,
+                    })
+                    .to(text, {
+                        classList: "is-serif",
+                        duration: 0.1,
+                    });
+            });
         });
     }
 
