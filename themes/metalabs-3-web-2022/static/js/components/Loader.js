@@ -45,8 +45,8 @@ export default class Loader {
         const additionOffset = (10 / 1440) * window.innerWidth;
         let x = -(-leftLogoOffset - additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
         let y = -(topOffset - topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
-        let scale = 0.7;
-        let duration = 1;
+        let scale = 0.69;
+        let duration = 0.3;
 
         if (window.innerWidth < 800) {
             x = 0;
@@ -61,10 +61,14 @@ export default class Loader {
                 y: y,
                 scale: scale,
                 duration: duration,
-                ease: "power3.inOut",
+                // ease: "power3.out",
             })
-            .to(this.wrapper, {
-                autoAlpha: 0,
-            });
+            .to(
+                this.wrapper,
+                {
+                    autoAlpha: 0,
+                },
+                "-=0.1",
+            );
     }
 }

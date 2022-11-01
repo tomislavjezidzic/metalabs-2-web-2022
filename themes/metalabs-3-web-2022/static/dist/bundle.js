@@ -4691,8 +4691,8 @@ var Loader = /*#__PURE__*/function () {
       var additionOffset = 10 / 1440 * window.innerWidth;
       var x = -(-leftLogoOffset - additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
       var y = -(topOffset - topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
-      var scale = 0.7;
-      var duration = 1;
+      var scale = 0.69;
+      var duration = 0.3;
       if (window.innerWidth < 800) {
         x = 0;
         y = 0;
@@ -4703,11 +4703,11 @@ var Loader = /*#__PURE__*/function () {
         x: x,
         y: y,
         scale: scale,
-        duration: duration,
-        ease: "power3.inOut"
+        duration: duration
+        // ease: "power3.out",
       }).to(this.wrapper, {
         autoAlpha: 0
-      });
+      }, "-=0.1");
     }
   }]);
   return Loader;
