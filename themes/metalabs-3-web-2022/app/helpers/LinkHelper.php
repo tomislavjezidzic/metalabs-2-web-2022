@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use bornfight\wpHelpers\acf\ACFLinkHelper;
 
-class LinkHelper extends ACFLinkHelper{
+class LinkHelper extends ACFLinkHelper {
 	public function get_link( ?array $link_options = array() ): array {
 		$link_data = array(
 			'url'    => '',
@@ -33,5 +33,17 @@ class LinkHelper extends ACFLinkHelper{
 		$link_data['label'] = ! empty( $link_data['label'] ) ? $link_data['label'] : get_the_title( $post_data );
 
 		return $link_data;
+	}
+
+	public function get_acf_link_data( ?array $link_options ): array {
+		if ( empty( $link_options ) ) {
+			return array();
+		}
+
+		return array(
+			'url'    => $link_options['url'] ?? '',
+			'label'  => $link_options['title'] ?? '',
+			'target' => ! empty( $link_options['target'] ) ? 'target=_blank' : '',
+		);
 	}
 }
