@@ -2,6 +2,7 @@
 /**
  *
  * @var boolean $show
+ * @var string $anchor_id
  * @var array $upper_text
  * @var array $bottom_text
  * @var array $gallery
@@ -18,5 +19,6 @@ if ( ! empty( $show ) ) {
 		'bottom_text'  => ! empty( $bottom_text['marque_text'] ) ? $medium_editor_helper->replace_span_with_paragraph( $bottom_text['marque_text'] ) : '',
 		'gallery'      => $gallery,
 		'image_helper' => new ImageHelper(),
+		'anchor_id'    => $anchor_id,
 	) );
 }

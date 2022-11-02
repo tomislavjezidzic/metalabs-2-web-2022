@@ -1,14 +1,17 @@
 <?php
 /**
  *
+ * @var string $anchor_id
  * @var string $side_text
  * @var string $title
  * @var string $description
  * @var array $model
  *
  */
+
+$anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
 ?>
-<div class="c-contact-wrapper">
+<div class="c-contact-wrapper" <?= esc_attr( $anchor ); ?>>
     <div class="c-contact-wrapper__contact">
 		<?php
 		get_partial( 'components/modules/text-module', array(

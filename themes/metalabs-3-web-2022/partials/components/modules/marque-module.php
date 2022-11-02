@@ -1,6 +1,7 @@
 <?php
 /**
  *
+ * @var string $anchor_id
  * @var string $upper_text
  * @var string $bottom_text
  * @var array $gallery
@@ -9,9 +10,9 @@
  */
 
 use metalabs3Web2022\images\ImageHelper;
-
+$anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
 ?>
-<section class="o-section o-section--with-padding">
+<section class="o-section o-section--with-padding" <?= esc_attr( $anchor ); ?>>
     <div class="c-marque-module u-a3 u-fw-500 u-uppercase">
         <div class="c-marque-module__wrapper">
 			<?php if ( ! empty( $upper_text ) ) { ?>

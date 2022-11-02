@@ -2,11 +2,15 @@
 /**
  *
  * @var array $slides (title primary, title secondary, model)
- *
+ * @var string $anchor_id
+ **
  */
 
-if ( ! empty( $slides ) ) { ?>
-    <section class="o-section c-3d-slider js-3d-slider-wrapper">
+
+if ( ! empty( $slides ) ) {
+	$anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
+	?>
+    <section class="o-section c-3d-slider js-3d-slider-wrapper" <?= esc_attr( $anchor ); ?>>
         <div class="c-3d-slider__slider u-a4 u-uppercase">
             <div class="swiper js-3d-slider">
                 <div class="swiper-wrapper">

@@ -2,6 +2,7 @@
 /**
  *
  * @var boolean $show
+ * @var string $anchor_id
  *
  */
 
@@ -18,6 +19,7 @@ if ( ! empty( $show ) ) {
 			'services'     => $service_provider->get_services(),
 			'acf_provider' => ACFProvider::get_instance(),
 			'image_helper' => new ImageHelper(),
+			'anchor_id'    => $anchor_id,
 		) ),
 	) );
 }

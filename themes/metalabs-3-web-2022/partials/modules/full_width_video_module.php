@@ -2,6 +2,7 @@
 /**
  *
  * @var boolean $show
+ * @var string $anchor_id
  * @var array $video
  *
  */
@@ -12,6 +13,7 @@ if ( ! empty( $show ) ) {
 	$video_helper = new VideoHelper();
 	$video_data   = $video_helper->get_video_data( $video );
 	get_partial( 'components/modules/full-width-video-module', array(
-		'url' => ! empty( $video_data['url'] ) ? $video_data['url'] : '',
+		'url'       => ! empty( $video_data['url'] ) ? $video_data['url'] : '',
+		'anchor_id' => $anchor_id,
 	) );
 }

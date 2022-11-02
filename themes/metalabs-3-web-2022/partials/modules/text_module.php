@@ -1,6 +1,7 @@
 <?php
 /**
  * @var boolean $show
+ * @var string $anchor_id
  * @var string $side_text
  * @var string $medium_editor_title
  * @var string $description
@@ -14,6 +15,7 @@ if ( ! empty( $show ) ) {
 		'side_text'   => $side_text,
 		'title'       => ! empty( $medium_editor_title ) ? $medium_editor_helper->format_emphasized_text( $medium_editor_title ) : '',
 		'description' => $description,
+		'anchor_id'   => $anchor_id,
 	) );
 }
 
