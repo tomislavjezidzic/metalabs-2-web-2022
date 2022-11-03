@@ -10678,7 +10678,67 @@ function animateCSSModeScroll(_ref) {
   animate();
 }
 
-},{"ssr-window":2}],"@bornfight/b-scroll-to":[function(require,module,exports){
+},{"ssr-window":2}],"@bornfight/b-scroll-lock":[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+/**
+ * b-scroll-lock v 1.0.7
+ * Author: Bornfight
+ * Repo: https://github.com/bornfight/b-scroll-lock
+ *
+ * Year: 2020
+ */var ScrollLock = /*#__PURE__*/function () {
+  function ScrollLock() {
+    _classCallCheck(this, ScrollLock);
+    this.body = document.body;
+  }
+
+  /**
+   *
+   * @param {number} offset
+   */
+  _createClass(ScrollLock, [{
+    key: "lockScroll",
+    value: function lockScroll() {
+      var offset = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 100;
+      this.offsetTop = window.pageYOffset;
+      this.body.style.overflow = 'hidden';
+      this.body.style.top = "-".concat(this.offsetTop, "px");
+      this.body.style.position = 'fixed';
+      this.body.dataset.scrollAmount = "".concat(this.offsetTop);
+      if (this.offsetTop >= offset) {
+        this.body.classList.add('is-fixed-scrolled');
+      }
+    }
+
+    /**
+     *
+     * @param {number} offsetTop
+     */
+  }, {
+    key: "unlockScroll",
+    value: function unlockScroll() {
+      var offsetTop = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.offsetTop;
+      this.body.style.top = '0px';
+      this.body.style.position = '';
+      this.body.style.overflow = '';
+      window.scroll(0, offsetTop || 0);
+      this.body.dataset.scrollAmount = "";
+      this.body.classList.remove('is-fixed-scrolled');
+    }
+  }]);
+  return ScrollLock;
+}();
+exports.default = ScrollLock;
+
+},{}],"@bornfight/b-scroll-to":[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

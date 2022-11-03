@@ -10,4 +10,5 @@ export const plugins = [
     "three/examples/jsm/loaders/DRACOLoader",
     "three/examples/jsm/loaders/GLTFLoader",
     "@bornfight/b-scroll-to",
+    "@bornfight/b-scroll-lock",
 ];

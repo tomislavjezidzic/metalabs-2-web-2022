@@ -68,7 +68,43 @@
         gap: get-vw(56px, $breakpoint-xl);
 
         @include mq(md) {
-            display: none;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            padding-top: 60px;
+            padding-bottom: 75px;
+            gap: 40px;
+            align-items: center;
+            max-height: calc(var(--win-height) - 100px);
+
+            //@extend .u-gradient-filled-270;
+            background: linear-gradient(260.19deg, #2400FF 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #FEB301 100%) $black;
+            backdrop-filter: blur(10.5px);
+
+            &.is-active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+    &__link {
+        @include mq(md) {
+            //@extend .u-a2;
+            @include fontSize("a2");
+            letter-spacing: -0.04em;
+            font-family: $font-roobert;
+            line-height: 0.91em;
+
+        }
+
+        &.is-active{
+            font-family: $font-teodor;
         }
     }
 }

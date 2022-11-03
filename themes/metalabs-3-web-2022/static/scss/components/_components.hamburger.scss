@@ -1,0 +1,64 @@
+.c-hamburger {
+    @include button-reset;
+    padding: 10px 0;
+    width: 30px;
+    position: relative;
+    border-radius: 0;
+    border: none;
+    //cursor: none;
+    background-color: transparent;
+    -webkit-appearance: none;
+    display: none;
+    margin: 0 0 0 auto;
+
+    @include mq(md) {
+        display: block;
+    }
+
+    i {
+        width: 100%;
+        display: block;
+        height: 1px;
+        background-color: $white;
+        opacity: 1;
+        visibility: visible;
+        transition: getTransition();
+    }
+
+    &:before,
+    &:after {
+        left: 0;
+        right: 0;
+        height: 1px;
+        content: '\A';
+        position: absolute;
+        background-color: $white;
+        transform: rotate(0deg);
+        transition: getTransition();
+    }
+
+    &:before {
+        top: 4px;
+    }
+
+    &:after {
+        bottom: 4px;
+    }
+
+    &.is-active {
+        i {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        &:before {
+            top: 10px;
+            transform: rotate(-45deg);
+        }
+
+        &:after {
+            bottom: 10px;
+            transform: rotate(45deg);
+        }
+    }
+}

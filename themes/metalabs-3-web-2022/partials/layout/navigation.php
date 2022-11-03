@@ -15,7 +15,7 @@ $menu_items       = $menus->get_nav_menu_items_by_location( $menus::HEADER_MENU_
             </a>
 
 			<?php if ( ! empty( $menu_items ) ) { ?>
-                <ul class="c-navigation__list u-b3">
+                <ul class="c-navigation__list u-b3 js-navigation-list u-uppercase">
 					<?php foreach ( $menu_items as $menu_item ) {
 						$data_attributes = $attribute_helper->format_data_attributes( array(
 							array(
@@ -41,6 +41,9 @@ $menu_items       = $menus->get_nav_menu_items_by_location( $menus::HEADER_MENU_
 					<?php } ?>
                 </ul>
 			<?php } ?>
+            <button class="c-hamburger js-hamburger">
+                <i></i>
+            </button>
         </nav>
     </nav>
     <!-- //NAVIGATION -->

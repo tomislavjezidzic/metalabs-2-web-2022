@@ -1,4 +1,6 @@
 .c-contact-wrapper {
+    @include fluidValue("margin-top", null, 332px);
+
     position: relative;
 
     &__inner {

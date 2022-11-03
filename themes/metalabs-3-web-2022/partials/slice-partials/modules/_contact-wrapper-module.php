@@ -13,9 +13,9 @@
              data-model="<?= bu( "models/slider-model-3.glb" ) ?>"></div>
     </div>
     <div class="o-container">
-        <div class="c-contact-wrapper__extra-big-text u-a4 u-fw-300 u-serif u-uppercase">
-            <p>
-                <a href="mailto:hello@metalabs3.com">hello@metalabs3.com</a>
+        <div class="c-contact-wrapper__extra-big-text u-a4 u-fw-300 u-uppercase">
+            <p class="js-flickering-text c-flickering-text">
+                <a href="mailto:hello@metalabs3.com"><b>hello@metalabs3.com</b></a>
             </p>
         </div>
     </div>

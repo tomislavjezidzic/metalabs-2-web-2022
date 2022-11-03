@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import lottie from "lottie-web/build/player/lottie_light";
+import ScrollLock from "@bornfight/b-scroll-lock";
 
 export default class Loader {
     constructor(afterLoader) {
@@ -13,14 +14,18 @@ export default class Loader {
         };
 
         this.wrapper = document.querySelector(this.DOM.wrapper);
-        this.logo = document.querySelector(this.DOM.logo).getBoundingClientRect();
+        this.afterLoader = afterLoader;
+
+        if (!this.wrapper){
+            document.dispatchEvent(this.afterLoader);
+        }
+        this.logo = document.querySelector(this.DOM.logo)?.getBoundingClientRect();
         this.header = document.querySelector(this.DOM.header);
         this.nav = document.querySelector(this.DOM.nav);
 
-        this.topLogoOffset = this.logo.top;
-        this.leftLogoOffset = this.logo.left;
+        this.topLogoOffset = this.logo?.top;
+        this.leftLogoOffset = this.logo?.left;
         this.additionOffset = (10 / 1440) * window.innerWidth;
-        this.afterLoader = afterLoader;
 
         gsap.set(this.header, {
             x: 50,
@@ -31,6 +36,8 @@ export default class Loader {
         gsap.set(this.nav, {
             autoAlpha: 0,
         });
+
+        this.scrollLock = new ScrollLock();
     }
 
     init() {
@@ -50,7 +57,11 @@ export default class Loader {
         });
 
         setTimeout(() => {
-            window.smoother.paused(true);
+            if (window.smoother !== undefined) {
+                window.smoother.paused(true);
+            } else {
+                this.scrollLock.lockScroll();
+            }
             lottieAnim.play();
         }, 200);
 
@@ -63,7 +74,11 @@ export default class Loader {
     }
 
     endOfAnimation(animationWrapper) {
-        window.smoother.paused(false);
+        if (window.smoother !== undefined) {
+            window.smoother.paused(false);
+        } else {
+            this.scrollLock.unlockScroll();
+        }
         document.dispatchEvent(this.afterLoader);
         this.topOffset = animationWrapper.getBoundingClientRect().top;
         let x = -(-this.leftLogoOffset - this.additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);

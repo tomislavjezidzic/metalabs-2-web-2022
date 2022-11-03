@@ -12,10 +12,13 @@ export default class NavigationController {
          */
         this.DOM = {
             navigation: ".js-navigation",
+            hamburger: ".js-hamburger",
+            navigationList: ".js-navigation-list",
             states: {
                 navigationScrolled: "has-scrolled",
                 navigationFixed: "is-fixed",
                 navigationSlideUp: "slide-up",
+                active: "is-active",
             },
         };
 
@@ -47,6 +50,8 @@ export default class NavigationController {
          * @type {Element}
          */
         this.navigation = document.querySelector(this.DOM.navigation);
+        this.hamburger = document.querySelector(this.DOM.hamburger);
+        this.navigationList = document.querySelector(this.DOM.navigationList);
     }
 
     //region methods
@@ -61,6 +66,9 @@ export default class NavigationController {
         } else {
             console.error(`${this.DOM.navigation} does not exist in the DOM!`);
         }
+
+        if (this.navigationList !== null && this.hamburger !== null)
+            this.mobileNavigation();
     }
 
     /**
@@ -139,4 +147,26 @@ export default class NavigationController {
     }
 
     //endregion
+    mobileNavigation() {
+        this.navigationActive = false;
+        this.hamburger.addEventListener("click", () => {
+            if (!this.navigationActive) {
+                this.openNavigation();
+            } else {
+                this.closeNavigation();
+            }
+        });
+    }
+
+    openNavigation() {
+        this.navigationActive = true;
+        this.hamburger.classList.add(this.DOM.states.active);
+        this.navigationList.classList.add(this.DOM.states.active);
+    }
+
+    closeNavigation() {
+        this.navigationActive = false;
+        this.hamburger.classList.remove(this.DOM.states.active);
+        this.navigationList.classList.remove(this.DOM.states.active);
+    }
 }

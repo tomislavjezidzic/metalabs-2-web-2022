@@ -25,6 +25,7 @@ import SmoothScroll from "./components/SmoothScroll";
 
 
 import ScrollTo from "@bornfight/b-scroll-to";
+import Flicker404 from "./components/Flicker404";
 
 /**
  * Check if document is ready cross-browser
@@ -123,6 +124,9 @@ ready(() => {
 
     const flickeringText = new FlickeringText();
     flickeringText.init();
+
+    const flicker404 = new Flicker404();
+    flicker404.init();
 
     setTimeout(() => {
         /**

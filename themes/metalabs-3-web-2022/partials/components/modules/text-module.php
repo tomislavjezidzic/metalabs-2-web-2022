@@ -24,7 +24,7 @@ $anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
                 </h2>
 			<?php } ?>
 			<?php if ( ! empty( $description ) ) { ?>
-                <p class="c-text-module__description u-b0">
+                <p class="c-text-module__description u-b0 u-fw-300">
 					<?= esc_html( $description ); ?>
                 </p>
 			<?php } ?>

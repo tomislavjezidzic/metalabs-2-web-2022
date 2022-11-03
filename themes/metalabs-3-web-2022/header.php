@@ -29,24 +29,14 @@ if (defined('LOCAL') && LOCAL === true) {
     <title>
 		<?= wp_title('') ?>
     </title>
-	<?php
-    /**
-     * https://realfavicongenerator.net/
-     * 260x260 favicon.png required
-     * update according to realfavicongenerator 22.03.2022
-     *
-     * $theme_color — sets main color to icon backgrounds, splash screen on PWA/some mobile browsers etc.
-     */
-
-    $theme_color = "#ffffff";
-    ?>
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= bu("ui/favicon/apple-icon-180x180.png") ?>">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= bu("ui/favicon/favicon-32x32.png") ?>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= bu("ui/favicon/favicon-16x16.png") ?>">
-    <link rel="manifest" href="<?= bu("ui/favicon/manifest.json") ?>">
-    <link rel="mask-icon" href="<?= bu("ui/favicon/safari-pinned-tab.svg") ?>" color=<?= $theme_color ?>>
-    <meta name="msapplication-TileColor" content=<?= $theme_color ?>>
-    <meta name="theme-color" content=<?= $theme_color ?>>
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= bu("ui/favicon/apple-touch-icon.png"); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= bu("ui/favicon/favicon-32x32.png"); ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= bu("ui/favicon/favicon-16x16.png"); ?>">
+    <link rel="manifest" href="<?= bu("ui/favicon/site.webmanifest"); ?>">
+    <link rel="mask-icon" href="<?= bu("ui/favicon/safari-pinned-tab.svg"); ?>" color="#000000">
+    <link rel="shortcut icon" href="<?= bu("ui/favicon/favicon.ico"); ?>">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#000000">
 
 	<?php wp_head(); ?>
 </head>

@@ -56,6 +56,13 @@
  * @include focus{}
  */
 /**
+ * Button reset
+ * Make button to look like text
+ * Useful for any kind of UI based on <button> element
+ * usage:
+ * @include button-reset{}
+ */
+/**
  * Get transition easing from $settings-transitions-easing
  */
 /**
@@ -1000,9 +1007,62 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 
 @media (max-width: 800px) {
   .c-navigation__list {
-    display: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    padding-top: 60px;
+    padding-bottom: 75px;
+    gap: 40px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    max-height: calc(var(--win-height) - 100px);
+    background: linear-gradient(260.19deg, #2400FF 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #FEB301 100%) #000000;
+    -webkit-backdrop-filter: blur(10.5px);
+            backdrop-filter: blur(10.5px);
+  }
+  .c-navigation__list.is-active {
+    opacity: 1;
+    visibility: visible;
   }
 }
+@media (max-width: 800px) {
+  .c-navigation__link {
+    font-size: 32px;
+    letter-spacing: -0.04em;
+    font-family: "Roobert", sans-serif;
+    line-height: 0.91em;
+  }
+}
+@media (max-width: 800px) and (min-width: 375px) {
+  .c-navigation__link {
+    font-size: calc(4.5070422535vw + 15.0985915493px);
+  }
+}
+@media (max-width: 800px) and (min-width: 1440px) {
+  .c-navigation__link {
+    font-size: 80px;
+  }
+}
+@media (max-width: 800px) and (min-width: 1440px) {
+  .c-navigation__link {
+    font-size: 5.5555555556vw;
+  }
+}
+.c-navigation__link.is-active {
+  font-family: "Teodor", serif;
+}
+
 .c-cursor {
   width: 80px;
   height: 60px;
@@ -1462,6 +1522,238 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   font-weight: 300;
 }
 
+.c-hamburger {
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  outline: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-decoration: none;
+  text-transform: none;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  vertical-align: top;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  width: auto;
+  background: transparent;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  padding: 10px 0;
+  width: 30px;
+  position: relative;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  display: none;
+  margin: 0 0 0 auto;
+}
+
+.c-hamburger:hover, .c-hamburger:focus, .c-hamburger:active {
+  outline: none;
+}
+
+@media (max-width: 800px) {
+  .c-hamburger {
+    display: block;
+  }
+}
+.c-hamburger i {
+  width: 100%;
+  display: block;
+  height: 1px;
+  background-color: #ffffff;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.c-hamburger:before, .c-hamburger:after {
+  left: 0;
+  right: 0;
+  height: 1px;
+  content: "\a";
+  position: absolute;
+  background-color: #ffffff;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.c-hamburger:before {
+  top: 4px;
+}
+
+.c-hamburger:after {
+  bottom: 4px;
+}
+
+.c-hamburger.is-active i {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.c-hamburger.is-active:before {
+  top: 10px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.c-hamburger.is-active:after {
+  bottom: 10px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.c-404 {
+  padding-top: 72px;
+  padding-bottom: 72px;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+@media (min-width: 480px) {
+  .c-404 {
+    padding-top: calc(5vw + 48px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-404 {
+    padding-top: 120px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-404 {
+    padding-top: 6.25vw;
+  }
+}
+@media (min-width: 480px) {
+  .c-404 {
+    padding-bottom: calc(5vw + 48px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-404 {
+    padding-bottom: 120px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-404 {
+    padding-bottom: 6.25vw;
+  }
+}
+.c-404__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  background: linear-gradient(-10deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
+}
+
+.c-404__inner {
+  display: grid;
+  grid-template-columns: repeat(22, 1fr);
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.c-404__title {
+  padding-bottom: 40px;
+  text-align: center;
+  grid-column: span 22;
+  height: 0.9em;
+}
+
+@media (min-width: 480px) {
+  .c-404__title {
+    padding-bottom: calc(2.5vw + 28px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-404__title {
+    padding-bottom: 64px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-404__title {
+    padding-bottom: 3.3333333333vw;
+  }
+}
+.c-404__title span {
+  font-weight: 500;
+}
+
+.c-404__title span.is-serif {
+  font-family: "Teodor", serif;
+  font-weight: 300;
+}
+
+.c-404__description {
+  padding-bottom: 24px;
+  grid-column: 13/span 4;
+}
+
+@media (min-width: 480px) {
+  .c-404__description {
+    padding-bottom: calc(1.6666666667vw + 16px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-404__description {
+    padding-bottom: 40px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-404__description {
+    padding-bottom: 2.0833333333vw;
+  }
+}
+.c-404 .c-button {
+  display: inline-block;
+  grid-column: 13/span 2;
+}
+
+.c-404 .c-button .u-icon {
+  width: 100%;
+  height: auto;
+}
+
 /**
  * Modules
  */
@@ -1509,6 +1801,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 }
 @media (max-width: 800px) {
   .c-header {
+    padding-top: 100px;
     min-height: unset;
     grid-template-rows: auto;
   }
@@ -1719,7 +2012,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 .c-text-module__description {
   padding-top: 60px;
   grid-column: 14/-1;
-  max-width: 13.3333333333em;
+  max-width: 13.5em;
   margin-left: 0.2777777778vw;
 }
 
@@ -1904,9 +2197,15 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 }
 
 .c-contact-wrapper {
+  margin-top: 332px;
   position: relative;
 }
 
+@media (min-width: 1920px) {
+  .c-contact-wrapper {
+    margin-top: 17.2916666667vw;
+  }
+}
 .c-contact-wrapper__inner {
   position: relative;
 }
@@ -2159,17 +2458,17 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 
 @media (min-width: 375px) {
   .u-b0, body {
-    font-size: calc(0.3755868545vw + 16.5915492958px);
+    font-size: 18px;
   }
 }
 @media (min-width: 1440px) {
   .u-b0, body {
-    font-size: 22px;
+    font-size: 18px;
   }
 }
 @media (min-width: 1440px) {
   .u-b0, body {
-    font-size: 1.5277777778vw;
+    font-size: 1.25vw;
   }
 }
 .u-b1 {

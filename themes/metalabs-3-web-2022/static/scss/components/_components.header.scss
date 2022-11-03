@@ -11,6 +11,7 @@
     color: $white;
 
     @include mq(md) {
+        padding-top: 100px;
         min-height: unset;
         grid-template-rows: auto;
     }
