@@ -35,8 +35,12 @@
 
         text-align: center;
         grid-column: span 22;
-        height: 0.9em;
+        height: 1em;
 
+        @include mq(md) {
+            grid-column: 8 / span 11;
+            text-align: left;
+        }
 
         span {
             font-weight: 500;
@@ -51,12 +55,21 @@
     &__description {
         @include fluidValue("padding-bottom", "s-40");
 
-        grid-column: 13 / span 4;
+        width: em(240px, 18px);
+        grid-column: 13 / span 6;
+
+        @include mq(md) {
+            grid-column: 8 / span 11;
+        }
     }
 
     .c-button {
         display: inline-block;
         grid-column: 13 / span 2;
+
+        @include mq(md) {
+            grid-column: 8 / span 3;
+        }
 
         .u-icon {
             width: 100%;

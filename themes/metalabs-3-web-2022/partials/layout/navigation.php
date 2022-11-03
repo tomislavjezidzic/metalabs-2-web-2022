@@ -32,7 +32,7 @@ $menu_items       = $menus->get_nav_menu_items_by_location( $menus::HEADER_MENU_
 
 						$url = str_contains( $menu_item->url, '#' ) ? trailingslashit( get_home_url() ) . $menu_item->url : $menu_item->url;
 						?>
-                        <li class="c-navigation__item">
+                        <li class="c-navigation__item js-navigation-item">
                             <a href="<?= esc_url( $url ); ?>"
                                class="c-navigation__link" <?= esc_attr( $data_attributes ); ?>>
 								<?= esc_html( $menu_item->title ); ?>

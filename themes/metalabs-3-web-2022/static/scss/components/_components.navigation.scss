@@ -85,6 +85,7 @@
             //@extend .u-gradient-filled-270;
             background: linear-gradient(260.19deg, #2400FF 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #FEB301 100%) $black;
             backdrop-filter: blur(10.5px);
+            transition: getTransition('slide', 'ease-in-out-sine');
 
             &.is-active {
                 opacity: 1;

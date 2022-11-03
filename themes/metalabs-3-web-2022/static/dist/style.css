@@ -1030,6 +1030,8 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     background: linear-gradient(260.19deg, #2400FF 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #FEB301 100%) #000000;
     -webkit-backdrop-filter: blur(10.5px);
             backdrop-filter: blur(10.5px);
+    -webkit-transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   }
   .c-navigation__list.is-active {
     opacity: 1;
@@ -1697,7 +1699,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   padding-bottom: 40px;
   text-align: center;
   grid-column: span 22;
-  height: 0.9em;
+  height: 1em;
 }
 
 @media (min-width: 480px) {
@@ -1715,6 +1717,12 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     padding-bottom: 3.3333333333vw;
   }
 }
+@media (max-width: 800px) {
+  .c-404__title {
+    grid-column: 8/span 11;
+    text-align: left;
+  }
+}
 .c-404__title span {
   font-weight: 500;
 }
@@ -1726,7 +1734,8 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 
 .c-404__description {
   padding-bottom: 24px;
-  grid-column: 13/span 4;
+  width: 13.3333333333em;
+  grid-column: 13/span 6;
 }
 
 @media (min-width: 480px) {
@@ -1744,11 +1753,21 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     padding-bottom: 2.0833333333vw;
   }
 }
+@media (max-width: 800px) {
+  .c-404__description {
+    grid-column: 8/span 11;
+  }
+}
 .c-404 .c-button {
   display: inline-block;
   grid-column: 13/span 2;
 }
 
+@media (max-width: 800px) {
+  .c-404 .c-button {
+    grid-column: 8/span 3;
+  }
+}
 .c-404 .c-button .u-icon {
   width: 100%;
   height: auto;

@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+
 /**
  * Navigation controller
  * "smart" navigation which goes off screen when scrolling down for a better overview of content and UX
@@ -12,6 +14,7 @@ export default class NavigationController {
          */
         this.DOM = {
             navigation: ".js-navigation",
+            navigationItem: ".js-navigation-item",
             hamburger: ".js-hamburger",
             navigationList: ".js-navigation-list",
             states: {
@@ -67,8 +70,7 @@ export default class NavigationController {
             console.error(`${this.DOM.navigation} does not exist in the DOM!`);
         }
 
-        if (this.navigationList !== null && this.hamburger !== null)
-            this.mobileNavigation();
+        if (this.navigationList !== null && this.hamburger !== null) this.mobileNavigation();
     }
 
     /**
@@ -149,6 +151,7 @@ export default class NavigationController {
     //endregion
     mobileNavigation() {
         this.navigationActive = false;
+        this.navigationItems = document.querySelectorAll(this.DOM.navigationItem);
         this.hamburger.addEventListener("click", () => {
             if (!this.navigationActive) {
                 this.openNavigation();
@@ -162,6 +165,18 @@ export default class NavigationController {
         this.navigationActive = true;
         this.hamburger.classList.add(this.DOM.states.active);
         this.navigationList.classList.add(this.DOM.states.active);
+
+        gsap.fromTo(
+            this.navigationItems,
+            {
+                autoAlpha: 0,
+            },
+            {
+                autoAlpha: 1,
+                duration: 0.5,
+                stagger: 0.1,
+            },
+        );
     }
 
     closeNavigation() {

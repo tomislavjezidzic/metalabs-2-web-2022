@@ -1720,6 +1720,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _gsap = require("gsap");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -1737,6 +1738,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
      */
     this.DOM = {
       navigation: ".js-navigation",
+      navigationItem: ".js-navigation-item",
       hamburger: ".js-hamburger",
       navigationList: ".js-navigation-list",
       states: {
@@ -1886,6 +1888,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     value: function mobileNavigation() {
       var _this2 = this;
       this.navigationActive = false;
+      this.navigationItems = document.querySelectorAll(this.DOM.navigationItem);
       this.hamburger.addEventListener("click", function () {
         if (!_this2.navigationActive) {
           _this2.openNavigation();
@@ -1900,6 +1903,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       this.navigationActive = true;
       this.hamburger.classList.add(this.DOM.states.active);
       this.navigationList.classList.add(this.DOM.states.active);
+      _gsap.gsap.fromTo(this.navigationItems, {
+        autoAlpha: 0
+      }, {
+        autoAlpha: 1,
+        duration: 0.5,
+        stagger: 0.1
+      });
     }
   }, {
     key: "closeNavigation",
@@ -1913,7 +1923,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = NavigationController;
 
-},{}],12:[function(require,module,exports){
+},{"gsap":"gsap"}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
