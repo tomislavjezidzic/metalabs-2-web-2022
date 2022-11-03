@@ -8,7 +8,7 @@ export default class Cursor {
         };
 
         this.wrapper = document.querySelector(this.DOM.wrapper);
-        this.moved = false;
+        this.body = document.querySelector("body");
     }
 
     init() {
@@ -18,19 +18,16 @@ export default class Cursor {
         const offsetX = this.wrapper.offsetWidth * 0.05;
 
         window.addEventListener("pointermove", (ev) => {
-            if (!this.moved) {
-                this.moved = true;
-                this.wrapper.classList.add("is-moved");
-            }
-
             gsap.set(this.wrapper, {
                 x: ev.clientX - offsetX,
                 y: ev.clientY - offsetY,
             });
         });
 
-        window.addEventListener("mouseout", (ev) => {
-            this.moved = false;
+        this.body.addEventListener("mouseenter", () => {
+            this.wrapper.classList.add("is-moved");
+        });
+        this.body.addEventListener("mouseleave", () => {
             this.wrapper.classList.remove("is-moved");
         });
 

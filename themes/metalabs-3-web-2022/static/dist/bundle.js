@@ -740,7 +740,7 @@ var Cursor = /*#__PURE__*/function () {
       wrapper: ".js-cursor"
     };
     this.wrapper = document.querySelector(this.DOM.wrapper);
-    this.moved = false;
+    this.body = document.querySelector("body");
   }
   _createClass(Cursor, [{
     key: "init",
@@ -750,17 +750,15 @@ var Cursor = /*#__PURE__*/function () {
       var offsetY = this.wrapper.offsetHeight * 0.5;
       var offsetX = this.wrapper.offsetWidth * 0.05;
       window.addEventListener("pointermove", function (ev) {
-        if (!_this.moved) {
-          _this.moved = true;
-          _this.wrapper.classList.add("is-moved");
-        }
         _gsap.default.set(_this.wrapper, {
           x: ev.clientX - offsetX,
           y: ev.clientY - offsetY
         });
       });
-      window.addEventListener("mouseout", function (ev) {
-        _this.moved = false;
+      this.body.addEventListener("mouseenter", function () {
+        _this.wrapper.classList.add("is-moved");
+      });
+      this.body.addEventListener("mouseleave", function () {
         _this.wrapper.classList.remove("is-moved");
       });
       document.querySelectorAll("a").forEach(function (link) {
