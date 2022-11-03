@@ -30,6 +30,7 @@ $anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
     </div>
     <div class="o-container">
         <div class="c-contact-wrapper__extra-big-text u-a4 u-fw-300 u-serif u-uppercase">
+<!--            todo: josip pls make acf here -->
             <p>
                 <a href="mailto:hello@metalabs3.com">hello@metalabs3.com</a>
             </p>
