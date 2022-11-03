@@ -12,18 +12,27 @@
 $anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
 ?>
 <div class="c-contact-wrapper" <?= esc_attr( $anchor ); ?>>
-    <div class="c-contact-wrapper__contact">
-		<?php
-		get_partial( 'components/modules/text-module', array(
-			'side_text'   => $side_text,
-			'title'       => $title,
-			'description' => $description,
-		) );
-		?>
-    </div>
+    <div class="c-contact-wrapper__inner">
+        <div class="c-contact-wrapper__contact">
+			<?php
+			get_partial( 'components/modules/text-module', array(
+				'side_text'   => $side_text,
+				'title'       => $title,
+				'description' => $description,
+			) );
+			?>
+        </div>
 
-	<?php if ( ! empty( $model ) && ! empty( $model['url'] ) ) { ?>
-        <div class="c-contact-wrapper__model js-contact-model-wrapper"
-             data-model="<?= esc_url( $model['url'] ); ?>"></div>
-	<?php } ?>
+		<?php if ( ! empty( $model ) && ! empty( $model['url'] ) ) { ?>
+            <div class="c-contact-wrapper__model js-contact-model-wrapper"
+                 data-model="<?= esc_url( $model['url'] ); ?>"></div>
+		<?php } ?>
+    </div>
+    <div class="o-container">
+        <div class="c-contact-wrapper__extra-big-text u-a4 u-fw-300 u-serif u-uppercase">
+            <p>
+                <a href="mailto:hello@metalabs3.com">hello@metalabs3.com</a>
+            </p>
+        </div>
+    </div>
 </div>

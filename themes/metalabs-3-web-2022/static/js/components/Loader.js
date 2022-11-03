@@ -50,6 +50,7 @@ export default class Loader {
         });
 
         setTimeout(() => {
+            window.smoother.paused(true);
             lottieAnim.play();
         }, 200);
 
@@ -62,6 +63,7 @@ export default class Loader {
     }
 
     endOfAnimation(animationWrapper) {
+        window.smoother.paused(false);
         document.dispatchEvent(this.afterLoader);
         this.topOffset = animationWrapper.getBoundingClientRect().top;
         let x = -(-this.leftLogoOffset - this.additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);

@@ -1201,6 +1201,7 @@ var Loader = /*#__PURE__*/function () {
         path: json
       });
       setTimeout(function () {
+        window.smoother.paused(true);
         lottieAnim.play();
       }, 200);
       lottieAnim.addEventListener("enterFrame", function (animation) {
@@ -1213,6 +1214,7 @@ var Loader = /*#__PURE__*/function () {
   }, {
     key: "endOfAnimation",
     value: function endOfAnimation(animationWrapper) {
+      window.smoother.paused(false);
       document.dispatchEvent(this.afterLoader);
       this.topOffset = animationWrapper.getBoundingClientRect().top;
       var x = -(-this.leftLogoOffset - this.additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
