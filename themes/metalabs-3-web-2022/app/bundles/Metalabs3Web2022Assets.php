@@ -24,7 +24,7 @@ class Metalabs3Web2022Assets extends AssetBundle {
 		$this->js = array(
 			'metalabs3Web2022Vendor' => array(
 				'path'     => 'dist/vendor.js',
-				'version'  => 1.0,
+				'version'  => 1.1,
 				'localize' => array(
 					'object' => 'frontend_rest_object',
 					'data'   => $this->get_localize_data()
@@ -33,7 +33,7 @@ class Metalabs3Web2022Assets extends AssetBundle {
 			),
 			'metalabs3Web2022Bundle' => array(
 				'path'    => 'dist/bundle.js',
-				'version' => 1.0,
+				'version' => 1.1,
 				'timestamp_bust' => true
 			),
 		);
@@ -44,7 +44,7 @@ class Metalabs3Web2022Assets extends AssetBundle {
 			'metalabs3Web2022MainCSS' => array(
 				'path'      => 'dist/style.css',
 				'in_footer' => false,
-				'version'   => 1.0,
+				'version'   => 1.1,
 				'timestamp_bust' => true
 			),
 		);

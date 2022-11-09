@@ -1,7 +1,17 @@
 .c-contact-wrapper {
-    @include fluidValue("margin-top", null, 332px);
 
     position: relative;
+    margin-top: get-vw(332px);
+
+    @include mq(md) {
+        margin-top: 0;
+    }
+
+    @include mq(sm) {
+        .o-section {
+            padding-top: 0;
+        }
+    }
 
     &__inner {
         position: relative;

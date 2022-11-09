@@ -14,6 +14,11 @@
         //todo: need to think this through
         //text-indent: em(460px, 80px);
 
+        @include mq(sm) {
+            width: 100%;
+        }
+
+        //tomo zas ovo?
         &:before {
             content: "000";
             width: get-vw(484px);

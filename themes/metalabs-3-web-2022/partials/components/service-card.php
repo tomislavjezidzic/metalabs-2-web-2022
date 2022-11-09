@@ -13,7 +13,7 @@
 			<?= wp_kses_post( $image ); ?>
         </div>
 	<?php } ?>
-    <h3 class="c-services-card__title u-b2 u-fw-500 ">
+    <h3 class="c-services-card__title u-b2 u-fw-500 u-uppercase">
 		<?= esc_html( $title ); ?>
     </h3>
 	<?php if ( ! empty( $description ) ) { ?>
