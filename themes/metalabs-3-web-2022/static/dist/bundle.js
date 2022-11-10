@@ -753,7 +753,7 @@ var HeaderModel = /*#__PURE__*/function () {
     // config
     this.config = {
       modelOffset: 6,
-      modelScale: 1
+      modelScale: 1.2
     };
   }
   _createClass(HeaderModel, [{
@@ -771,7 +771,9 @@ var HeaderModel = /*#__PURE__*/function () {
       });
       this.loader.setDRACOLoader(dracoLoader);
       THREE.Cache.enabled = true;
-      this.resizeModels();
+
+      // this.resizeModels();
+
       this.width = this.wrapper.offsetWidth;
       this.height = this.wrapper.offsetHeight;
       this.initCamera();
@@ -797,23 +799,13 @@ var HeaderModel = /*#__PURE__*/function () {
       var _this2 = this;
       _ScrollTrigger.default.matchMedia({
         "(min-width: 1100px)": function minWidth1100px() {
-          if (_this2.config.modelScale !== 0.9) {
-            _this2.config.modelScale = 0.9;
+          if (_this2.config.modelScale !== 1.2) {
+            _this2.config.modelScale = 1.2;
           }
         },
         "(max-width: 801px)": function maxWidth801px() {
-          if (_this2.config.modelScale !== 0.7) {
-            _this2.config.modelScale = 0.7;
-          }
-        },
-        "(max-width: 600px)": function maxWidth600px() {
-          if (_this2.config.modelScale !== 0.6) {
-            _this2.config.modelScale = 0.6;
-          }
-        },
-        "(max-width: 475px)": function maxWidth475px() {
-          if (_this2.config.modelScale !== 0.6) {
-            _this2.config.modelScale = 0.6;
+          if (_this2.config.modelScale !== 1.2) {
+            _this2.config.modelScale = 1.2;
           }
         }
       });
@@ -840,8 +832,8 @@ var HeaderModel = /*#__PURE__*/function () {
     key: "initCamera",
     value: function initCamera() {
       this.camera = new THREE.PerspectiveCamera(35, this.width / this.height, 0.5, 100);
-      this.camera.position.set(0, -0.1, 3.5);
-      this.camera.lookAt(0, -0.1, 0);
+      this.camera.position.set(0, 0.5, 5.5);
+      this.camera.lookAt(0, 0.4, 0);
     }
 
     /**
@@ -923,7 +915,7 @@ var HeaderModel = /*#__PURE__*/function () {
         scrollTrigger: {
           trigger: this.wrapper,
           start: "top bottom",
-          end: "top top",
+          end: "bottom top",
           scrub: 0.8
         }
       });
@@ -935,7 +927,8 @@ var HeaderModel = /*#__PURE__*/function () {
   }, {
     key: "onWindowResize",
     value: function onWindowResize() {
-      this.resizeModels();
+      // this.resizeModels();
+
       this.model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
       this.camera.aspect = this.wrapper.offsetWidth / this.wrapper.offsetHeight;
       this.camera.updateProjectionMatrix();

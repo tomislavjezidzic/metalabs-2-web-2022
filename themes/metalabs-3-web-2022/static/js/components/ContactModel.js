@@ -19,7 +19,7 @@ export default class HeaderModel {
         // config
         this.config = {
             modelOffset: 6,
-            modelScale: 1,
+            modelScale: 1.2,
         };
     }
 
@@ -38,7 +38,7 @@ export default class HeaderModel {
 
         THREE.Cache.enabled = true;
 
-        this.resizeModels();
+        // this.resizeModels();
 
         this.width = this.wrapper.offsetWidth;
         this.height = this.wrapper.offsetHeight;
@@ -64,23 +64,13 @@ export default class HeaderModel {
     resizeModels() {
         ScrollTrigger.matchMedia({
             "(min-width: 1100px)": () => {
-                if (this.config.modelScale !== 0.9) {
-                    this.config.modelScale = 0.9;
+                if (this.config.modelScale !== 1.2) {
+                    this.config.modelScale = 1.2;
                 }
             },
             "(max-width: 801px)": () => {
-                if (this.config.modelScale !== 0.7) {
-                    this.config.modelScale = 0.7;
-                }
-            },
-            "(max-width: 600px)": () => {
-                if (this.config.modelScale !== 0.6) {
-                    this.config.modelScale = 0.6;
-                }
-            },
-            "(max-width: 475px)": () => {
-                if (this.config.modelScale !== 0.6) {
-                    this.config.modelScale = 0.6;
+                if (this.config.modelScale !== 1.2) {
+                    this.config.modelScale = 1.2;
                 }
             },
         });
@@ -105,8 +95,8 @@ export default class HeaderModel {
      */
     initCamera() {
         this.camera = new THREE.PerspectiveCamera(35, this.width / this.height, 0.5, 100);
-        this.camera.position.set(0, -0.1, 3.5);
-        this.camera.lookAt(0, -0.1, 0);
+        this.camera.position.set(0, 0.5, 5.5);
+        this.camera.lookAt(0, 0.4, 0);
     }
 
     /**
@@ -193,7 +183,7 @@ export default class HeaderModel {
                 scrollTrigger: {
                     trigger: this.wrapper,
                     start: "top bottom",
-                    end: "top top",
+                    end: "bottom top",
                     scrub: 0.8,
                 },
             },
@@ -204,7 +194,7 @@ export default class HeaderModel {
      *
      */
     onWindowResize() {
-        this.resizeModels();
+        // this.resizeModels();
 
         this.model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
 
