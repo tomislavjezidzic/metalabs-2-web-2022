@@ -46,4 +46,8 @@ class LinkHelper extends ACFLinkHelper {
 			'target' => ! empty( $link_options['target'] ) ? 'target=_blank' : '',
 		);
 	}
+
+	public function get_mailto( string $email ): string {
+		return sprintf( 'mailto:%s', esc_html( $email ) );
+	}
 }

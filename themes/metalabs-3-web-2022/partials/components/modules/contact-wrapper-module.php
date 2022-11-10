@@ -6,6 +6,7 @@
  * @var string $title
  * @var string $description
  * @var array $model
+ * @var string $email
  *
  */
 
@@ -28,12 +29,13 @@ $anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
                  data-model="<?= esc_url( $model['url'] ); ?>"></div>
 		<?php } ?>
     </div>
-    <div class="o-container">
-        <div class="c-contact-wrapper__extra-big-text u-a4 u-fw-300 u-uppercase">
-<!--            todo: josip pls make acf here -->
-            <p class="js-flickering-text c-flickering-text">
-                <a href="mailto:hello@metalabs3.com"><b>hello@metalabs3.com</b></a>
-            </p>
+	<?php if ( ! empty( $email ) ) { ?>
+        <div class="o-container">
+            <div class="c-contact-wrapper__extra-big-text u-a4 u-fw-300 u-uppercase">
+                <p class="js-flickering-text c-flickering-text">
+					<?= wp_kses_post( $email ); ?>
+                </p>
+            </div>
         </div>
-    </div>
+	<?php } ?>
 </div>

@@ -144,6 +144,25 @@
             "max_size": "",
             "mime_types": ".glb",
             "library": "all"
+        },
+        {
+            "key": "field_636cd693541eb",
+            "label": "Email",
+            "name": "email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -171,7 +190,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1667405031,
+    "modified": 1668077272,
     "acfe_categories": {
         "modules": "Modules"
     }
