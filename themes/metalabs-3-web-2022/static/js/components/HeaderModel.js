@@ -97,7 +97,7 @@ export default class HeaderModel {
             });
 
             gsap.to(this.blueLight.position, {
-                y: -(mouseY - window.innerHeight) / 400,
+                y: 1 + (mouseY - window.innerHeight) / 400,
             });
         });
     }
@@ -124,11 +124,11 @@ export default class HeaderModel {
     initLights() {
         const lightWrapper = new THREE.Object3D();
 
-        this.yellowLight = new THREE.PointLight(0xfeb301, 5, 4);
-        this.yellowLight.position.set(-1, 1, 2);
+        this.yellowLight = new THREE.PointLight(0xfeb301, 6, 5);
+        this.yellowLight.position.set(-2, 1, 1);
 
-        this.blueLight = new THREE.PointLight(0x2400ff, 5, 2);
-        this.blueLight.position.set(1, 0, 1);
+        this.blueLight = new THREE.PointLight(0x2400ff, 6, 4);
+        this.blueLight.position.set(1.5, 0, 2);
 
         lightWrapper.add(this.blueLight);
         lightWrapper.add(this.yellowLight);
