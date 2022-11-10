@@ -1,4 +1,7 @@
 import { gsap } from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Navigation controller
@@ -55,6 +58,7 @@ export default class NavigationController {
         this.navigation = document.querySelector(this.DOM.navigation);
         this.hamburger = document.querySelector(this.DOM.hamburger);
         this.navigationList = document.querySelector(this.DOM.navigationList);
+        this.bodyItems = document.querySelectorAll("[data-anchor-target]");
     }
 
     //region methods
@@ -71,6 +75,38 @@ export default class NavigationController {
         }
 
         if (this.navigationList !== null && this.hamburger !== null) this.mobileNavigation();
+
+        if (this.navigationList && this.bodyItems.length > 0) this.activeController();
+    }
+
+    activeController() {
+        this.bodyItems.forEach((item) => {
+            const target = item.dataset.anchorTarget;
+
+            if (target) {
+                const link = document.querySelector(`[data-scroll-to="#${target}"]`);
+
+                if (link) {
+                    ScrollTrigger.create({
+                        trigger: item,
+                        start: "top center",
+                        end: "bottom center",
+                        onEnter: () => {
+                            link.classList.add("is-active");
+                        },
+                        onEnterBack: () => {
+                            link.classList.add("is-active");
+                        },
+                        onLeave: () => {
+                            link.classList.remove("is-active");
+                        },
+                        onLeaveBack: () => {
+                            link.classList.remove("is-active");
+                        },
+                    });
+                }
+            }
+        });
     }
 
     /**

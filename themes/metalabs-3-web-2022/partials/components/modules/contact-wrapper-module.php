@@ -12,7 +12,7 @@
 
 $anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
 ?>
-<div class="c-contact-wrapper" <?= esc_attr( $anchor ); ?>>
+<div class="c-contact-wrapper" <?= esc_attr( $anchor ); ?> data-anchor-target="<?= $anchor_id; ?>">
     <div class="c-contact-wrapper__inner">
         <div class="c-contact-wrapper__contact">
 			<?php

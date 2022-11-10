@@ -15,11 +15,11 @@ if ( ! empty( $show ) ) {
 	$service_provider = new ServiceProvider();
 	$service_helper   = new ServiceHelper();
 	get_partial( 'components/modules/services-grid-module', array(
+        'anchor_id'    => $anchor_id,
 		'service_cards' => $service_helper->get_service_card( array(
 			'services'     => $service_provider->get_services(),
 			'acf_provider' => ACFProvider::get_instance(),
 			'image_helper' => new ImageHelper(),
-			'anchor_id'    => $anchor_id,
 		) ),
 	) );
 }

@@ -10,7 +10,7 @@
 
 $anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
 ?>
-<section class="o-section o-section--with-padding" <?= esc_attr( $anchor ); ?>>
+<section class="o-section o-section--with-padding" <?= esc_attr( $anchor ); ?> data-anchor-target="<?= $anchor_id; ?>">
     <div class="o-container c-text-module">
         <div class="c-text-module__inner">
 			<?php if ( ! empty( $side_text ) ) { ?>

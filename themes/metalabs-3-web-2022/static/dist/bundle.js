@@ -519,23 +519,23 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       var _this2 = this;
       _ScrollTrigger.default.matchMedia({
         "(min-width: 1100px)": function minWidth1100px() {
-          if (_this2.config.modelScale !== 0.9) {
-            _this2.config.modelScale = 0.9;
+          if (_this2.config.modelScale !== 1.2) {
+            _this2.config.modelScale = 1.2;
           }
         },
         "(max-width: 801px)": function maxWidth801px() {
-          if (_this2.config.modelScale !== 0.7) {
-            _this2.config.modelScale = 0.7;
+          if (_this2.config.modelScale !== 1.2) {
+            _this2.config.modelScale = 1.2;
           }
         },
         "(max-width: 600px)": function maxWidth600px() {
-          if (_this2.config.modelScale !== 0.6) {
-            _this2.config.modelScale = 0.7;
+          if (_this2.config.modelScale !== 1) {
+            _this2.config.modelScale = 1;
           }
         },
         "(max-width: 475px)": function maxWidth475px() {
-          if (_this2.config.modelScale !== 0.6) {
-            _this2.config.modelScale = 0.7;
+          if (_this2.config.modelScale !== 0.85) {
+            _this2.config.modelScale = 0.85;
           }
         }
       });
@@ -1211,10 +1211,12 @@ var FlickeringText = /*#__PURE__*/function () {
         if (texts.length < 1) return;
         texts.forEach(function (text) {
           _gsap.default.timeline({
-            delay: 1,
+            delay: 0.6,
             scrollTrigger: {
               trigger: text,
-              start: "top 90%"
+              start: "top 90%",
+              end: "bottom 10%",
+              toggleActions: "restart none restart none"
             }
           }).to(text, {
             classList: "is-serif",
@@ -1247,12 +1249,12 @@ var FlickeringText = /*#__PURE__*/function () {
       }, {
         y: "0%",
         autoAlpha: 1,
-        ease: "power4.out",
-        stagger: 0.05,
-        duration: 0.5,
+        ease: "expo.inOut",
+        stagger: 0.02,
+        duration: 0.4,
         scrollTrigger: {
           trigger: wrapper,
-          start: "top 90%",
+          start: "top 85%",
           end: "bottom top"
         }
       });
@@ -1721,14 +1723,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _gsap = require("gsap");
+var _ScrollTrigger = _interopRequireDefault(require("gsap/dist/ScrollTrigger"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+_gsap.gsap.registerPlugin(_ScrollTrigger.default);
+
 /**
  * Navigation controller
  * "smart" navigation which goes off screen when scrolling down for a better overview of content and UX
  * navigation appears when scrolling up
- */var NavigationController = /*#__PURE__*/function () {
+ */
+var NavigationController = /*#__PURE__*/function () {
   function NavigationController() {
     _classCallCheck(this, NavigationController);
     /**
@@ -1779,6 +1786,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     this.navigation = document.querySelector(this.DOM.navigation);
     this.hamburger = document.querySelector(this.DOM.hamburger);
     this.navigationList = document.querySelector(this.DOM.navigationList);
+    this.bodyItems = document.querySelectorAll("[data-anchor-target]");
   }
 
   //region methods
@@ -1796,6 +1804,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         console.error("".concat(this.DOM.navigation, " does not exist in the DOM!"));
       }
       if (this.navigationList !== null && this.hamburger !== null) this.mobileNavigation();
+      if (this.navigationList && this.bodyItems.length > 0) this.activeController();
+    }
+  }, {
+    key: "activeController",
+    value: function activeController() {
+      this.bodyItems.forEach(function (item) {
+        var target = item.dataset.anchorTarget;
+        if (target) {
+          var link = document.querySelector("[data-scroll-to=\"#".concat(target, "\"]"));
+          if (link) {
+            _ScrollTrigger.default.create({
+              trigger: item,
+              start: "top center",
+              end: "bottom center",
+              onEnter: function onEnter() {
+                link.classList.add("is-active");
+              },
+              onEnterBack: function onEnterBack() {
+                link.classList.add("is-active");
+              },
+              onLeave: function onLeave() {
+                link.classList.remove("is-active");
+              },
+              onLeaveBack: function onLeaveBack() {
+                link.classList.remove("is-active");
+              }
+            });
+          }
+        }
+      });
     }
 
     /**
@@ -1923,7 +1961,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = NavigationController;
 
-},{"gsap":"gsap"}],12:[function(require,module,exports){
+},{"gsap":"gsap","gsap/dist/ScrollTrigger":"gsap/dist/ScrollTrigger"}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

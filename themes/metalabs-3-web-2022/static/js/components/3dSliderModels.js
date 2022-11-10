@@ -106,23 +106,23 @@ export default class ThreeDSliderModels {
     resizeModels() {
         ScrollTrigger.matchMedia({
             "(min-width: 1100px)": () => {
-                if (this.config.modelScale !== 0.9) {
-                    this.config.modelScale = 0.9;
+                if (this.config.modelScale !== 1.2) {
+                    this.config.modelScale = 1.2;
                 }
             },
             "(max-width: 801px)": () => {
-                if (this.config.modelScale !== 0.7) {
-                    this.config.modelScale = 0.7;
+                if (this.config.modelScale !== 1.2) {
+                    this.config.modelScale = 1.2;
                 }
             },
             "(max-width: 600px)": () => {
-                if (this.config.modelScale !== 0.6) {
-                    this.config.modelScale = 0.7;
+                if (this.config.modelScale !== 1) {
+                    this.config.modelScale = 1;
                 }
             },
             "(max-width: 475px)": () => {
-                if (this.config.modelScale !== 0.6) {
-                    this.config.modelScale = 0.7;
+                if (this.config.modelScale !== 0.85) {
+                    this.config.modelScale = 0.85;
                 }
             },
         });

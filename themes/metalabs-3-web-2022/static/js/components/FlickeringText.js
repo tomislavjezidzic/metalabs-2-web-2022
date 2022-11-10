@@ -34,10 +34,12 @@ export default class FlickeringText {
 
             texts.forEach((text) => {
                 gsap.timeline({
-                    delay: 1,
+                    delay: 0.6,
                     scrollTrigger: {
                         trigger: text,
                         start: "top 90%",
+                        end: "bottom 10%",
+                        toggleActions: "restart none restart none",
                     },
                 })
                     .to(text, {
@@ -78,12 +80,12 @@ export default class FlickeringText {
             {
                 y: "0%",
                 autoAlpha: 1,
-                ease: "power4.out",
-                stagger: 0.05,
-                duration: 0.5,
+                ease: "expo.inOut",
+                stagger: 0.02,
+                duration: 0.4,
                 scrollTrigger: {
                     trigger: wrapper,
-                    start: "top 90%",
+                    start: "top 85%",
                     end: "bottom top",
                 },
             },

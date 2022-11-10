@@ -10,7 +10,7 @@
 if ( ! empty( $slides ) ) {
 	$anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
 	?>
-    <section class="o-section c-3d-slider js-3d-slider-wrapper" <?= esc_attr( $anchor ); ?>>
+    <section class="o-section c-3d-slider js-3d-slider-wrapper" <?= esc_attr( $anchor ); ?> data-anchor-target="<?= $anchor_id; ?>">
         <div class="c-3d-slider__slider u-a4 u-uppercase">
             <div class="swiper js-3d-slider">
                 <div class="swiper-wrapper">
