@@ -76,13 +76,13 @@ export default class HeaderModel {
                 }
             },
             "(max-width: 600px)": () => {
-                if (this.config.modelScale !== 0.6) {
-                    this.config.modelScale = 0.6;
+                if (this.config.modelScale !== 0.8) {
+                    this.config.modelScale = 0.8;
                 }
             },
             "(max-width: 475px)": () => {
-                if (this.config.modelScale !== 0.6) {
-                    this.config.modelScale = 0.6;
+                if (this.config.modelScale !== 1) {
+                    this.config.modelScale = 1;
                 }
             },
         });

@@ -1914,7 +1914,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 @media (max-width: 800px) {
   .c-header__subtitle {
     padding-bottom: 24px;
-    padding-top: 0;
+    padding-top: 24px;
     grid-column: span 22;
     text-align: center;
   }
@@ -1932,6 +1932,21 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 @media (max-width: 800px) and (min-width: 1920px) {
   .c-header__subtitle {
     padding-bottom: 2.0833333333vw;
+  }
+}
+@media (max-width: 800px) and (min-width: 480px) {
+  .c-header__subtitle {
+    padding-top: calc(1.6666666667vw + 16px);
+  }
+}
+@media (max-width: 800px) and (min-width: 1440px) {
+  .c-header__subtitle {
+    padding-top: 40px;
+  }
+}
+@media (max-width: 800px) and (min-width: 1920px) {
+  .c-header__subtitle {
+    padding-top: 2.0833333333vw;
   }
 }
 .c-header__model {
@@ -2055,6 +2070,14 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     max-width: 250px;
     grid-column: span 22;
     margin-left: auto;
+  }
+}
+@media (max-width: 480px) {
+  .c-text-module__description {
+    max-width: none;
+    grid-column: span 22;
+    padding-left: 22.7272727273%;
+    padding-right: 4.5454545455%;
   }
 }
 .c-text-module__side-text {

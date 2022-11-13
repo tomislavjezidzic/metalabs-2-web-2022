@@ -1397,13 +1397,13 @@ var HeaderModel = /*#__PURE__*/function () {
           }
         },
         "(max-width: 600px)": function maxWidth600px() {
-          if (_this2.config.modelScale !== 0.6) {
-            _this2.config.modelScale = 0.6;
+          if (_this2.config.modelScale !== 0.8) {
+            _this2.config.modelScale = 0.8;
           }
         },
         "(max-width: 475px)": function maxWidth475px() {
-          if (_this2.config.modelScale !== 0.6) {
-            _this2.config.modelScale = 0.6;
+          if (_this2.config.modelScale !== 1) {
+            _this2.config.modelScale = 1;
           }
         }
       });
