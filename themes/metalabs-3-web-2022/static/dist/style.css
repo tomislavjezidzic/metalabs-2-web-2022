@@ -1992,11 +1992,16 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   .c-header__model {
     position: relative;
     grid-column: span 22;
-    aspect-ratio: 400/375;
+    aspect-ratio: 400/225;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
+  }
+}
+@media (max-width: 480px) {
+  .c-header__model {
+    aspect-ratio: 400/375;
   }
 }
 .c-header__arrow {
