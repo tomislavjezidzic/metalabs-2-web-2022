@@ -81,8 +81,8 @@ export default class HeaderModel {
                 }
             },
             "(max-width: 475px)": () => {
-                if (this.config.modelScale !== 1) {
-                    this.config.modelScale = 1;
+                if (this.config.modelScale !== 1.1) {
+                    this.config.modelScale = 1.1;
                 }
             },
         });

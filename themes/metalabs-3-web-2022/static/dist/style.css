@@ -1914,7 +1914,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 @media (max-width: 800px) {
   .c-header__subtitle {
     padding-bottom: 24px;
-    padding-top: 24px;
+    padding-top: 40px;
     grid-column: span 22;
     text-align: center;
   }
@@ -1936,17 +1936,17 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 }
 @media (max-width: 800px) and (min-width: 480px) {
   .c-header__subtitle {
-    padding-top: calc(1.6666666667vw + 16px);
+    padding-top: calc(2.5vw + 28px);
   }
 }
 @media (max-width: 800px) and (min-width: 1440px) {
   .c-header__subtitle {
-    padding-top: 40px;
+    padding-top: 64px;
   }
 }
 @media (max-width: 800px) and (min-width: 1920px) {
   .c-header__subtitle {
-    padding-top: 2.0833333333vw;
+    padding-top: 3.3333333333vw;
   }
 }
 .c-header__model {

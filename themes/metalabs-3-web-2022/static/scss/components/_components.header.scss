@@ -39,7 +39,7 @@
 
         @include mq(md) {
             @include fluidValue("padding-bottom", "s-40");
-            @include fluidValue("padding-top", "s-40");
+            @include fluidValue("padding-top", "s-64");
 
             grid-column: span 22;
             text-align: center;

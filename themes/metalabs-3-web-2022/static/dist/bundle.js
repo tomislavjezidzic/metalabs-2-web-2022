@@ -1402,8 +1402,8 @@ var HeaderModel = /*#__PURE__*/function () {
           }
         },
         "(max-width: 475px)": function maxWidth475px() {
-          if (_this2.config.modelScale !== 1) {
-            _this2.config.modelScale = 1;
+          if (_this2.config.modelScale !== 1.1) {
+            _this2.config.modelScale = 1.1;
           }
         }
       });
