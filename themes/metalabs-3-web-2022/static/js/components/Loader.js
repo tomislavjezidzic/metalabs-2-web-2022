@@ -16,7 +16,7 @@ export default class Loader {
         this.wrapper = document.querySelector(this.DOM.wrapper);
         this.afterLoader = afterLoader;
 
-        if (!this.wrapper){
+        if (!this.wrapper) {
             document.dispatchEvent(this.afterLoader);
         }
         this.logo = document.querySelector(this.DOM.logo)?.getBoundingClientRect();
@@ -79,7 +79,7 @@ export default class Loader {
         } else {
             this.scrollLock.unlockScroll();
         }
-        document.dispatchEvent(this.afterLoader);
+
         this.topOffset = animationWrapper.getBoundingClientRect().top;
         let x = -(-this.leftLogoOffset - this.additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
         let y = -(this.topOffset - this.topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
@@ -131,6 +131,7 @@ export default class Loader {
                     autoAlpha: 1,
                     duration: 1.2,
                     ease: "expo.out",
+                    onStart: () => document.dispatchEvent(this.afterLoader),
                 },
                 "content",
             );

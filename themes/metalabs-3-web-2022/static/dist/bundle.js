@@ -1201,6 +1201,11 @@ var FlickeringText = /*#__PURE__*/function () {
         type: "words",
         wordsClass: "u-split-text-word"
       });
+      if (split.words.length > 0) {
+        _gsap.default.set(split.words, {
+          autoAlpha: 0
+        });
+      }
       document.addEventListener("afterLoader", function () {
         _this2.animateIn(split.words, wrapper);
         var texts = wrapper.querySelectorAll("b");
@@ -1251,9 +1256,6 @@ var FlickeringText = /*#__PURE__*/function () {
   }, {
     key: "animateIn",
     value: function animateIn(words, wrapper) {
-      _gsap.default.set(words, {
-        autoAlpha: 0
-      });
       _gsap.default.fromTo(words, {
         y: "20%",
         autoAlpha: 0
@@ -1642,12 +1644,12 @@ var Loader = /*#__PURE__*/function () {
   }, {
     key: "endOfAnimation",
     value: function endOfAnimation(animationWrapper) {
+      var _this2 = this;
       if (window.smoother !== undefined) {
         window.smoother.paused(false);
       } else {
         this.scrollLock.unlockScroll();
       }
-      document.dispatchEvent(this.afterLoader);
       this.topOffset = animationWrapper.getBoundingClientRect().top;
       var x = -(-this.leftLogoOffset - this.additionOffset + animationWrapper.offsetWidth / 2 - this.logo.width / 2);
       var y = -(this.topOffset - this.topLogoOffset + animationWrapper.offsetHeight / 2 - this.logo.height / 2);
@@ -1674,7 +1676,10 @@ var Loader = /*#__PURE__*/function () {
         y: 0,
         autoAlpha: 1,
         duration: 1.2,
-        ease: "expo.out"
+        ease: "expo.out",
+        onStart: function onStart() {
+          return document.dispatchEvent(_this2.afterLoader);
+        }
       }, "content");
     }
   }]);

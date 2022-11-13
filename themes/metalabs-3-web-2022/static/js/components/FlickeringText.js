@@ -29,6 +29,12 @@ export default class FlickeringText {
             wordsClass: "u-split-text-word",
         });
 
+        if (split.words.length > 0) {
+            gsap.set(split.words, {
+                autoAlpha: 0,
+            });
+        }
+
         document.addEventListener("afterLoader", () => {
             this.animateIn(split.words, wrapper);
 
@@ -84,10 +90,6 @@ export default class FlickeringText {
     }
 
     animateIn(words, wrapper) {
-        gsap.set(words, {
-            autoAlpha: 0,
-        });
-
         gsap.fromTo(
             words,
             {
