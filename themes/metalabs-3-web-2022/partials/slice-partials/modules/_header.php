@@ -2,7 +2,7 @@
 <div class="o-section">
     <header class="o-container c-header js-header">
         <h1 class="c-header__title u-a3 u-fw-500 u-uppercase js-flickering-text c-flickering-text">
-            <span class="u-serif u-fw-300">A Transcending</span><br>
+            <b class="u-serif u-fw-300">A Transcending</b><br>
             Web 3.0 Agency
         </h1>
         <div class="c-header__model js-header-model-wrapper" data-model="<?= bu("models/bista.glb") ?>"></div>
