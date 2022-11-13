@@ -37,15 +37,18 @@ export default class FlickeringText {
             if (texts.length < 1) return;
 
             texts.forEach((text) => {
-                gsap.timeline({
-                    delay: 0.6,
-                    scrollTrigger: {
-                        trigger: text,
-                        start: "top 90%",
-                        end: "bottom 10%",
-                        toggleActions: "restart none restart none",
-                    },
-                })
+                const flickerAnimation = gsap
+                    .timeline({
+                        delay: 0.6,
+                        scrollTrigger: {
+                            trigger: text,
+                            start: "top 90%",
+                            end: "bottom 10%",
+                            toggleActions: "restart none restart none",
+                            onEnter: () => text.classList.add("is-animating"),
+                            onEnterBack: () => text.classList.add("is-animating"),
+                        },
+                    })
                     .to(text, {
                         classList: "is-serif",
                         duration: 0.05,
@@ -65,7 +68,17 @@ export default class FlickeringText {
                     .to(text, {
                         classList: "is-serif",
                         duration: 0.1,
+                        onComplete: () => {
+                            text.classList.remove("is-animating");
+                        },
                     });
+
+                text.addEventListener("mouseenter", () => {
+                    if (!text.classList.contains("is-animating")) {
+                        text.classList.add("is-animating");
+                        flickerAnimation.delay(0).restart();
+                    }
+                });
             });
         });
     }
@@ -101,8 +114,6 @@ export default class FlickeringText {
             type: "chars",
             wordsClass: "u-split-text-word",
         });
-
-        console.log(split.chars);
 
         gsap.set(split.chars, {
             autoAlpha: 0,

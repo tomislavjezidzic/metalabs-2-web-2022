@@ -1206,13 +1206,19 @@ var FlickeringText = /*#__PURE__*/function () {
         var texts = wrapper.querySelectorAll("b");
         if (texts.length < 1) return;
         texts.forEach(function (text) {
-          _gsap.default.timeline({
+          var flickerAnimation = _gsap.default.timeline({
             delay: 0.6,
             scrollTrigger: {
               trigger: text,
               start: "top 90%",
               end: "bottom 10%",
-              toggleActions: "restart none restart none"
+              toggleActions: "restart none restart none",
+              onEnter: function onEnter() {
+                return text.classList.add("is-animating");
+              },
+              onEnterBack: function onEnterBack() {
+                return text.classList.add("is-animating");
+              }
             }
           }).to(text, {
             classList: "is-serif",
@@ -1228,7 +1234,16 @@ var FlickeringText = /*#__PURE__*/function () {
             duration: 0.075
           }).to(text, {
             classList: "is-serif",
-            duration: 0.1
+            duration: 0.1,
+            onComplete: function onComplete() {
+              text.classList.remove("is-animating");
+            }
+          });
+          text.addEventListener("mouseenter", function () {
+            if (!text.classList.contains("is-animating")) {
+              text.classList.add("is-animating");
+              flickerAnimation.delay(0).restart();
+            }
           });
         });
       });
@@ -1262,7 +1277,6 @@ var FlickeringText = /*#__PURE__*/function () {
         type: "chars",
         wordsClass: "u-split-text-word"
       });
-      console.log(split.chars);
       _gsap.default.set(split.chars, {
         autoAlpha: 0
       });
