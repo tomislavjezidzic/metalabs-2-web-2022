@@ -1177,14 +1177,17 @@ var FlickeringText = /*#__PURE__*/function () {
   function FlickeringText() {
     _classCallCheck(this, FlickeringText);
     this.DOM = {
-      wrapper: ".js-flickering-text"
+      wrapper: ".js-flickering-text",
+      email: ".js-mail-reveal a"
     };
     this.wrappers = document.querySelectorAll(this.DOM.wrapper);
+    this.email = document.querySelector(this.DOM.email);
   }
   _createClass(FlickeringText, [{
     key: "init",
     value: function init() {
       var _this = this;
+      if (this.email) this.emailReveal();
       if (this.wrappers.length < 1) return;
       this.wrappers.forEach(function (wrapper) {
         return _this.singleWrapper(wrapper);
@@ -1248,6 +1251,33 @@ var FlickeringText = /*#__PURE__*/function () {
         scrollTrigger: {
           trigger: wrapper,
           start: "top 85%",
+          end: "bottom top"
+        }
+      });
+    }
+  }, {
+    key: "emailReveal",
+    value: function emailReveal() {
+      var split = new _SplitText.SplitText(this.email, {
+        type: "chars",
+        wordsClass: "u-split-text-word"
+      });
+      console.log(split.chars);
+      _gsap.default.set(split.chars, {
+        autoAlpha: 0
+      });
+      _gsap.default.fromTo(split.chars, {
+        y: "20%",
+        autoAlpha: 0
+      }, {
+        y: "0%",
+        autoAlpha: 1,
+        ease: "expo.inOut",
+        stagger: 0.02,
+        duration: 0.4,
+        scrollTrigger: {
+          trigger: this.email,
+          start: "top 80%",
           end: "bottom top"
         }
       });

@@ -1,5 +1,4 @@
 .c-contact-wrapper {
-
     position: relative;
     padding-top: get-vw(332px);
 
@@ -42,11 +41,14 @@
 
     &__extra-big-text {
         @include fluidValue("margin-bottom", "s-248");
-
-        max-width: em(1015px, 308px);
+        width: percentage(19.5, 22);
         word-break: break-word;
         position: relative;
         z-index: 1;
+
+        a {
+            display: block;
+        }
 
         @include mq(md) {
             max-width: 100%;

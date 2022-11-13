@@ -2269,7 +2269,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 
 .c-contact-wrapper__extra-big-text {
   margin-bottom: 112px;
-  max-width: 3.2954545455em;
+  width: 88.6363636364%;
   word-break: break-word;
   position: relative;
   z-index: 1;
@@ -2290,6 +2290,10 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     margin-bottom: 12.9166666667vw;
   }
 }
+.c-contact-wrapper__extra-big-text a {
+  display: block;
+}
+
 @media (max-width: 800px) {
   .c-contact-wrapper__extra-big-text {
     max-width: 100%;
