@@ -19,7 +19,7 @@ export default class HeaderModel {
         // config
         this.config = {
             modelOffset: 6,
-            modelScale: 1.2,
+            modelScale: 1,
         };
     }
 
@@ -64,13 +64,18 @@ export default class HeaderModel {
     resizeModels() {
         ScrollTrigger.matchMedia({
             "(min-width: 1100px)": () => {
-                if (this.config.modelScale !== 1.2) {
-                    this.config.modelScale = 1.2;
+                if (this.config.modelScale !== 1) {
+                    this.config.modelScale = 1;
                 }
             },
             "(max-width: 801px)": () => {
                 if (this.config.modelScale !== 1.2) {
                     this.config.modelScale = 1.2;
+                }
+            },
+            "(max-width: 500px)": () => {
+                if (this.config.modelScale !== 1.4) {
+                    this.config.modelScale = 1.4;
                 }
             },
         });
@@ -95,8 +100,8 @@ export default class HeaderModel {
      */
     initCamera() {
         this.camera = new THREE.PerspectiveCamera(35, this.width / this.height, 0.5, 100);
-        this.camera.position.set(0, 0.5, 5.5);
-        this.camera.lookAt(0, 0.4, 0);
+        this.camera.position.set(-2, 0.5, 5.5);
+        this.camera.lookAt(0.1, 0.4, 0);
     }
 
     /**

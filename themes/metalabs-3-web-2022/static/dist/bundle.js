@@ -753,7 +753,7 @@ var HeaderModel = /*#__PURE__*/function () {
     // config
     this.config = {
       modelOffset: 6,
-      modelScale: 1.2
+      modelScale: 1
     };
   }
   _createClass(HeaderModel, [{
@@ -799,13 +799,18 @@ var HeaderModel = /*#__PURE__*/function () {
       var _this2 = this;
       _ScrollTrigger.default.matchMedia({
         "(min-width: 1100px)": function minWidth1100px() {
-          if (_this2.config.modelScale !== 1.2) {
-            _this2.config.modelScale = 1.2;
+          if (_this2.config.modelScale !== 1) {
+            _this2.config.modelScale = 1;
           }
         },
         "(max-width: 801px)": function maxWidth801px() {
           if (_this2.config.modelScale !== 1.2) {
             _this2.config.modelScale = 1.2;
+          }
+        },
+        "(max-width: 500px)": function maxWidth500px() {
+          if (_this2.config.modelScale !== 1.4) {
+            _this2.config.modelScale = 1.4;
           }
         }
       });
@@ -832,8 +837,8 @@ var HeaderModel = /*#__PURE__*/function () {
     key: "initCamera",
     value: function initCamera() {
       this.camera = new THREE.PerspectiveCamera(35, this.width / this.height, 0.5, 100);
-      this.camera.position.set(0, 0.5, 5.5);
-      this.camera.lookAt(0, 0.4, 0);
+      this.camera.position.set(-2, 0.5, 5.5);
+      this.camera.lookAt(0.1, 0.4, 0);
     }
 
     /**
