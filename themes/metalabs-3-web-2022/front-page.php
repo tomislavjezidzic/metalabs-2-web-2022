@@ -22,7 +22,7 @@ $medium_editor_helper = new MediumEditorHelper();
                 <?php
                 $header = $acf_provider->get_field('header');
                 get_partial('components/header', array(
-                    'title'    => $medium_editor_helper->format_emphasized_text($header['medium_editor_title']),
+                    'title'    => $medium_editor_helper->replace_span_with_b($header['medium_editor_title']),
                     'subtitle' => $header['subtitle'] ?? '',
                     'model'    => $header['model'],
                 ));

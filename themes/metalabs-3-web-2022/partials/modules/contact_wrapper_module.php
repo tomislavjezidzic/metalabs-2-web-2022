@@ -17,7 +17,7 @@ use metalabs3Web2022\helpers\MediumEditorHelper;
 if ( ! empty( $show ) ) {
 	$medium_editor_helper = new MediumEditorHelper();
 	$link_helper          = new LinkHelper();
-	$email                = ! empty( $email ) ? sprintf( '<a href="%s"><b>%s</b></a>', $link_helper->get_mailto( $email ), esc_html( $email ) ) : '';
+	$email                = ! empty( $email ) ? sprintf( '<a href="%s">%s</a>', $link_helper->get_mailto( $email ), esc_html( $email ) ) : '';
 
 	get_partial( 'components/modules/contact-wrapper-module', array(
 		'side_text'   => $side_text,

@@ -14,4 +14,8 @@ class MediumEditorHelper {
 	public function replace_span_with_paragraph( ?string $text ): string {
 		return str_replace( 'span', 'p', $this->format_emphasized_text( $text ) );
 	}
+
+	public function replace_span_with_b( ?string $text ): string {
+		return str_replace( 'span', 'b', $this->format_emphasized_text( $text ) );
+	}
 }
