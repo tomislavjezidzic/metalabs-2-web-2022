@@ -1330,7 +1330,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 _gsap.default.registerPlugin(_ScrollTrigger.default);
 var HeaderModel = /*#__PURE__*/function () {
-  function HeaderModel(afterLoader) {
+  function HeaderModel() {
     _classCallCheck(this, HeaderModel);
     this.DOM = {
       wrapper: ".js-header-model-wrapper",
@@ -1368,7 +1368,7 @@ var HeaderModel = /*#__PURE__*/function () {
       this.initScene();
       this.initLights();
       this.initRenderer();
-      document.addEventListener("afterLoader", function () {
+      document.addEventListener("midLoader", function () {
         _this.animate();
       });
       if (!_is_js.default.mobile()) {
@@ -1584,7 +1584,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 var Loader = /*#__PURE__*/function () {
-  function Loader(afterLoader) {
+  function Loader(afterLoader, midLoader) {
     var _document$querySelect, _this$logo, _this$logo2;
     _classCallCheck(this, Loader);
     this.DOM = {
@@ -1597,7 +1597,9 @@ var Loader = /*#__PURE__*/function () {
     };
     this.wrapper = document.querySelector(this.DOM.wrapper);
     this.afterLoader = afterLoader;
+    this.midLoader = midLoader;
     if (!this.wrapper) {
+      document.dispatchEvent(this.midLoader);
       document.dispatchEvent(this.afterLoader);
     }
     this.logo = (_document$querySelect = document.querySelector(this.DOM.logo)) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.getBoundingClientRect();
@@ -1607,8 +1609,8 @@ var Loader = /*#__PURE__*/function () {
     this.leftLogoOffset = (_this$logo2 = this.logo) === null || _this$logo2 === void 0 ? void 0 : _this$logo2.left;
     this.additionOffset = 10 / 1440 * window.innerWidth;
     _gsap.default.set(this.header, {
-      x: 50,
-      y: 50,
+      x: window.innerWidth * 0.1,
+      y: window.innerWidth * 0.1,
       autoAlpha: 0
     });
     _gsap.default.set(this.nav, {
@@ -1667,7 +1669,11 @@ var Loader = /*#__PURE__*/function () {
         scale = 1;
         duration = 0;
       }
-      _gsap.default.timeline().add("start").to(animationWrapper, {
+      _gsap.default.timeline({
+        onStart: function onStart() {
+          return document.dispatchEvent(_this2.midLoader);
+        }
+      }).add("start").to(animationWrapper, {
         x: x,
         y: y,
         scale: scale,
@@ -1677,15 +1683,19 @@ var Loader = /*#__PURE__*/function () {
       }, "nav").to(this.nav, {
         autoAlpha: 1
       }, "nav").add("content", "-=0.1").to(this.header, {
-        x: 0,
         y: 0,
+        autoAlpha: 0.5,
+        duration: 0.6,
+        ease: "power3.in"
+      }, "content").to(this.header, {
+        x: 0,
         autoAlpha: 1,
-        duration: 1.2,
-        ease: "expo.out",
+        duration: 0.6,
+        ease: "power3.out",
         onStart: function onStart() {
           return document.dispatchEvent(_this2.afterLoader);
         }
-      }, "content");
+      });
     }
   }]);
   return Loader;
@@ -2253,6 +2263,7 @@ ready(function () {
   var doc = document.documentElement;
   doc.style.setProperty("--win-height", "".concat(window.innerHeight, "px"));
   var afterLoader = new Event("afterLoader");
+  var midLoader = new Event("midLoader");
 
   /**
    * COMPONENTS INIT
@@ -2262,7 +2273,7 @@ ready(function () {
    * Loader
    * @type {Loader}
    */
-  var loader = new _Loader.default(afterLoader);
+  var loader = new _Loader.default(afterLoader, midLoader);
   loader.init();
 
   /**

@@ -72,6 +72,7 @@ ready(() => {
     doc.style.setProperty("--win-height", `${window.innerHeight}px`);
 
     const afterLoader = new Event("afterLoader");
+    const midLoader = new Event("midLoader");
 
     /**
      * COMPONENTS INIT
@@ -81,7 +82,7 @@ ready(() => {
      * Loader
      * @type {Loader}
      */
-    const loader = new Loader(afterLoader);
+    const loader = new Loader(afterLoader, midLoader);
     loader.init();
 
     /**

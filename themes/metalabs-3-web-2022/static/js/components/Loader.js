@@ -3,7 +3,7 @@ import lottie from "lottie-web/build/player/lottie_light";
 import ScrollLock from "@bornfight/b-scroll-lock";
 
 export default class Loader {
-    constructor(afterLoader) {
+    constructor(afterLoader, midLoader) {
         this.DOM = {
             wrapper: ".js-loader",
             animation: ".js-loader-animation",
@@ -15,10 +15,13 @@ export default class Loader {
 
         this.wrapper = document.querySelector(this.DOM.wrapper);
         this.afterLoader = afterLoader;
+        this.midLoader = midLoader;
 
         if (!this.wrapper) {
+            document.dispatchEvent(this.midLoader);
             document.dispatchEvent(this.afterLoader);
         }
+
         this.logo = document.querySelector(this.DOM.logo)?.getBoundingClientRect();
         this.header = document.querySelector(this.DOM.header);
         this.nav = document.querySelector(this.DOM.nav);
@@ -28,8 +31,8 @@ export default class Loader {
         this.additionOffset = (10 / 1440) * window.innerWidth;
 
         gsap.set(this.header, {
-            x: 50,
-            y: 50,
+            x: window.innerWidth * 0.1,
+            y: window.innerWidth * 0.1,
             autoAlpha: 0,
         });
 
@@ -95,7 +98,9 @@ export default class Loader {
             duration = 0;
         }
 
-        gsap.timeline()
+        gsap.timeline({
+            onStart: () => document.dispatchEvent(this.midLoader),
+        })
             .add("start")
             .to(
                 animationWrapper,
@@ -126,14 +131,19 @@ export default class Loader {
             .to(
                 this.header,
                 {
-                    x: 0,
                     y: 0,
-                    autoAlpha: 1,
-                    duration: 1.2,
-                    ease: "expo.out",
-                    onStart: () => document.dispatchEvent(this.afterLoader),
+                    autoAlpha: 0.5,
+                    duration: 0.6,
+                    ease: "power3.in",
                 },
                 "content",
-            );
+            )
+            .to(this.header, {
+                x: 0,
+                autoAlpha: 1,
+                duration: 0.6,
+                ease: "power3.out",
+                onStart: () => document.dispatchEvent(this.afterLoader),
+            });
     }
 }

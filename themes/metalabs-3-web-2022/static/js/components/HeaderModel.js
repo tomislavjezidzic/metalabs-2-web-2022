@@ -8,7 +8,7 @@ import is from "is_js";
 gsap.registerPlugin(ScrollTrigger);
 
 export default class HeaderModel {
-    constructor(afterLoader) {
+    constructor() {
         this.DOM = {
             wrapper: ".js-header-model-wrapper",
             header: ".js-header",
@@ -50,7 +50,7 @@ export default class HeaderModel {
         this.initLights();
         this.initRenderer();
 
-        document.addEventListener("afterLoader", () => {
+        document.addEventListener("midLoader", () => {
             this.animate();
         });
 
