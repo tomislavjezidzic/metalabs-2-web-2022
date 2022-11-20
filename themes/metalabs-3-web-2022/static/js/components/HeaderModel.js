@@ -20,7 +20,7 @@ export default class HeaderModel {
 
         // config
         this.config = {
-            modelOffset: 6,
+            y: 0,
             modelScale: 1,
         };
     }
@@ -81,8 +81,9 @@ export default class HeaderModel {
                 }
             },
             "(max-width: 475px)": () => {
-                if (this.config.modelScale !== 1.1) {
-                    this.config.modelScale = 1.1;
+                if (this.config.modelScale !== 1) {
+                    this.config.modelScale = 1;
+                    this.config.y = 0.3;
                 }
             },
         });
@@ -166,6 +167,8 @@ export default class HeaderModel {
                 gltf.scene.rotation.y = -Math.PI / 2;
 
                 gltf.scene.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
+
+                gltf.scene.position.y = this.config.y;
 
                 this.model = gltf.scene;
 

@@ -764,6 +764,10 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     padding-bottom: 60px;
   }
 }
+.o-section--overflow {
+  overflow: hidden;
+}
+
 /**
  * Components
  */
@@ -2002,6 +2006,8 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 @media (max-width: 480px) {
   .c-header__model {
     aspect-ratio: 400/375;
+    margin-left: -4.5454545455%;
+    margin-right: -4.5454545455%;
   }
 }
 .c-header__arrow {

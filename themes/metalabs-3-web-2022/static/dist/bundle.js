@@ -1342,7 +1342,7 @@ var HeaderModel = /*#__PURE__*/function () {
 
     // config
     this.config = {
-      modelOffset: 6,
+      y: 0,
       modelScale: 1
     };
   }
@@ -1402,8 +1402,9 @@ var HeaderModel = /*#__PURE__*/function () {
           }
         },
         "(max-width: 475px)": function maxWidth475px() {
-          if (_this2.config.modelScale !== 1.1) {
-            _this2.config.modelScale = 1.1;
+          if (_this2.config.modelScale !== 1) {
+            _this2.config.modelScale = 1;
+            _this2.config.y = 0.3;
           }
         }
       });
@@ -1492,6 +1493,7 @@ var HeaderModel = /*#__PURE__*/function () {
       this.loader.load(this.wrapper.dataset.model, function (gltf) {
         gltf.scene.rotation.y = -Math.PI / 2;
         gltf.scene.scale.set(_this4.config.modelScale, _this4.config.modelScale, _this4.config.modelScale);
+        gltf.scene.position.y = _this4.config.y;
         _this4.model = gltf.scene;
         _this4.scrollModelAnimation(gltf.scene);
         _this4.scene.add(gltf.scene);

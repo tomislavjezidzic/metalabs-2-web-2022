@@ -1,5 +1,5 @@
 <!-- HEADER -->
-<div class="o-section">
+<div class="o-section o-section--overflow">
     <header class="o-container c-header js-header">
         <h1 class="c-header__title u-a3 u-fw-500 u-uppercase js-flickering-text c-flickering-text">
             <b class="u-serif u-fw-300">A Transcending</b><br>

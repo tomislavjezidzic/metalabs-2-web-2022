@@ -67,6 +67,8 @@
 
         @include mq(sm) {
             aspect-ratio: 400 / 375;
+            margin-left: percentage(-1, 22);
+            margin-right: percentage(-1, 22);
         }
     }
 
