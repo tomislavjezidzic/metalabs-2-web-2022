@@ -1580,13 +1580,12 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _gsap = _interopRequireDefault(require("gsap"));
 var _lottie_light = _interopRequireDefault(require("lottie-web/build/player/lottie_light"));
-var _bScrollLock = _interopRequireDefault(require("@bornfight/b-scroll-lock"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 var Loader = /*#__PURE__*/function () {
-  function Loader(afterLoader, midLoader) {
+  function Loader(afterLoader, midLoader, scrollLock) {
     var _document$querySelect, _this$logo, _this$logo2;
     _classCallCheck(this, Loader);
     this.DOM = {
@@ -1618,7 +1617,7 @@ var Loader = /*#__PURE__*/function () {
     _gsap.default.set(this.nav, {
       autoAlpha: 0
     });
-    this.scrollLock = new _bScrollLock.default();
+    this.scrollLock = scrollLock;
   }
   _createClass(Loader, [{
     key: "init",
@@ -1704,7 +1703,7 @@ var Loader = /*#__PURE__*/function () {
 }();
 exports.default = Loader;
 
-},{"@bornfight/b-scroll-lock":"@bornfight/b-scroll-lock","gsap":"gsap","lottie-web/build/player/lottie_light":"lottie-web/build/player/lottie_light"}],10:[function(require,module,exports){
+},{"gsap":"gsap","lottie-web/build/player/lottie_light":"lottie-web/build/player/lottie_light"}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1800,7 +1799,7 @@ var NavigationController = /*#__PURE__*/function () {
     /**
      * Navigation DOM selectors
      * Navigation DOM state CSS classes
-     * @type {{navigation: string, states: {navigationSlideUp: string, navigationScrolled: string, navigationFixed: string}}}
+     * @type {{navigation: string, states: {navigationSlideUp: string, navigationScrolled: string, navigationFixed: string, active: string, mobileOpened: string}}}
      */
     this.DOM = {
       navigation: ".js-navigation",
@@ -1811,7 +1810,8 @@ var NavigationController = /*#__PURE__*/function () {
         navigationScrolled: "has-scrolled",
         navigationFixed: "is-fixed",
         navigationSlideUp: "slide-up",
-        active: "is-active"
+        active: "is-active",
+        mobileOpened: "is-mobile-opened"
       }
     };
 
@@ -1997,6 +1997,7 @@ var NavigationController = /*#__PURE__*/function () {
   }, {
     key: "openNavigation",
     value: function openNavigation() {
+      this.navigation.classList.add(this.DOM.states.mobileOpened);
       this.navigationActive = true;
       this.hamburger.classList.add(this.DOM.states.active);
       this.navigationList.classList.add(this.DOM.states.active);
@@ -2011,6 +2012,7 @@ var NavigationController = /*#__PURE__*/function () {
   }, {
     key: "closeNavigation",
     value: function closeNavigation() {
+      this.navigation.classList.remove(this.DOM.states.mobileOpened);
       this.navigationActive = false;
       this.hamburger.classList.remove(this.DOM.states.active);
       this.navigationList.classList.remove(this.DOM.states.active);
@@ -2236,6 +2238,7 @@ exports.default = GridHelper;
 "use strict";
 
 var _GridHelper = _interopRequireDefault(require("./helpers/GridHelper"));
+var _bScrollLock = _interopRequireDefault(require("@bornfight/b-scroll-lock"));
 var _Loader = _interopRequireDefault(require("./components/Loader"));
 var _NavigationController = _interopRequireDefault(require("./components/NavigationController"));
 var _Cursor = _interopRequireDefault(require("./components/Cursor"));
@@ -2261,6 +2264,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* start-strip-code */
 
 /* end-strip-code */
+
 /**
  * Components
  */
@@ -2309,6 +2313,7 @@ ready(function () {
   doc.style.setProperty("--win-height", "".concat(window.innerHeight, "px"));
   var afterLoader = new Event("afterLoader");
   var midLoader = new Event("midLoader");
+  var scrollLock = new _bScrollLock.default();
 
   /**
    * COMPONENTS INIT
@@ -2318,7 +2323,7 @@ ready(function () {
    * Loader
    * @type {Loader}
    */
-  var loader = new _Loader.default(afterLoader, midLoader);
+  var loader = new _Loader.default(afterLoader, midLoader, scrollLock);
   loader.init();
 
   /**
@@ -2339,7 +2344,7 @@ ready(function () {
    * Navigation
    * @type {NavigationController}
    */
-  var navigation = new _NavigationController.default();
+  var navigation = new _NavigationController.default(scrollLock);
   navigation.init();
 
   /**
@@ -2379,6 +2384,6 @@ ready(function () {
   }, 500);
 });
 
-},{"./components/3dSlider":2,"./components/ContactModel":4,"./components/Cursor":5,"./components/Flicker404":6,"./components/FlickeringText":7,"./components/HeaderModel":8,"./components/Loader":9,"./components/Marquee":10,"./components/NavigationController":11,"./components/SmoothScroll":12,"./components/Video":13,"./helpers/GridHelper":14,"@bornfight/b-scroll-to":"@bornfight/b-scroll-to"}]},{},[15])
+},{"./components/3dSlider":2,"./components/ContactModel":4,"./components/Cursor":5,"./components/Flicker404":6,"./components/FlickeringText":7,"./components/HeaderModel":8,"./components/Loader":9,"./components/Marquee":10,"./components/NavigationController":11,"./components/SmoothScroll":12,"./components/Video":13,"./helpers/GridHelper":14,"@bornfight/b-scroll-lock":"@bornfight/b-scroll-lock","@bornfight/b-scroll-to":"@bornfight/b-scroll-to"}]},{},[15])
 
 //# sourceMappingURL=bundle.js.map

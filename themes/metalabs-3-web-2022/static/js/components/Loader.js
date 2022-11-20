@@ -1,9 +1,8 @@
 import gsap from "gsap";
 import lottie from "lottie-web/build/player/lottie_light";
-import ScrollLock from "@bornfight/b-scroll-lock";
 
 export default class Loader {
-    constructor(afterLoader, midLoader) {
+    constructor(afterLoader, midLoader, scrollLock) {
         this.DOM = {
             wrapper: ".js-loader",
             animation: ".js-loader-animation",
@@ -40,7 +39,7 @@ export default class Loader {
             autoAlpha: 0,
         });
 
-        this.scrollLock = new ScrollLock();
+        this.scrollLock = scrollLock;
     }
 
     init() {

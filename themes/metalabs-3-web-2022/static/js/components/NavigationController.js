@@ -13,7 +13,7 @@ export default class NavigationController {
         /**
          * Navigation DOM selectors
          * Navigation DOM state CSS classes
-         * @type {{navigation: string, states: {navigationSlideUp: string, navigationScrolled: string, navigationFixed: string}}}
+         * @type {{navigation: string, states: {navigationSlideUp: string, navigationScrolled: string, navigationFixed: string, active: string, mobileOpened: string}}}
          */
         this.DOM = {
             navigation: ".js-navigation",
@@ -25,6 +25,7 @@ export default class NavigationController {
                 navigationFixed: "is-fixed",
                 navigationSlideUp: "slide-up",
                 active: "is-active",
+                mobileOpened: "is-mobile-opened",
             },
         };
 
@@ -198,6 +199,7 @@ export default class NavigationController {
     }
 
     openNavigation() {
+        this.navigation.classList.add(this.DOM.states.mobileOpened);
         this.navigationActive = true;
         this.hamburger.classList.add(this.DOM.states.active);
         this.navigationList.classList.add(this.DOM.states.active);
@@ -216,6 +218,7 @@ export default class NavigationController {
     }
 
     closeNavigation() {
+        this.navigation.classList.remove(this.DOM.states.mobileOpened);
         this.navigationActive = false;
         this.hamburger.classList.remove(this.DOM.states.active);
         this.navigationList.classList.remove(this.DOM.states.active);

@@ -977,6 +977,11 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
           transform: translateY(-105%);
 }
 
+.c-navigation.is-mobile-opened {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
+
 .c-navigation:before {
   content: "";
   position: absolute;
@@ -1036,7 +1041,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
         -ms-flex-align: center;
             align-items: center;
     max-height: calc(var(--win-height) - 100px);
-    background: linear-gradient(260.19deg, #2400FF 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #FEB301 100%) #000000;
+    background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%) #000000;
     -webkit-backdrop-filter: blur(10.5px);
             backdrop-filter: blur(10.5px);
     -webkit-transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);

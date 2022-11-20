@@ -10,6 +10,9 @@
 /* start-strip-code */
 import GridHelper from "./helpers/GridHelper";
 /* end-strip-code */
+
+import ScrollLock from "@bornfight/b-scroll-lock";
+
 /**
  * Components
  */
@@ -74,6 +77,8 @@ ready(() => {
     const afterLoader = new Event("afterLoader");
     const midLoader = new Event("midLoader");
 
+    const scrollLock = new ScrollLock()
+
     /**
      * COMPONENTS INIT
      */
@@ -82,7 +87,7 @@ ready(() => {
      * Loader
      * @type {Loader}
      */
-    const loader = new Loader(afterLoader, midLoader);
+    const loader = new Loader(afterLoader, midLoader, scrollLock);
     loader.init();
 
     /**
@@ -103,7 +108,7 @@ ready(() => {
      * Navigation
      * @type {NavigationController}
      */
-    const navigation = new NavigationController();
+    const navigation = new NavigationController(scrollLock);
     navigation.init();
 
     /**
