@@ -1,6 +1,6 @@
 .c-hamburger {
     @include button-reset;
-    padding: 10px 0;
+    padding: 8px 0;
     width: 30px;
     position: relative;
     border-radius: 0;
@@ -18,7 +18,7 @@
     i {
         width: 100%;
         display: block;
-        height: 1px;
+        height: 2px;
         background-color: $white;
         opacity: 1;
         visibility: visible;
@@ -29,7 +29,7 @@
     &:after {
         left: 0;
         right: 0;
-        height: 1px;
+        height: 2px;
         content: '\A';
         position: absolute;
         background-color: $white;
@@ -38,11 +38,11 @@
     }
 
     &:before {
-        top: 4px;
+        top: 0;
     }
 
     &:after {
-        bottom: 4px;
+        bottom: 0;
     }
 
     &.is-active {

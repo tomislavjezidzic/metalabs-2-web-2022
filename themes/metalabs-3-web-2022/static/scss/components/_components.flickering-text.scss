@@ -1,10 +1,26 @@
 .c-flickering-text {
+
     b {
         font-weight: 500;
 
         &.is-serif {
             font-family: $font-teodor;
             font-weight: 300;
+        }
+    }
+
+    &.u-a3 div {
+        //same as line height
+        height: 0.8em;
+    }
+
+    &.u-a2 div {
+        //same as line height
+        height: 0.81em;
+
+        @include mq(md) {
+            //same as line height
+            height: 0.91em;
         }
     }
 }
