@@ -2713,17 +2713,27 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 }
 
 .u-gradient-transparent-270 {
+  position: absolute;
+  overflow: hidden;
+}
+
+.u-gradient-transparent-270:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 200%;
   background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
   -webkit-backdrop-filter: blur(10.5px);
           backdrop-filter: blur(10.5px);
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+          transform: translate(-50%, -50%) rotate(0deg);
 }
 
-.u-gradient-transparent-270--animated {
-  background-size: 100% 150%;
-  background-position-y: 0;
-  background-repeat: no-repeat;
-  -webkit-animation-name: transparent-270;
-          animation-name: transparent-270;
+.u-gradient-transparent-270--animated:after {
+  -webkit-animation-name: transparent-270-rotate;
+          animation-name: transparent-270-rotate;
   -webkit-animation-duration: 5s;
           animation-duration: 5s;
   -webkit-animation-iteration-count: infinite;
@@ -2820,7 +2830,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     background-position-y: 0;
   }
   100% {
-    background-position-y: 50%;
+    background-position-y: 100%;
   }
 }
 
@@ -2829,7 +2839,49 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     background-position-y: 0;
   }
   100% {
-    background-position-y: 50%;
+    background-position-y: 100%;
+  }
+}
+@-webkit-keyframes transparent-270-rotate {
+  0% {
+    -webkit-transform: translate(-50%, -45%) rotate(-15deg);
+            transform: translate(-50%, -45%) rotate(-15deg);
+  }
+  100% {
+    -webkit-transform: translate(-45%, -50%) rotate(15deg);
+            transform: translate(-45%, -50%) rotate(15deg);
+  }
+}
+@keyframes transparent-270-rotate {
+  0% {
+    -webkit-transform: translate(-50%, -45%) rotate(-15deg);
+            transform: translate(-50%, -45%) rotate(-15deg);
+  }
+  100% {
+    -webkit-transform: translate(-45%, -50%) rotate(15deg);
+            transform: translate(-45%, -50%) rotate(15deg);
+  }
+}
+@media (max-width: 800px) {
+  @-webkit-keyframes transparent-270-rotate {
+    0% {
+      -webkit-transform: translate(-50%, -50%) rotate(-15deg);
+              transform: translate(-50%, -50%) rotate(-15deg);
+    }
+    100% {
+      -webkit-transform: translate(-50%, -50%) rotate(15deg);
+              transform: translate(-50%, -50%) rotate(15deg);
+    }
+  }
+  @keyframes transparent-270-rotate {
+    0% {
+      -webkit-transform: translate(-50%, -50%) rotate(-15deg);
+              transform: translate(-50%, -50%) rotate(-15deg);
+    }
+    100% {
+      -webkit-transform: translate(-50%, -50%) rotate(15deg);
+              transform: translate(-50%, -50%) rotate(15deg);
+    }
   }
 }
 /**

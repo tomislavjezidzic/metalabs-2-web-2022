@@ -1,16 +1,27 @@
 .u-gradient-transparent-270 {
-    background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
-    backdrop-filter: blur(10.5px);
+    position: absolute;
+    overflow: hidden;
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120%;
+        height: 200%;
+        background: linear-gradient(260.19deg, #2400ff 0%, rgba(120, 24, 1, 0) 42.97%, rgba(238, 128, 1, 0) 61.2%, #feb301 100%);
+        backdrop-filter: blur(10.5px);
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
 
     &--animated {
-        background-size: 100% 150%;
-        background-position-y: 0;
-        background-repeat: no-repeat;
-        animation-name: transparent-270;
-        animation-duration: 5s;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-        animation-timing-function: ease-in-out;
+        &:after {
+            animation-name: transparent-270-rotate;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+        }
     }
 }
 
@@ -81,6 +92,28 @@
     }
 
     100% {
-        background-position-y: 50%;
+        background-position-y: 100%;
+    }
+}
+
+@keyframes transparent-270-rotate {
+    0% {
+        transform: translate(-50%, -45%) rotate(-15deg);
+    }
+
+    100% {
+        transform: translate(-45%, -50%) rotate(15deg);
+    }
+}
+
+@include mq(md) {
+    @keyframes transparent-270-rotate {
+        0% {
+            transform: translate(-50%, -50%) rotate(-15deg);
+        }
+
+        100% {
+            transform: translate(-50%, -50%) rotate(15deg);
+        }
     }
 }
