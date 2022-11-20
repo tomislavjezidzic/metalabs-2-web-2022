@@ -1,24 +1,28 @@
 <?php
 /**
  *
- * @var string $url
+ * @var string $desktop_url
+ * @var string $mobile_url
  * @var string $anchor_id
  *
  */
 
-if ( ! empty( $url ) ) {
-	$anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
+if (!empty($desktop_url)) {
+    $anchor = !empty($anchor_id) ? 'id=' . $anchor_id : '';
     ?>
-    <section class="o-section c-full-width-video-module" <?= esc_attr( $anchor ); ?> data-anchor-target="<?= $anchor_id; ?>">
+    <section class="o-section c-full-width-video-module" <?= esc_attr($anchor); ?>
+             data-anchor-target="<?= $anchor_id; ?>">
         <div class="o-container o-container--full-width">
             <video
+                    class="js-video"
+                    data-mobile="<?= $mobile_url; ?>"
                     disablePictureInPicture
                     loop
                     muted
                     playsInline
                     autoplay
                     preload="none"
-                    src="<?= esc_url( $url ); ?>"
+                    src="<?= esc_url($desktop_url); ?>"
             ></video>
         </div>
     </section>

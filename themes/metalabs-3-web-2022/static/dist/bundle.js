@@ -2068,6 +2068,48 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _is_js = _interopRequireDefault(require("is_js"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var Video = /*#__PURE__*/function () {
+  function Video() {
+    _classCallCheck(this, Video);
+    this.DOM = {
+      video: ".js-video"
+    };
+    this.videos = document.querySelectorAll(this.DOM.video);
+  }
+  _createClass(Video, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+      if (this.videos.length < 1) return;
+      this.videos.forEach(function (video) {
+        return _this.singleVideo(video);
+      });
+    }
+  }, {
+    key: "singleVideo",
+    value: function singleVideo(video) {
+      var mobileUrl = video.dataset.mobile;
+      if (_is_js.default.mobile() || window.innerWidth < 800) {
+        video.src = mobileUrl;
+      }
+    }
+  }]);
+  return Video;
+}();
+exports.default = Video;
+
+},{"is_js":"is_js"}],14:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -2188,13 +2230,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 }();
 exports.default = GridHelper;
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 
 var _GridHelper = _interopRequireDefault(require("./helpers/GridHelper"));
 var _Loader = _interopRequireDefault(require("./components/Loader"));
 var _NavigationController = _interopRequireDefault(require("./components/NavigationController"));
 var _Cursor = _interopRequireDefault(require("./components/Cursor"));
+var _Video = _interopRequireDefault(require("./components/Video"));
 var _dSlider = _interopRequireDefault(require("./components/3dSlider"));
 var _HeaderModel = _interopRequireDefault(require("./components/HeaderModel"));
 var _ContactModel = _interopRequireDefault(require("./components/ContactModel"));
@@ -2277,6 +2320,13 @@ ready(function () {
   loader.init();
 
   /**
+   * Loader
+   * @type {Loader}
+   */
+  var video = new _Video.default();
+  video.init();
+
+  /**
    * SmoothScroll
    * @type {SmoothScroll}
    */
@@ -2327,6 +2377,6 @@ ready(function () {
   }, 500);
 });
 
-},{"./components/3dSlider":2,"./components/ContactModel":4,"./components/Cursor":5,"./components/Flicker404":6,"./components/FlickeringText":7,"./components/HeaderModel":8,"./components/Loader":9,"./components/Marquee":10,"./components/NavigationController":11,"./components/SmoothScroll":12,"./helpers/GridHelper":13,"@bornfight/b-scroll-to":"@bornfight/b-scroll-to"}]},{},[14])
+},{"./components/3dSlider":2,"./components/ContactModel":4,"./components/Cursor":5,"./components/Flicker404":6,"./components/FlickeringText":7,"./components/HeaderModel":8,"./components/Loader":9,"./components/Marquee":10,"./components/NavigationController":11,"./components/SmoothScroll":12,"./components/Video":13,"./helpers/GridHelper":14,"@bornfight/b-scroll-to":"@bornfight/b-scroll-to"}]},{},[15])
 
 //# sourceMappingURL=bundle.js.map

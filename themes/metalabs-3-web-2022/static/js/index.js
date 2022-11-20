@@ -16,13 +16,13 @@ import GridHelper from "./helpers/GridHelper";
 import Loader from "./components/Loader";
 import NavigationController from "./components/NavigationController";
 import Cursor from "./components/Cursor";
+import Video from "./components/Video";
 import ThreeDSlider from "./components/3dSlider";
 import HeaderModel from "./components/HeaderModel";
 import ContactModel from "./components/ContactModel";
 import Marquee from "./components/Marquee";
 import FlickeringText from "./components/FlickeringText";
 import SmoothScroll from "./components/SmoothScroll";
-
 
 import ScrollTo from "@bornfight/b-scroll-to";
 import Flicker404 from "./components/Flicker404";
@@ -84,6 +84,13 @@ ready(() => {
      */
     const loader = new Loader(afterLoader, midLoader);
     loader.init();
+
+    /**
+     * Loader
+     * @type {Loader}
+     */
+    const video = new Video();
+    video.init();
 
     /**
      * SmoothScroll
