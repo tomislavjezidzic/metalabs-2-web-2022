@@ -64,19 +64,13 @@ export default class HeaderModel {
     resizeModels() {
         ScrollTrigger.matchMedia({
             "(min-width: 1100px)": () => {
-                if (this.config.modelScale !== 1) {
-                    this.config.modelScale = 1;
-                }
+                this.config.modelScale = 1;
             },
             "(max-width: 801px)": () => {
-                if (this.config.modelScale !== 1.2) {
-                    this.config.modelScale = 1.2;
-                }
+                this.config.modelScale = 1.2;
             },
             "(max-width: 500px)": () => {
-                if (this.config.modelScale !== 1.4) {
-                    this.config.modelScale = 1.4;
-                }
+                this.config.modelScale = 1.4;
             },
         });
     }
@@ -179,17 +173,18 @@ export default class HeaderModel {
         gsap.fromTo(
             model.rotation,
             {
-                y: "+=0.25",
+                y: "+=0.5",
                 x: "-=0.1",
             },
             {
-                y: "-=0.5",
+                y: "-=1",
                 x: "+=0.2",
+                ease: "none",
                 scrollTrigger: {
                     trigger: this.wrapper,
                     start: "top bottom",
                     end: "bottom top",
-                    scrub: 0.8,
+                    scrub: true,
                 },
             },
         );

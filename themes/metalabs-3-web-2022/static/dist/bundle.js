@@ -451,6 +451,7 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       modelOffset: 6,
       modelScale: 1
     };
+    this.resizeModels();
   }
   _createClass(ThreeDSliderModels, [{
     key: "init",
@@ -469,7 +470,6 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       });
       this.loader.setDRACOLoader(dracoLoader);
       THREE.Cache.enabled = true;
-      this.resizeModels();
       this.width = this.models.offsetWidth;
       this.height = this.models.offsetHeight;
       this.initCamera();
@@ -519,24 +519,16 @@ var ThreeDSliderModels = /*#__PURE__*/function () {
       var _this2 = this;
       _ScrollTrigger.default.matchMedia({
         "(min-width: 1100px)": function minWidth1100px() {
-          if (_this2.config.modelScale !== 1.2) {
-            _this2.config.modelScale = 1.2;
-          }
+          _this2.config.modelScale = 1.2;
         },
         "(max-width: 801px)": function maxWidth801px() {
-          if (_this2.config.modelScale !== 1.2) {
-            _this2.config.modelScale = 1.2;
-          }
+          _this2.config.modelScale = 1.2;
         },
         "(max-width: 600px)": function maxWidth600px() {
-          if (_this2.config.modelScale !== 1) {
-            _this2.config.modelScale = 1;
-          }
+          _this2.config.modelScale = 1;
         },
         "(max-width: 475px)": function maxWidth475px() {
-          if (_this2.config.modelScale !== 0.85) {
-            _this2.config.modelScale = 0.85;
-          }
+          _this2.config.modelScale = 0.85;
         }
       });
     }
@@ -799,19 +791,13 @@ var HeaderModel = /*#__PURE__*/function () {
       var _this2 = this;
       _ScrollTrigger.default.matchMedia({
         "(min-width: 1100px)": function minWidth1100px() {
-          if (_this2.config.modelScale !== 1) {
-            _this2.config.modelScale = 1;
-          }
+          _this2.config.modelScale = 1;
         },
         "(max-width: 801px)": function maxWidth801px() {
-          if (_this2.config.modelScale !== 1.2) {
-            _this2.config.modelScale = 1.2;
-          }
+          _this2.config.modelScale = 1.2;
         },
         "(max-width: 500px)": function maxWidth500px() {
-          if (_this2.config.modelScale !== 1.4) {
-            _this2.config.modelScale = 1.4;
-          }
+          _this2.config.modelScale = 1.4;
         }
       });
     }
@@ -912,16 +898,17 @@ var HeaderModel = /*#__PURE__*/function () {
     key: "scrollModelAnimation",
     value: function scrollModelAnimation(model) {
       _gsap.default.fromTo(model.rotation, {
-        y: "+=0.25",
+        y: "+=0.5",
         x: "-=0.1"
       }, {
-        y: "-=0.5",
+        y: "-=1",
         x: "+=0.2",
+        ease: "none",
         scrollTrigger: {
           trigger: this.wrapper,
           start: "top bottom",
           end: "bottom top",
-          scrub: 0.8
+          scrub: true
         }
       });
     }
@@ -1345,6 +1332,7 @@ var HeaderModel = /*#__PURE__*/function () {
       y: 0,
       modelScale: 1
     };
+    this.resizeModels();
   }
   _createClass(HeaderModel, [{
     key: "init",
@@ -1361,7 +1349,6 @@ var HeaderModel = /*#__PURE__*/function () {
       });
       this.loader.setDRACOLoader(dracoLoader);
       THREE.Cache.enabled = true;
-      this.resizeModels();
       this.width = this.wrapper.offsetWidth;
       this.height = this.wrapper.offsetHeight;
       this.initCamera();
@@ -1387,25 +1374,17 @@ var HeaderModel = /*#__PURE__*/function () {
       var _this2 = this;
       _ScrollTrigger.default.matchMedia({
         "(min-width: 1100px)": function minWidth1100px() {
-          if (_this2.config.modelScale !== 0.9) {
-            _this2.config.modelScale = 0.9;
-          }
+          _this2.config.modelScale = 0.9;
         },
         "(max-width: 801px)": function maxWidth801px() {
-          if (_this2.config.modelScale !== 1) {
-            _this2.config.modelScale = 1;
-          }
+          _this2.config.modelScale = 1;
         },
         "(max-width: 600px)": function maxWidth600px() {
-          if (_this2.config.modelScale !== 0.9) {
-            _this2.config.modelScale = 0.9;
-          }
+          _this2.config.modelScale = 0.9;
         },
         "(max-width: 475px)": function maxWidth475px() {
-          if (_this2.config.modelScale !== 1) {
-            _this2.config.modelScale = 1;
-            _this2.config.y = 0.3;
-          }
+          _this2.config.modelScale = 1;
+          _this2.config.y = 0.3;
         }
       });
     }
@@ -1510,13 +1489,14 @@ var HeaderModel = /*#__PURE__*/function () {
         y: "+=0.25",
         x: "-=0.1"
       }, {
-        y: "-=0.5",
+        y: "-=2",
         x: "+=0.2",
+        ease: "none",
         scrollTrigger: {
           trigger: this.header,
-          start: "top top",
+          start: "top top+=120px",
           end: "bottom top",
-          scrub: 0.8
+          scrub: true
         }
       });
     }

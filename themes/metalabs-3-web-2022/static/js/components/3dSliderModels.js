@@ -21,6 +21,8 @@ export default class ThreeDSliderModels {
             modelOffset: 6,
             modelScale: 1,
         };
+
+        this.resizeModels();
     }
 
     init() {
@@ -41,8 +43,6 @@ export default class ThreeDSliderModels {
         this.loader.setDRACOLoader(dracoLoader);
 
         THREE.Cache.enabled = true;
-
-        this.resizeModels();
 
         this.width = this.models.offsetWidth;
         this.height = this.models.offsetHeight;
@@ -106,24 +106,16 @@ export default class ThreeDSliderModels {
     resizeModels() {
         ScrollTrigger.matchMedia({
             "(min-width: 1100px)": () => {
-                if (this.config.modelScale !== 1.2) {
-                    this.config.modelScale = 1.2;
-                }
+                this.config.modelScale = 1.2;
             },
             "(max-width: 801px)": () => {
-                if (this.config.modelScale !== 1.2) {
-                    this.config.modelScale = 1.2;
-                }
+                this.config.modelScale = 1.2;
             },
             "(max-width: 600px)": () => {
-                if (this.config.modelScale !== 1) {
-                    this.config.modelScale = 1;
-                }
+                this.config.modelScale = 1;
             },
             "(max-width: 475px)": () => {
-                if (this.config.modelScale !== 0.85) {
-                    this.config.modelScale = 0.85;
-                }
+                this.config.modelScale = 0.85;
             },
         });
     }

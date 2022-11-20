@@ -23,6 +23,8 @@ export default class HeaderModel {
             y: 0,
             modelScale: 1,
         };
+
+        this.resizeModels();
     }
 
     init() {
@@ -39,8 +41,6 @@ export default class HeaderModel {
         this.loader.setDRACOLoader(dracoLoader);
 
         THREE.Cache.enabled = true;
-
-        this.resizeModels();
 
         this.width = this.wrapper.offsetWidth;
         this.height = this.wrapper.offsetHeight;
@@ -66,25 +66,17 @@ export default class HeaderModel {
     resizeModels() {
         ScrollTrigger.matchMedia({
             "(min-width: 1100px)": () => {
-                if (this.config.modelScale !== 0.9) {
-                    this.config.modelScale = 0.9;
-                }
+                this.config.modelScale = 0.9;
             },
             "(max-width: 801px)": () => {
-                if (this.config.modelScale !== 1) {
-                    this.config.modelScale = 1;
-                }
+                this.config.modelScale = 1;
             },
             "(max-width: 600px)": () => {
-                if (this.config.modelScale !== 0.9) {
-                    this.config.modelScale = 0.9;
-                }
+                this.config.modelScale = 0.9;
             },
             "(max-width: 475px)": () => {
-                if (this.config.modelScale !== 1) {
-                    this.config.modelScale = 1;
-                    this.config.y = 0.3;
-                }
+                this.config.modelScale = 1;
+                this.config.y = 0.3;
             },
         });
     }
@@ -193,13 +185,14 @@ export default class HeaderModel {
                 x: "-=0.1",
             },
             {
-                y: "-=0.5",
+                y: "-=2",
                 x: "+=0.2",
+                ease: "none",
                 scrollTrigger: {
                     trigger: this.header,
-                    start: "top top",
+                    start: "top top+=120px",
                     end: "bottom top",
-                    scrub: 0.8,
+                    scrub: true,
                 },
             },
         );
