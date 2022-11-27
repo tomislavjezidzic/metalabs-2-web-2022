@@ -1536,21 +1536,9 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 .c-flickering-text b.is-serif {
   font-family: "Teodor", serif;
   font-weight: 300;
+  line-height: 0.5em;
 }
 
-.c-flickering-text.u-a3 div {
-  height: 0.8em;
-}
-
-.c-flickering-text.u-a2 div {
-  height: 0.81em;
-}
-
-@media (max-width: 800px) {
-  .c-flickering-text.u-a2 div {
-    height: 0.91em;
-  }
-}
 .c-hamburger {
   border: none;
   margin: 0;
