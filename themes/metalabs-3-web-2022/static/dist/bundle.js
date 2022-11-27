@@ -763,9 +763,6 @@ var HeaderModel = /*#__PURE__*/function () {
       });
       this.loader.setDRACOLoader(dracoLoader);
       THREE.Cache.enabled = true;
-
-      // this.resizeModels();
-
       this.width = this.wrapper.offsetWidth;
       this.height = this.wrapper.offsetHeight;
       this.initCamera();
@@ -786,31 +783,15 @@ var HeaderModel = /*#__PURE__*/function () {
       }, false);
     }
   }, {
-    key: "resizeModels",
-    value: function resizeModels() {
-      var _this2 = this;
-      _ScrollTrigger.default.matchMedia({
-        "(min-width: 1100px)": function minWidth1100px() {
-          _this2.config.modelScale = 1;
-        },
-        "(max-width: 801px)": function maxWidth801px() {
-          _this2.config.modelScale = 1.2;
-        },
-        "(max-width: 500px)": function maxWidth500px() {
-          _this2.config.modelScale = 1.4;
-        }
-      });
-    }
-  }, {
     key: "mouseMove",
     value: function mouseMove() {
-      var _this3 = this;
+      var _this2 = this;
       window.addEventListener("mousemove", function (ev) {
         var mouseY = ev.clientY;
-        _gsap.default.to(_this3.yellowLight.position, {
+        _gsap.default.to(_this2.yellowLight.position, {
           y: -1 - (mouseY - window.innerHeight) / 400
         });
-        _gsap.default.to(_this3.blueLight.position, {
+        _gsap.default.to(_this2.blueLight.position, {
           y: -(mouseY - window.innerHeight) / 400
         });
       });
@@ -880,14 +861,14 @@ var HeaderModel = /*#__PURE__*/function () {
     value: function initModel() {
       var _this$wrapper$dataset,
         _this$wrapper$dataset2,
-        _this4 = this;
+        _this3 = this;
       if (((_this$wrapper$dataset = this.wrapper.dataset) === null || _this$wrapper$dataset === void 0 ? void 0 : _this$wrapper$dataset.model) === "" || ((_this$wrapper$dataset2 = this.wrapper.dataset) === null || _this$wrapper$dataset2 === void 0 ? void 0 : _this$wrapper$dataset2.model) === null) return;
       this.loader.load(this.wrapper.dataset.model, function (gltf) {
         gltf.scene.rotation.y = -Math.PI / 2;
-        gltf.scene.scale.set(_this4.config.modelScale, _this4.config.modelScale, _this4.config.modelScale);
-        _this4.model = gltf.scene;
-        _this4.scrollModelAnimation(gltf.scene);
-        _this4.scene.add(gltf.scene);
+        gltf.scene.scale.set(_this3.config.modelScale, _this3.config.modelScale, _this3.config.modelScale);
+        _this3.model = gltf.scene;
+        _this3.scrollModelAnimation(gltf.scene);
+        _this3.scene.add(gltf.scene);
       }, function (xhr) {
         // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
       }, function (error) {
@@ -919,8 +900,7 @@ var HeaderModel = /*#__PURE__*/function () {
   }, {
     key: "onWindowResize",
     value: function onWindowResize() {
-      // this.resizeModels();
-
+      if (!this.model) return;
       this.model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
       this.camera.aspect = this.wrapper.offsetWidth / this.wrapper.offsetHeight;
       this.camera.updateProjectionMatrix();
@@ -933,11 +913,11 @@ var HeaderModel = /*#__PURE__*/function () {
   }, {
     key: "animate",
     value: function animate() {
-      var _this5 = this;
+      var _this4 = this;
       var raf = null;
       var animate = function animate() {
-        _this5.renderer.render(_this5.scene, _this5.camera);
-        if (_this5.renderer != null) {
+        _this4.renderer.render(_this4.scene, _this4.camera);
+        if (_this4.renderer != null) {
           raf = requestAnimationFrame(animate);
         }
       };
@@ -1330,7 +1310,7 @@ var HeaderModel = /*#__PURE__*/function () {
     // config
     this.config = {
       y: 0,
-      modelScale: 1
+      modelScale: 0.9
     };
     this.resizeModels();
   }
@@ -1373,8 +1353,8 @@ var HeaderModel = /*#__PURE__*/function () {
     value: function resizeModels() {
       var _this2 = this;
       _ScrollTrigger.default.matchMedia({
-        "(min-width: 1100px)": function minWidth1100px() {
-          _this2.config.modelScale = 0.9;
+        "(max-width: 1099px)": function maxWidth1099px() {
+          _this2.config.modelScale = 1;
         },
         "(max-width: 801px)": function maxWidth801px() {
           _this2.config.modelScale = 1;
@@ -1507,11 +1487,13 @@ var HeaderModel = /*#__PURE__*/function () {
   }, {
     key: "onWindowResize",
     value: function onWindowResize() {
-      this.resizeModels();
+      if (!this.model) return;
+      console.log(this.config.modelScale);
       this.model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
       this.camera.aspect = this.wrapper.offsetWidth / this.wrapper.offsetHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(this.wrapper.offsetWidth, this.wrapper.offsetHeight);
+      console.log(this.wrapper.offsetHeight);
     }
 
     /**
@@ -1560,6 +1542,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _gsap = _interopRequireDefault(require("gsap"));
 var _lottie_light = _interopRequireDefault(require("lottie-web/build/player/lottie_light"));
+var _is_js = _interopRequireDefault(require("is_js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1607,6 +1590,9 @@ var Loader = /*#__PURE__*/function () {
       var animation = this.wrapper.querySelector(this.DOM.animation);
       var animationWrapper = this.wrapper.querySelector(this.DOM.animationWrapper);
       var json = animation.dataset.loader;
+      if (_is_js.default.mobile() || window.innerWidth < 800) {
+        json = animation.dataset.loaderMobile;
+      }
       if (!json) return;
       var lottieAnim = _lottie_light.default.loadAnimation({
         container: animation,
@@ -1683,7 +1669,7 @@ var Loader = /*#__PURE__*/function () {
 }();
 exports.default = Loader;
 
-},{"gsap":"gsap","lottie-web/build/player/lottie_light":"lottie-web/build/player/lottie_light"}],10:[function(require,module,exports){
+},{"gsap":"gsap","is_js":"is_js","lottie-web/build/player/lottie_light":"lottie-web/build/player/lottie_light"}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2036,6 +2022,12 @@ var SmoothScroll = /*#__PURE__*/function () {
             smooth: 1,
             effects: true,
             normalizeScroll: true
+          });
+        },
+        "(max-width: 900px)": function maxWidth900px() {
+          _gsap.default.killTweensOf([wrapper, content]);
+          _gsap.default.set([wrapper, content], {
+            clearProps: true
           });
         }
       });

@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import lottie from "lottie-web/build/player/lottie_light";
+import is from "is_js";
 
 export default class Loader {
     constructor(afterLoader, midLoader, scrollLock) {
@@ -47,7 +48,11 @@ export default class Loader {
         const animation = this.wrapper.querySelector(this.DOM.animation);
         const animationWrapper = this.wrapper.querySelector(this.DOM.animationWrapper);
 
-        const json = animation.dataset.loader;
+        let json = animation.dataset.loader;
+
+        if (is.mobile() || window.innerWidth < 800) {
+            json = animation.dataset.loaderMobile;
+        }
 
         if (!json) return;
 

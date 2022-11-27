@@ -21,7 +21,7 @@ export default class HeaderModel {
         // config
         this.config = {
             y: 0,
-            modelScale: 1,
+            modelScale: 0.9,
         };
 
         this.resizeModels();
@@ -65,8 +65,8 @@ export default class HeaderModel {
 
     resizeModels() {
         ScrollTrigger.matchMedia({
-            "(min-width: 1100px)": () => {
-                this.config.modelScale = 0.9;
+            "(max-width: 1099px)": () => {
+                this.config.modelScale = 1;
             },
             "(max-width: 801px)": () => {
                 this.config.modelScale = 1;
@@ -202,7 +202,9 @@ export default class HeaderModel {
      *
      */
     onWindowResize() {
-        this.resizeModels();
+        if (!this.model) return;
+
+        console.log(this.config.modelScale);
 
         this.model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
 
@@ -210,6 +212,7 @@ export default class HeaderModel {
         this.camera.updateProjectionMatrix();
 
         this.renderer.setSize(this.wrapper.offsetWidth, this.wrapper.offsetHeight);
+        console.log(this.wrapper.offsetHeight);
     }
 
     /**
