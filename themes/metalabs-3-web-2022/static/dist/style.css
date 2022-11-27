@@ -1382,6 +1382,11 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   width: 100%;
 }
 
+.c-3d-slider .swiper-button-prev:after,
+.c-3d-slider .swiper-button-next:after {
+  display: none !important;
+}
+
 .c-3d-slider .swiper-pagination-bullet {
   width: 12px;
   height: 19px;
