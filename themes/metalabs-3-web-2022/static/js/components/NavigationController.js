@@ -13,7 +13,7 @@ export default class NavigationController {
         /**
          * Navigation DOM selectors
          * Navigation DOM state CSS classes
-         * @type {{navigation: string, states: {navigationSlideUp: string, navigationScrolled: string, navigationFixed: string, active: string, mobileOpened: string}}}
+         * @type {{navigation: string, navigationItem: string, hamburger: string, navigationList: string, states: {navigationSlideUp: string, navigationScrolled: string, navigationFixed: string, active: string, mobileOpened: string}}}
          */
         this.DOM = {
             navigation: ".js-navigation",
