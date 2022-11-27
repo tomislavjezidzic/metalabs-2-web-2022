@@ -204,15 +204,12 @@ export default class HeaderModel {
     onWindowResize() {
         if (!this.model) return;
 
-        console.log(this.config.modelScale);
-
         this.model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
 
         this.camera.aspect = this.wrapper.offsetWidth / this.wrapper.offsetHeight;
         this.camera.updateProjectionMatrix();
 
         this.renderer.setSize(this.wrapper.offsetWidth, this.wrapper.offsetHeight);
-        console.log(this.wrapper.offsetHeight);
     }
 
     /**
