@@ -1488,12 +1488,10 @@ var HeaderModel = /*#__PURE__*/function () {
     key: "onWindowResize",
     value: function onWindowResize() {
       if (!this.model) return;
-      console.log(this.config.modelScale);
       this.model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
       this.camera.aspect = this.wrapper.offsetWidth / this.wrapper.offsetHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(this.wrapper.offsetWidth, this.wrapper.offsetHeight);
-      console.log(this.wrapper.offsetHeight);
     }
 
     /**
@@ -1572,14 +1570,18 @@ var Loader = /*#__PURE__*/function () {
     this.topLogoOffset = (_this$logo = this.logo) === null || _this$logo === void 0 ? void 0 : _this$logo.top;
     this.leftLogoOffset = (_this$logo2 = this.logo) === null || _this$logo2 === void 0 ? void 0 : _this$logo2.left;
     this.additionOffset = 10 / 1440 * window.innerWidth;
-    _gsap.default.set(this.header, {
-      x: window.innerWidth * 0.1,
-      y: window.innerWidth * 0.1,
-      autoAlpha: 0
-    });
-    _gsap.default.set(this.nav, {
-      autoAlpha: 0
-    });
+    if (this.header) {
+      _gsap.default.set(this.header, {
+        x: window.innerWidth * 0.1,
+        y: window.innerWidth * 0.1,
+        autoAlpha: 0
+      });
+    }
+    if (this.nav) {
+      _gsap.default.set(this.nav, {
+        autoAlpha: 0
+      });
+    }
     this.scrollLock = scrollLock;
   }
   _createClass(Loader, [{
@@ -1825,8 +1827,6 @@ var NavigationController = /*#__PURE__*/function () {
       if (this.navigation !== null) {
         console.log("Navigation init()");
         this.navigationController();
-      } else {
-        console.error("".concat(this.DOM.navigation, " does not exist in the DOM!"));
       }
       if (this.navigationList !== null && this.hamburger !== null) this.mobileNavigation();
       if (this.navigationList && this.bodyItems.length > 0) this.activeController();
@@ -1959,6 +1959,13 @@ var NavigationController = /*#__PURE__*/function () {
           _this2.closeNavigation();
         }
       });
+      if (this.navigationItems.length > 0) {
+        this.navigationItems.forEach(function (item) {
+          item.addEventListener("click", function () {
+            _this2.closeNavigation();
+          });
+        });
+      }
     }
   }, {
     key: "openNavigation",

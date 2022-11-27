@@ -30,15 +30,19 @@ export default class Loader {
         this.leftLogoOffset = this.logo?.left;
         this.additionOffset = (10 / 1440) * window.innerWidth;
 
-        gsap.set(this.header, {
-            x: window.innerWidth * 0.1,
-            y: window.innerWidth * 0.1,
-            autoAlpha: 0,
-        });
+        if (this.header) {
+            gsap.set(this.header, {
+                x: window.innerWidth * 0.1,
+                y: window.innerWidth * 0.1,
+                autoAlpha: 0,
+            });
+        }
 
-        gsap.set(this.nav, {
-            autoAlpha: 0,
-        });
+        if (this.nav) {
+            gsap.set(this.nav, {
+                autoAlpha: 0,
+            });
+        }
 
         this.scrollLock = scrollLock;
     }
