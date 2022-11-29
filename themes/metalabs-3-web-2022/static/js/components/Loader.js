@@ -54,7 +54,7 @@ export default class Loader {
 
         let json = animation.dataset.loader;
 
-        if (is.mobile() || window.innerWidth < 800) {
+        if ((is.mobile() || window.innerWidth < 800) && animation.dataset.loaderMobile) {
             json = animation.dataset.loaderMobile;
         }
 

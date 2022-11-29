@@ -1592,7 +1592,7 @@ var Loader = /*#__PURE__*/function () {
       var animation = this.wrapper.querySelector(this.DOM.animation);
       var animationWrapper = this.wrapper.querySelector(this.DOM.animationWrapper);
       var json = animation.dataset.loader;
-      if (_is_js.default.mobile() || window.innerWidth < 800) {
+      if ((_is_js.default.mobile() || window.innerWidth < 800) && animation.dataset.loaderMobile) {
         json = animation.dataset.loaderMobile;
       }
       if (!json) return;
