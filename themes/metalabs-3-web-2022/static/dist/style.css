@@ -972,6 +972,22 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     padding-bottom: 1.0416666667vw;
   }
 }
+@media (max-width: 800px) {
+  .c-navigation.has-scrolled {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+@media (max-width: 800px) and (min-width: 1920px) {
+  .c-navigation.has-scrolled {
+    padding-top: 2.0833333333vw;
+  }
+}
+@media (max-width: 800px) and (min-width: 1920px) {
+  .c-navigation.has-scrolled {
+    padding-bottom: 2.0833333333vw;
+  }
+}
 .c-navigation.slide-up {
   -webkit-transform: translateY(-105%);
           transform: translateY(-105%);
