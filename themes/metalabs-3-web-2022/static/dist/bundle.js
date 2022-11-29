@@ -1450,12 +1450,33 @@ var HeaderModel = /*#__PURE__*/function () {
         _this4 = this;
       if (((_this$wrapper$dataset = this.wrapper.dataset) === null || _this$wrapper$dataset === void 0 ? void 0 : _this$wrapper$dataset.model) === "" || ((_this$wrapper$dataset2 = this.wrapper.dataset) === null || _this$wrapper$dataset2 === void 0 ? void 0 : _this$wrapper$dataset2.model) === null) return;
       this.loader.load(this.wrapper.dataset.model, function (gltf) {
-        gltf.scene.rotation.y = -Math.PI / 2;
         gltf.scene.scale.set(_this4.config.modelScale, _this4.config.modelScale, _this4.config.modelScale);
         gltf.scene.position.y = _this4.config.y;
+        gltf.scene.position.x = 3;
+        gltf.scene.rotation.y = 3;
+        gltf.scene.rotation.x -= 0.1;
+        if (window.innerWidth < 801) {
+          gltf.scene.position.x = 4;
+        }
         _this4.model = gltf.scene;
-        _this4.scrollModelAnimation(gltf.scene);
         _this4.scene.add(gltf.scene);
+        document.addEventListener("afterLoader", function () {
+          _gsap.default.to(gltf.scene.position, {
+            x: 0,
+            delay: 0.2,
+            duration: 0.8,
+            ease: "power3.out"
+          });
+          _gsap.default.to(gltf.scene.rotation, {
+            y: -Math.PI / 2,
+            delay: 0.2,
+            duration: 0.8,
+            ease: "power3.out",
+            onComplete: function onComplete() {
+              return _this4.scrollModelAnimation(gltf.scene);
+            }
+          });
+        });
       }, function (xhr) {
         // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
       }, function (error) {
@@ -1466,15 +1487,15 @@ var HeaderModel = /*#__PURE__*/function () {
     key: "scrollModelAnimation",
     value: function scrollModelAnimation(model) {
       _gsap.default.fromTo(model.rotation, {
-        y: "+=0.25",
-        x: "-=0.1"
+        y: -Math.PI / 2,
+        x: -0.1
       }, {
-        y: "-=2",
-        x: "+=0.2",
+        y: "-=2.2",
+        x: "+=0.5",
         ease: "none",
         scrollTrigger: {
           trigger: this.header,
-          start: "top top+=120px",
+          start: "top top",
           end: "bottom top",
           scrub: true
         }
@@ -1570,10 +1591,11 @@ var Loader = /*#__PURE__*/function () {
     this.topLogoOffset = (_this$logo = this.logo) === null || _this$logo === void 0 ? void 0 : _this$logo.top;
     this.leftLogoOffset = (_this$logo2 = this.logo) === null || _this$logo2 === void 0 ? void 0 : _this$logo2.left;
     this.additionOffset = 10 / 1440 * window.innerWidth;
+    this.headerOffset = window.innerWidth * 0.1;
     if (this.header) {
       _gsap.default.set(this.header, {
-        x: window.innerWidth * 0.1,
-        y: window.innerWidth * 0.1,
+        x: this.headerOffset,
+        y: this.headerOffset,
         autoAlpha: 0
       });
     }
@@ -1651,15 +1673,17 @@ var Loader = /*#__PURE__*/function () {
         autoAlpha: 0
       }, "nav").to(this.nav, {
         autoAlpha: 1
-      }, "nav").add("content", "-=0.1").to(this.header, {
-        y: 0,
+      }, "nav").add("content", "-=0.5").to(this.header, {
+        y: this.headerOffset / 3,
+        x: this.headerOffset / 1.2,
         autoAlpha: 0.5,
-        duration: 0.6,
+        duration: 0.7,
         ease: "power3.in"
       }, "content").to(this.header, {
         x: 0,
+        y: 0,
         autoAlpha: 1,
-        duration: 0.6,
+        duration: 0.8,
         ease: "power3.out",
         onStart: function onStart() {
           return document.dispatchEvent(_this2.afterLoader);

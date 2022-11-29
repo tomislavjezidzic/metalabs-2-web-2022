@@ -156,17 +156,38 @@ export default class HeaderModel {
         this.loader.load(
             this.wrapper.dataset.model,
             (gltf) => {
-                gltf.scene.rotation.y = -Math.PI / 2;
-
                 gltf.scene.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
 
                 gltf.scene.position.y = this.config.y;
 
+                gltf.scene.position.x = 3;
+                gltf.scene.rotation.y = 3;
+                gltf.scene.rotation.x -= 0.1;
+
+                if (window.innerWidth < 801) {
+                    gltf.scene.position.x = 4;
+                }
+
                 this.model = gltf.scene;
 
-                this.scrollModelAnimation(gltf.scene);
-
                 this.scene.add(gltf.scene);
+
+                document.addEventListener("afterLoader", () => {
+                    gsap.to(gltf.scene.position, {
+                        x: 0,
+                        delay: 0.2,
+                        duration: 0.8,
+                        ease: "power3.out",
+                    });
+
+                    gsap.to(gltf.scene.rotation, {
+                        y: -Math.PI / 2,
+                        delay: 0.2,
+                        duration: 0.8,
+                        ease: "power3.out",
+                        onComplete: () => this.scrollModelAnimation(gltf.scene),
+                    });
+                });
             },
             (xhr) => {
                 // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
@@ -181,16 +202,16 @@ export default class HeaderModel {
         gsap.fromTo(
             model.rotation,
             {
-                y: "+=0.25",
-                x: "-=0.1",
+                y: -Math.PI / 2,
+                x: -0.1,
             },
             {
-                y: "-=2",
-                x: "+=0.2",
+                y: "-=2.2",
+                x: "+=0.5",
                 ease: "none",
                 scrollTrigger: {
                     trigger: this.header,
-                    start: "top top+=120px",
+                    start: "top top",
                     end: "bottom top",
                     scrub: true,
                 },

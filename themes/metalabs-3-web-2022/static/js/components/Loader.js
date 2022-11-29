@@ -29,11 +29,12 @@ export default class Loader {
         this.topLogoOffset = this.logo?.top;
         this.leftLogoOffset = this.logo?.left;
         this.additionOffset = (10 / 1440) * window.innerWidth;
+        this.headerOffset = window.innerWidth * 0.1;
 
         if (this.header) {
             gsap.set(this.header, {
-                x: window.innerWidth * 0.1,
-                y: window.innerWidth * 0.1,
+                x: this.headerOffset,
+                y: this.headerOffset,
                 autoAlpha: 0,
             });
         }
@@ -135,21 +136,23 @@ export default class Loader {
                 },
                 "nav",
             )
-            .add("content", "-=0.1")
+            .add("content", "-=0.5")
             .to(
                 this.header,
                 {
-                    y: 0,
+                    y: this.headerOffset / 3,
+                    x: this.headerOffset / 1.2,
                     autoAlpha: 0.5,
-                    duration: 0.6,
+                    duration: 0.7,
                     ease: "power3.in",
                 },
                 "content",
             )
             .to(this.header, {
                 x: 0,
+                y: 0,
                 autoAlpha: 1,
-                duration: 0.6,
+                duration: 0.8,
                 ease: "power3.out",
                 onStart: () => document.dispatchEvent(this.afterLoader),
             });
