@@ -900,6 +900,7 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
       -ms-flex-align: center;
           align-items: center;
   overflow: hidden;
+  z-index: 20;
 }
 
 .c-loader.is-transparent {
@@ -1800,6 +1801,254 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   height: auto;
 }
 
+.c-cookie-message {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+@media (min-width: 480px) {
+  .c-cookie-message {
+    padding-top: calc(0.8333333333vw + 12px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-cookie-message {
+    padding-top: 24px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-cookie-message {
+    padding-top: 1.25vw;
+  }
+}
+@media (min-width: 480px) {
+  .c-cookie-message {
+    padding-bottom: calc(0.8333333333vw + 12px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-cookie-message {
+    padding-bottom: 24px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-cookie-message {
+    padding-bottom: 1.25vw;
+  }
+}
+.c-cookie-message__inner {
+  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(22, 1fr);
+}
+
+@media (min-width: 480px) {
+  .c-cookie-message__inner {
+    gap: calc(0.4166666667vw + 6px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-cookie-message__inner {
+    gap: 12px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-cookie-message__inner {
+    gap: 0.625vw;
+  }
+}
+@media (max-width: 800px) {
+  .c-cookie-message__inner {
+    grid-template-columns: 1fr auto;
+  }
+}
+@media (max-width: 480px) {
+  .c-cookie-message__inner {
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) and (min-width: 480px) {
+  .c-cookie-message__inner {
+    gap: calc(0.8333333333vw + 8px);
+  }
+}
+@media (max-width: 480px) and (min-width: 1440px) {
+  .c-cookie-message__inner {
+    gap: 20px;
+  }
+}
+@media (max-width: 480px) and (min-width: 1920px) {
+  .c-cookie-message__inner {
+    gap: 1.0416666667vw;
+  }
+}
+.c-cookie-message__arrow {
+  grid-column: span 5;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.c-cookie-message__arrow .u-icon {
+  width: 55px;
+}
+
+@media (min-width: 1920px) {
+  .c-cookie-message__arrow .u-icon {
+    width: 2.8645833333vw;
+  }
+}
+@media (max-width: 1140px) {
+  .c-cookie-message__arrow {
+    grid-column: span 3;
+  }
+}
+@media (max-width: 800px) {
+  .c-cookie-message__arrow {
+    display: none;
+  }
+}
+.c-cookie-message__text {
+  grid-column: span 12;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 1140px) {
+  .c-cookie-message__text {
+    grid-column: span 14;
+  }
+}
+.c-cookie-message__text p {
+  max-width: 40em;
+}
+
+@media (max-width: 800px) {
+  .c-cookie-message__text {
+    grid-column: span 1;
+  }
+}
+.c-cookie-message__actions {
+  gap: 40px;
+  grid-column: span 5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+@media (min-width: 480px) {
+  .c-cookie-message__actions {
+    gap: calc(2.5vw + 28px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-cookie-message__actions {
+    gap: 64px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-cookie-message__actions {
+    gap: 3.3333333333vw;
+  }
+}
+@media (max-width: 800px) {
+  .c-cookie-message__actions {
+    grid-column: span 1;
+  }
+}
+.c-cookie-message__button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  outline: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-decoration: none;
+  text-transform: none;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  vertical-align: top;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  width: auto;
+  background: transparent;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  cursor: none;
+}
+
+.c-cookie-message__button:hover, .c-cookie-message__button:focus, .c-cookie-message__button:active {
+  outline: none;
+}
+
+@media (min-width: 480px) {
+  .c-cookie-message__button {
+    padding-top: calc(0.4166666667vw + 6px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-cookie-message__button {
+    padding-top: 12px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-cookie-message__button {
+    padding-top: 0.625vw;
+  }
+}
+@media (min-width: 480px) {
+  .c-cookie-message__button {
+    padding-bottom: calc(0.4166666667vw + 6px);
+  }
+}
+@media (min-width: 1440px) {
+  .c-cookie-message__button {
+    padding-bottom: 12px;
+  }
+}
+@media (min-width: 1920px) {
+  .c-cookie-message__button {
+    padding-bottom: 0.625vw;
+  }
+}
 /**
  * Modules
  */

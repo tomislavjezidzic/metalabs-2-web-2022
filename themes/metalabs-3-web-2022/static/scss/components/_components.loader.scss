@@ -9,6 +9,7 @@
     flex-wrap: wrap;
     align-items: center;
     overflow: hidden;
+    z-index: getZindex("loader");
 
     &.is-transparent {
         background-color: transparent;

@@ -2,39 +2,81 @@
     @include fluidValue("padding-top", "s-24");
     @include fluidValue("padding-bottom", "s-24");
 
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
+    z-index: getZindex("navigation");
 
-    &__inner{
+    &__inner {
+        @include fluidValue("gap", "s-12");
+
         display: grid;
         grid-template-columns: repeat(22, 1fr);
-    }
 
-    &__arrow{
-        grid-column: span 5;
-        align-items: center;
+        @include mq(md) {
+            grid-template-columns: 1fr auto;
+        }
 
-        .u-icon{
-            @include fluidValue("width", null, 55px);
+        @include mq(sm) {
+            @include fluidValue("gap", "s-20");
+            grid-template-columns: 1fr;
         }
     }
 
-    &__text{
-        grid-column: span 12;
+    &__arrow {
+        grid-column: span 5;
+        align-items: center;
+
+        .u-icon {
+            @include fluidValue("width", null, 55px);
+        }
+
+        @include mq(lg) {
+            grid-column: span 3;
+        }
+
+        @include mq(md) {
+            display: none;
+        }
     }
 
-    &__actions{
+    &__text {
+        grid-column: span 12;
+        display: flex;
+        align-items: center;
+
+        @include mq(lg) {
+            grid-column: span 14;
+        }
+
+        p {
+            max-width: em(560px, 14px);
+        }
+
+        @include mq(md) {
+            grid-column: span 1;
+        }
+    }
+
+    &__actions {
         @include fluidValue("gap", "s-64");
 
         grid-column: span 5;
         display: flex;
         align-items: center;
         justify-content: flex-end;
+
+        @include mq(md) {
+            grid-column: span 1;
+        }
     }
 
-    &__button{
-        @include button-reset
+    &__button {
+        @include button-reset;
+        @include fluidValue("padding-top", "s-12");
+        @include fluidValue("padding-bottom", "s-12");
+
+        cursor: none;
     }
 }

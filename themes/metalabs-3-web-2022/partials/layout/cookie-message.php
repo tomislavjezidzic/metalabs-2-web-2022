@@ -1,5 +1,5 @@
 <!-- COOKIE MESSAGE -->
-<div class="c-cookie-message js-cookie-message-wrapper u-gradient-blur-filled-270 u-gradient-blur-filled-270--animated">
+<div class="c-cookie-message js-cookie-message-wrapper u-gradient-filled-270 u-gradient-filled-270--animated">
     <div class="o-container o-container--wide">
         <div class="c-cookie-message__inner">
             <div class="c-cookie-message__arrow">
@@ -12,9 +12,9 @@
                     agree to using cookies in accordance with our Privacy Policy.
                 </p>
             </div>
-            <div class="c-cookie-message__actions js-flickering-text c-flickering-text">
-                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase"><b>Decline</b></button>
-                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase"><b>Accept</b></button>
+            <div class="c-cookie-message__actions">
+                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif">Decline</button>
+                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif">Accept</button>
             </div>
         </div>
     </div>

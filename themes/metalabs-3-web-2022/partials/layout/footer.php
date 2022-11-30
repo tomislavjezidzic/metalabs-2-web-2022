@@ -48,4 +48,3 @@ $link_helper  = new LinkHelper();
     <!-- //FOOTER -->
 
 <?php
-//get_partial( 'layout/cookie-message' );
