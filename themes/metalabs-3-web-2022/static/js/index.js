@@ -29,6 +29,7 @@ import SmoothScroll from "./components/SmoothScroll";
 
 import ScrollTo from "@bornfight/b-scroll-to";
 import Flicker404 from "./components/Flicker404";
+import CookiePopupController from "./components/CookiePopupController";
 
 /**
  * Check if document is ready cross-browser
@@ -77,7 +78,7 @@ ready(() => {
     const afterLoader = new Event("afterLoader");
     const midLoader = new Event("midLoader");
 
-    const scrollLock = new ScrollLock()
+    const scrollLock = new ScrollLock();
 
     /**
      * COMPONENTS INIT
@@ -140,6 +141,9 @@ ready(() => {
 
     const flicker404 = new Flicker404();
     flicker404.init();
+
+    const cookiePopup = new CookiePopupController();
+    cookiePopup.init();
 
     setTimeout(() => {
         /**

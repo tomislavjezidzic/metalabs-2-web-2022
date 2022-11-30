@@ -7,6 +7,16 @@
     left: 0;
     width: 100%;
     z-index: getZindex("navigation");
+    transform: translateY(101%);
+    opacity: 0;
+    visibility: hidden;
+    transition: getTransition();
+
+    &.has-no-cookie{
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
 
     &__inner {
         @include fluidValue("gap", "s-12");

@@ -12,6 +12,7 @@ export default class CookiePopupController {
         this.DOM = {
             cookiePopup: ".js-cookie-message",
             cookiePopupClose: ".js-cookie-message-close",
+            cookiePopupAccept: ".js-cookie-message-accept",
             cookieName: "metalabs-3-cookie-acceptance",
             states: {
                 hasNoCookie: "has-no-cookie",
@@ -42,10 +43,24 @@ export default class CookiePopupController {
      * Start cookie popup events
      */
     startEvents() {
-        this.cookiePopup.classList.add(this.DOM.states.hasNoCookie);
+        document.addEventListener("afterLoader", () => {
+            setTimeout(() => {
+                this.cookiePopup.classList.add(this.DOM.states.hasNoCookie);
+            }, 500);
+        });
+
         const closeButton = this.cookiePopup.querySelector(this.DOM.cookiePopupClose);
+        const acceptButton = this.cookiePopup.querySelector(this.DOM.cookiePopupClose);
+
         if (closeButton !== null) {
             closeButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                this.closePopup();
+                this.setCookie();
+            });
+        }
+        if (acceptButton !== null) {
+            acceptButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 this.closePopup();
                 this.setCookie();
