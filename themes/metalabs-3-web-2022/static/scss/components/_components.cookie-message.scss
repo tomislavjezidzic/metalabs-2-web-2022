@@ -1,2 +1,40 @@
 .c-cookie-message {
+    @include fluidValue("padding-top", "s-24");
+    @include fluidValue("padding-bottom", "s-24");
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    &__inner{
+        display: grid;
+        grid-template-columns: repeat(22, 1fr);
+    }
+
+    &__arrow{
+        grid-column: span 5;
+        align-items: center;
+
+        .u-icon{
+            @include fluidValue("width", null, 55px);
+        }
+    }
+
+    &__text{
+        grid-column: span 12;
+    }
+
+    &__actions{
+        @include fluidValue("gap", "s-64");
+
+        grid-column: span 5;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    &__button{
+        @include button-reset
+    }
 }
