@@ -13,8 +13,12 @@
                 </p>
             </div>
             <div class="c-cookie-message__actions">
-                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif js-cookie-message-close">Decline</button>
-                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif js-cookie-message-accept">Accept</button>
+                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif js-cookie-message-close">
+                    Decline
+                </button>
+                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif js-cookie-message-accept"
+                        onclick="consentGranted('update');">Accept
+                </button>
             </div>
         </div>
     </div>

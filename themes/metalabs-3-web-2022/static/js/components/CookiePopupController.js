@@ -50,7 +50,7 @@ export default class CookiePopupController {
         });
 
         const closeButton = this.cookiePopup.querySelector(this.DOM.cookiePopupClose);
-        const acceptButton = this.cookiePopup.querySelector(this.DOM.cookiePopupClose);
+        const acceptButton = this.cookiePopup.querySelector(this.DOM.cookiePopupAccept);
 
         if (closeButton !== null) {
             closeButton.addEventListener("click", (event) => {

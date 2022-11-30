@@ -11,7 +11,7 @@
  * @subpackage angelo
  */
 
-use metalabs3Web2022\acf\ACFProvider;use metalabs3Web2022\bundles\Metalabs3Web2022Assets;
+use metalabs3Web2022\bundles\Metalabs3Web2022Assets;
 use metalabs3Web2022\bundles\Metalabs3Web2022ProductionAssets;
 
 if ( defined( 'LOCAL' ) && LOCAL === true ) {
@@ -19,10 +19,52 @@ if ( defined( 'LOCAL' ) && LOCAL === true ) {
 } else {
 	Metalabs3Web2022ProductionAssets::register();
 }
+
+$meta_labs_cookie = $_COOKIE['metalabs-3-cookie-acceptance'];
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<?php if ( ! defined( 'LOCAL' ) ) { ?>
+    <script>
+        // Define dataLayer and the gtag function.
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        function consentGranted(action) {
+            gtag('consent', action, {
+                'ad_storage': 'granted',
+                'analytics_storage': 'granted',
+                'functionality_storage': 'granted',
+                'personalization_storage': 'granted',
+                'security_storage': 'granted',
+            });
+        }
+
+        function consentDefault(action) {
+            // Default ad_storage to 'denied'.
+            gtag('consent', action, {
+                'ad_storage': 'denied',
+                'analytics_storage': 'denied',
+                'functionality_storage': 'denied',
+                'personalization_storage': 'denied',
+                'security_storage': 'denied',
+            });
+        }
+
+        let metalabsCookie = '<?= ! empty( $meta_labs_cookie ) ? $meta_labs_cookie : ""; ?>';
+
+        if (metalabsCookie) {
+            consentGranted("default");
+        } else {
+            consentDefault("default");
+        }
+    </script>
+
+
+	<?php
+	if ( ! defined( 'LOCAL' ) ) { ?>
         <!-- Google Tag Manager -->
         <script>(function (w, d, s, l, i) {
                 w[l] = w[l] || [];
@@ -37,6 +79,22 @@ if ( defined( 'LOCAL' ) && LOCAL === true ) {
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
                 f.parentNode.insertBefore(j, f);
             })(window, document, 'script', 'dataLayer', 'GTM-5KMWK7K');</script>
+        <!-- End Google Tag Manager -->
+	<?php } else { ?>
+        <!-- Google Tag Manager -->
+        <script>(function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-NNLPMDZ');</script>
         <!-- End Google Tag Manager -->
 	<?php } ?>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -63,6 +121,13 @@ if ( defined( 'LOCAL' ) && LOCAL === true ) {
     <!-- Google Tag Manager (noscript) -->
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KMWK7K"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+<?php } else { ?>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNLPMDZ"
                 height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
