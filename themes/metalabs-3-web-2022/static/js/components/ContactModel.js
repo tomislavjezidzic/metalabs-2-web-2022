@@ -38,8 +38,6 @@ export default class HeaderModel {
 
         THREE.Cache.enabled = true;
 
-        // this.resizeModels();
-
         this.width = this.wrapper.offsetWidth;
         this.height = this.wrapper.offsetHeight;
 
@@ -59,20 +57,6 @@ export default class HeaderModel {
 
         // handle resize
         window.addEventListener("resize", () => this.onWindowResize(), false);
-    }
-
-    resizeModels() {
-        ScrollTrigger.matchMedia({
-            "(min-width: 1100px)": () => {
-                this.config.modelScale = 1;
-            },
-            "(max-width: 801px)": () => {
-                this.config.modelScale = 1.2;
-            },
-            "(max-width: 500px)": () => {
-                this.config.modelScale = 1.4;
-            },
-        });
     }
 
     mouseMove() {
@@ -194,7 +178,7 @@ export default class HeaderModel {
      *
      */
     onWindowResize() {
-        // this.resizeModels();
+        if (!this.model) return;
 
         this.model.scale.set(this.config.modelScale, this.config.modelScale, this.config.modelScale);
 

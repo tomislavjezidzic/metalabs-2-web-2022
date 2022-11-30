@@ -6,9 +6,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default class SmoothScroll {
     constructor() {
-        this.DOM = {
-
-        };
+        this.DOM = {};
     }
 
     init() {
@@ -25,6 +23,12 @@ export default class SmoothScroll {
                     smooth: 1,
                     effects: true,
                     normalizeScroll: true,
+                });
+            },
+            "(max-width: 900px)": () => {
+                gsap.killTweensOf([wrapper, content]);
+                gsap.set([wrapper, content], {
+                    clearProps: true,
                 });
             },
         });

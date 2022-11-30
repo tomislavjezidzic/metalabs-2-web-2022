@@ -973,6 +973,22 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
     padding-bottom: 1.0416666667vw;
   }
 }
+@media (max-width: 800px) {
+  .c-navigation.has-scrolled {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+@media (max-width: 800px) and (min-width: 1920px) {
+  .c-navigation.has-scrolled {
+    padding-top: 2.0833333333vw;
+  }
+}
+@media (max-width: 800px) and (min-width: 1920px) {
+  .c-navigation.has-scrolled {
+    padding-bottom: 2.0833333333vw;
+  }
+}
 .c-navigation.slide-up {
   -webkit-transform: translateY(-105%);
           transform: translateY(-105%);
@@ -1383,6 +1399,11 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   width: 100%;
 }
 
+.c-3d-slider .swiper-button-prev:after,
+.c-3d-slider .swiper-button-next:after {
+  display: none !important;
+}
+
 .c-3d-slider .swiper-pagination-bullet {
   width: 12px;
   height: 19px;
@@ -1537,21 +1558,9 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 .c-flickering-text b.is-serif {
   font-family: "Teodor", serif;
   font-weight: 300;
+  line-height: 0.5em;
 }
 
-.c-flickering-text.u-a3 div {
-  height: 0.8em;
-}
-
-.c-flickering-text.u-a2 div {
-  height: 0.81em;
-}
-
-@media (max-width: 800px) {
-  .c-flickering-text.u-a2 div {
-    height: 0.91em;
-  }
-}
 .c-hamburger {
   border: none;
   margin: 0;
@@ -2263,16 +2272,22 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
   .c-header__model {
     position: relative;
     grid-column: span 22;
-    aspect-ratio: 400/225;
+    padding-top: 63.75%;
     top: 0;
-    bottom: 0;
     right: 0;
     left: 0;
+  }
+  .c-header__model canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 @media (max-width: 480px) {
   .c-header__model {
-    aspect-ratio: 400/375;
+    padding-top: 93.75%;
     margin-left: -4.5454545455%;
     margin-right: -4.5454545455%;
   }
@@ -3106,43 +3121,43 @@ a:active:not(:disabled):focus-visible, a:focus:not(:disabled):focus-visible {
 }
 @-webkit-keyframes transparent-270-rotate {
   0% {
-    -webkit-transform: translate(-50%, -45%) rotate(-15deg);
-            transform: translate(-50%, -45%) rotate(-15deg);
+    -webkit-transform: translate(-50%, -45%) rotate(-10deg);
+            transform: translate(-50%, -45%) rotate(-10deg);
   }
   100% {
-    -webkit-transform: translate(-45%, -50%) rotate(15deg);
-            transform: translate(-45%, -50%) rotate(15deg);
+    -webkit-transform: translate(-45%, -50%) rotate(10deg);
+            transform: translate(-45%, -50%) rotate(10deg);
   }
 }
 @keyframes transparent-270-rotate {
   0% {
-    -webkit-transform: translate(-50%, -45%) rotate(-15deg);
-            transform: translate(-50%, -45%) rotate(-15deg);
+    -webkit-transform: translate(-50%, -45%) rotate(-10deg);
+            transform: translate(-50%, -45%) rotate(-10deg);
   }
   100% {
-    -webkit-transform: translate(-45%, -50%) rotate(15deg);
-            transform: translate(-45%, -50%) rotate(15deg);
+    -webkit-transform: translate(-45%, -50%) rotate(10deg);
+            transform: translate(-45%, -50%) rotate(10deg);
   }
 }
 @media (max-width: 800px) {
   @-webkit-keyframes transparent-270-rotate {
     0% {
-      -webkit-transform: translate(-50%, -50%) rotate(-15deg);
-              transform: translate(-50%, -50%) rotate(-15deg);
+      -webkit-transform: translate(-50%, -50%) rotate(-10deg);
+              transform: translate(-50%, -50%) rotate(-10deg);
     }
     100% {
-      -webkit-transform: translate(-50%, -50%) rotate(15deg);
-              transform: translate(-50%, -50%) rotate(15deg);
+      -webkit-transform: translate(-50%, -50%) rotate(10deg);
+              transform: translate(-50%, -50%) rotate(10deg);
     }
   }
   @keyframes transparent-270-rotate {
     0% {
-      -webkit-transform: translate(-50%, -50%) rotate(-15deg);
-              transform: translate(-50%, -50%) rotate(-15deg);
+      -webkit-transform: translate(-50%, -50%) rotate(-10deg);
+              transform: translate(-50%, -50%) rotate(-10deg);
     }
     100% {
-      -webkit-transform: translate(-50%, -50%) rotate(15deg);
-              transform: translate(-50%, -50%) rotate(15deg);
+      -webkit-transform: translate(-50%, -50%) rotate(10deg);
+              transform: translate(-50%, -50%) rotate(10deg);
     }
   }
 }

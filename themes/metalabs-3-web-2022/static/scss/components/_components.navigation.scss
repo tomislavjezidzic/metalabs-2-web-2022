@@ -28,6 +28,11 @@
     &.has-scrolled {
         @include fluidValue("padding-top", null, 20px);
         @include fluidValue("padding-bottom", null, 20px);
+
+        @include mq(md) {
+            @include fluidValue("padding-top", null, 40px);
+            @include fluidValue("padding-bottom", null, 40px);
+        }
     }
 
     &.slide-up {

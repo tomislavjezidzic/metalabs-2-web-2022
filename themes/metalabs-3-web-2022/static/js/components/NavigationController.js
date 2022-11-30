@@ -13,7 +13,7 @@ export default class NavigationController {
         /**
          * Navigation DOM selectors
          * Navigation DOM state CSS classes
-         * @type {{navigation: string, states: {navigationSlideUp: string, navigationScrolled: string, navigationFixed: string, active: string, mobileOpened: string}}}
+         * @type {{navigation: string, navigationItem: string, hamburger: string, navigationList: string, states: {navigationSlideUp: string, navigationScrolled: string, navigationFixed: string, active: string, mobileOpened: string}}}
          */
         this.DOM = {
             navigation: ".js-navigation",
@@ -71,8 +71,6 @@ export default class NavigationController {
         if (this.navigation !== null) {
             console.log("Navigation init()");
             this.navigationController();
-        } else {
-            console.error(`${this.DOM.navigation} does not exist in the DOM!`);
         }
 
         if (this.navigationList !== null && this.hamburger !== null) this.mobileNavigation();
@@ -196,6 +194,14 @@ export default class NavigationController {
                 this.closeNavigation();
             }
         });
+
+        if (this.navigationItems.length > 0) {
+            this.navigationItems.forEach((item) => {
+                item.addEventListener("click", () => {
+                    this.closeNavigation();
+                });
+            });
+        }
     }
 
     openNavigation() {
