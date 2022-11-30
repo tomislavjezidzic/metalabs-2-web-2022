@@ -1,5 +1,5 @@
 <!-- COOKIE MESSAGE -->
-<div class="c-cookie-message js-cookie-message-wrapper u-gradient-filled-270 u-gradient-filled-270--animated">
+<div class="c-cookie-message js-cookie-message u-gradient-filled-270 u-gradient-filled-270--animated">
     <div class="o-container o-container--wide">
         <div class="c-cookie-message__inner">
             <div class="c-cookie-message__arrow">
@@ -13,8 +13,8 @@
                 </p>
             </div>
             <div class="c-cookie-message__actions">
-                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif">Decline</button>
-                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif">Accept</button>
+                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif js-cookie-message-close">Decline</button>
+                <button class="c-cookie-message__button u-b4 u-fw-300 u-uppercase has-hover u-serif js-cookie-message-close">Accept</button>
             </div>
         </div>
     </div>
