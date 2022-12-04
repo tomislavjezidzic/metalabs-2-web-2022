@@ -175,14 +175,14 @@ export default class HeaderModel {
                 document.addEventListener("afterLoader", () => {
                     gsap.to(gltf.scene.position, {
                         x: 0,
-                        delay: 0.2,
+                        delay: 0.5,
                         duration: 0.8,
                         ease: "power3.out",
                     });
 
                     gsap.to(gltf.scene.rotation, {
                         y: -Math.PI / 2,
-                        delay: 0.2,
+                        delay: 0.5,
                         duration: 0.8,
                         ease: "power3.out",
                         onComplete: () => this.scrollModelAnimation(gltf.scene),

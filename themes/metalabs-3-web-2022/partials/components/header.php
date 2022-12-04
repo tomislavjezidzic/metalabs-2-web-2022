@@ -17,12 +17,12 @@ if ( ! empty( $title ) && ! empty( $model ) ) { ?>
             <div class="c-header__model js-header-model-wrapper" data-model="<?= esc_url( $model['url'] ); ?>"></div>
 
 			<?php if ( ! empty( $subtitle ) ) { ?>
-                <p class="c-header__subtitle u-a1 u-serif u-fw-300 u-uppercase">
+                <p class="c-header__subtitle u-a1 u-serif u-fw-300 u-uppercase js-header-subtitle">
 					<?= wp_kses_post( $subtitle ); ?>
                 </p>
 			<?php } ?>
 
-            <div class="c-header__arrow">
+            <div class="c-header__arrow js-header-arrow">
                 <a href="" data-scroll-to="#content">
 					<?= get_icon( 'header-arrow' ); ?>
                 </a>
