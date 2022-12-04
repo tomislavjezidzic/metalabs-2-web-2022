@@ -134,7 +134,10 @@ export default class Loader {
         }
 
         gsap.timeline({
-            onStart: () => document.dispatchEvent(this.midLoader),
+            onStart: () => {
+                document.dispatchEvent(this.midLoader);
+                this.wrapper.style.zIndex = "-1";
+            },
         })
             .add("start")
             .to(
