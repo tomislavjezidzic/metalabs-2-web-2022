@@ -18,10 +18,10 @@ $anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
 			<?php if ( ! empty( $upper_text ) ) { ?>
                 <div class="c-marque-module__item js-scroll-marquee">
                     <div class="c-marque-module__mover c-flickering-text js-flickering-text">
-						<?= wp_kses_post( $upper_text ); ?>
+						<?= wp_kses_post( $upper_text ); ?> &nbsp;
                     </div>
                     <div class="c-marque-module__mover c-flickering-text js-flickering-text">
-						<?= wp_kses_post( $upper_text ); ?>
+						<?= wp_kses_post( $upper_text ); ?> &nbsp;
                     </div>
                 </div>
 			<?php } ?>
@@ -37,6 +37,11 @@ $anchor = ! empty( $anchor_id ) ? 'id=' . $anchor_id : '';
 					<?php foreach ( $gallery as $image ) {
 						echo $image_helper->get_marque_logo_image( $image );
 					} ?>
+                </div>
+                <div class="c-marque-module__mover">
+		            <?php foreach ( $gallery as $image ) {
+			            echo $image_helper->get_marque_logo_image( $image );
+		            } ?>
                 </div>
             </div>
         </div>

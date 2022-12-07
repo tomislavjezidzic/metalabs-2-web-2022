@@ -6,8 +6,15 @@
     flex-direction: column;
 
     &__wrapper {
+    }
+
+    &__item{
+        @include fluidValue("gap", "s-64");
+
         display: flex;
         white-space: nowrap;
+        max-width: 999999999px;
+        width: 999999999999px;
     }
 
     &__mover {
