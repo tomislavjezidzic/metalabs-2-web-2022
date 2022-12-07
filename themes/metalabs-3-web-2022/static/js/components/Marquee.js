@@ -31,27 +31,30 @@ export default class Marquee {
      * @param direction
      */
     animateLine(line, direction) {
-        let start = -window.innerWidth / 4;
+        let start = -100;
         let end = 0;
 
         if (direction) {
             start = 0;
-            end = -window.innerWidth / 4;
+            end = -100;
         }
 
+        const mover = line.querySelectorAll(".c-marque-module__mover");
+
         gsap.fromTo(
-            line,
+            mover,
             {
-                x: start,
+                xPercent: start,
             },
             {
-                x: end,
+                xPercent: end,
                 scrollTrigger: {
                     trigger: line,
                     start: "top bottom",
                     end: "bottom top",
-                    scrub: 0.2,
                 },
+                repeat: -1,
+                duration: 16,
                 ease: "none",
             },
         );
