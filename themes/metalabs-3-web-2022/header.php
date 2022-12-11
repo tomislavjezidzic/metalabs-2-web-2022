@@ -20,7 +20,7 @@ if ( defined( 'LOCAL' ) && LOCAL === true ) {
 	Metalabs3Web2022ProductionAssets::register();
 }
 
-$meta_labs_cookie = $_COOKIE['metalabs-3-cookie-acceptance'];
+$meta_labs_cookie = ! empty( $_COOKIE['metalabs-3-cookie-acceptance'] ) ? $_COOKIE['metalabs-3-cookie-acceptance'] : '';
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -53,7 +53,7 @@ $meta_labs_cookie = $_COOKIE['metalabs-3-cookie-acceptance'];
             });
         }
 
-        let metalabsCookie = '<?= ! empty( $meta_labs_cookie ) ? $meta_labs_cookie : ""; ?>';
+        let metalabsCookie = '<?= $meta_labs_cookie; ?>';
 
         if (metalabsCookie) {
             consentGranted("default");
@@ -80,7 +80,7 @@ $meta_labs_cookie = $_COOKIE['metalabs-3-cookie-acceptance'];
                 f.parentNode.insertBefore(j, f);
             })(window, document, 'script', 'dataLayer', 'GTM-5KMWK7K');</script>
         <!-- End Google Tag Manager -->
-	<?php }  ?>
+	<?php } ?>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link rel="profile" href="http://gmpg.org/xfn/11">
@@ -108,5 +108,5 @@ $meta_labs_cookie = $_COOKIE['metalabs-3-cookie-acceptance'];
                 height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-<?php }  ?>
+<?php } ?>
 
