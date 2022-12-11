@@ -15,7 +15,6 @@
 
         display: inline-flex;
         align-items: center;
-        animation-play-state: running;
         -webkit-backface-visibility: hidden;
         -webkit-transform-style: preserve-3d;
         will-change: transform;
@@ -24,7 +23,49 @@
     &__logo {
         @include fluidValue("width", null, 240px);
         @include fluidValue("height", null, 144px);
+        @include fluidValue("margin-right", "s-32");
 
+        display: inline-block;
         object-fit: contain;
+        object-position: center;
+
+        @include mq(md) {
+            width: 200px;
+            height: 120px;
+        }
+
+        @include mq(sm) {
+            width: 170px;
+            height: 100px;
+        }
+    }
+
+    &__wrapper-infinite {
+        width: 100%;
+        cursor: pointer;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        white-space: nowrap;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform-style: preserve-3d;
+        transform: translate3d(0, 0, 0);
+    }
+
+    &__mover-infinite {
+        flex: 1 0 auto;
+        display: inline-flex;
+        align-items: center;
+        animation: marquee 10s linear infinite;
+        animation-play-state: running;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform-style: preserve-3d;
+        will-change: transform;
+    }
+}
+
+@keyframes marquee {
+    100% {
+        transform: translateX(-100%);
     }
 }
