@@ -32,6 +32,11 @@ export default class HeaderModel {
 
         this.loader = new GLTFLoader();
 
+        // for slower connection
+        this.afterLoadFlagLoaded = false;
+        this.afterLoadAnimationDone = false;
+        document.addEventListener("afterLoader", () => (this.afterLoadFlagLoaded = true));
+
         // loader
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath(window.dracoPath);
@@ -173,24 +178,18 @@ export default class HeaderModel {
                 this.scene.add(gltf.scene);
 
                 document.addEventListener("afterLoader", () => {
-                    gsap.to(gltf.scene.position, {
-                        x: 0,
-                        delay: 0.5,
-                        duration: 0.8,
-                        ease: "power3.out",
-                    });
-
-                    gsap.to(gltf.scene.rotation, {
-                        y: -Math.PI / 2,
-                        delay: 0.5,
-                        duration: 0.8,
-                        ease: "power3.out",
-                        onComplete: () => this.scrollModelAnimation(gltf.scene),
-                    });
+                    this.afterLoadAnimationDone = true;
+                    this.introModelAnimation();
                 });
+
+                if (this.afterLoadFlagLoaded && !this.afterLoadAnimationDone) {
+                    this.introModelAnimation();
+                }
             },
             (xhr) => {
-                // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+                // if ((xhr.loaded / xhr.total) * 100 >= 100 && this.afterLoadFlagLoaded && !this.afterLoadAnimationDone) {
+                //     console.log("Model loaded on slow connection");
+                // }
             },
             (error) => {
                 // console.log("An error happened");
@@ -198,9 +197,26 @@ export default class HeaderModel {
         );
     }
 
-    scrollModelAnimation(model) {
+    introModelAnimation() {
+        gsap.to(this.model.position, {
+            x: 0,
+            delay: 0.5,
+            duration: 0.8,
+            ease: "power3.out",
+        });
+
+        gsap.to(this.model.rotation, {
+            y: -Math.PI / 2,
+            delay: 0.5,
+            duration: 0.8,
+            ease: "power3.out",
+            onComplete: () => this.scrollModelAnimation(),
+        });
+    }
+
+    scrollModelAnimation() {
         gsap.fromTo(
-            model.rotation,
+            this.model.rotation,
             {
                 y: -Math.PI / 2,
                 x: -0.1,
